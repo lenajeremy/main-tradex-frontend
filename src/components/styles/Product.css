@@ -1,0 +1,92 @@
+.product{
+  width: 49%;
+  border: 3px solid darkcyan;
+  height: 250px;
+  margin-bottom: 17px;
+  border-radius: 10px;
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.product .background,
+.product .overlay, 
+.product .content,
+.product .main{
+  border-radius: 10px;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-size: cover;
+  background-position: center;
+  bottom: 0;
+  right: 0;
+  transition: all 0.5s;
+}
+.product .overlay{
+  background: rgb(116, 116, 116);
+  opacity: 0.2;
+}
+.product .btn-secondary{
+  margin-right: 7px;
+  display: inline-block;
+}
+.product .content{
+  z-index: 1;
+}
+.productsGrid{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.product .content{
+  transform: translateY(100%);
+}
+.product .plus{
+  font-size: 80px;
+  text-align: center;
+  font-weight: lighter;
+  color: black;
+  margin: 0;
+  width: 100%;
+}
+.product:nth-child(odd){
+  margin-right: 7px;
+}
+.product:hover .background{
+  filter: blur(5px);
+  transform: translateY(-30px) scale(1.2);
+}
+.product:hover .content{
+  transform: translateY(25%);
+  background: rgba(0, 139, 139, 0.719);
+  color: white;
+}
+.product:hover .overlay{
+  z-index: 1;
+}
+.product .main{
+  display: none;
+}
+.product:nth-child(3n){
+  width: 100%;
+}
+.product svg{
+  display: none;
+}
+.product:hover svg{
+  display: block;
+  background: white;
+  padding: 4px;
+  width: 1.1em;
+  height: 1.1em;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1;
+  cursor: pointer;
+}

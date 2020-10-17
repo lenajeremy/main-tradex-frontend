@@ -1,0 +1,22 @@
+header{
+  background: darkcyan;
+  color: white;
+  padding: 3px 10px;
+  box-shadow: 0px -3px 3px gray;
+  margin-bottom: 20px;
+  position : sticky;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+header a{
+  color: white;
+}
+header a:hover{
+  color: lightblue;
+}
+.navbar-nav{
+  display: flex;
+  align-items: center;
+}
+

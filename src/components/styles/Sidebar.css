@@ -1,0 +1,79 @@
+.sideBar{
+  width: 25%;
+  position: fixed;
+  left: 0;
+  top: 60px;
+  min-height: 100vh;
+  display: flex;
+  align-items:center;
+  justify-content: center;
+}
+
+.links{
+  display: flex;
+  height: 80vh;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+}
+.sideBar a{
+  color: rgb(3, 82, 82);
+  font-size: 1.5rem;
+}
+.sideBar a:hover{
+  text-decoration: none;
+}
+.sideBar__links{
+  position: relative;
+}
+.sideBar .top, .sideBar .bottom,
+.sideBar__links.left::before,
+.sideBar__links.right::after{
+  transition: all 1s ease;
+  opacity: 0;
+}
+.sideBar__links.active .top, .sideBar__links.active .bottom{
+  position: absolute;
+  width: 30px;
+  height: 3px;
+  opacity: 1;
+  background: rgb(4, 73, 73);
+}
+.sideBar .top{
+  top: -3px;
+}
+.sideBar .bottom{
+  bottom: -3px;
+}
+.sideBar .right .top, .sideBar .right .bottom{
+  right: -20px;
+}
+.sideBar .left .top, .sideBar .left .bottom{
+  left: -20px;
+}
+
+.sideBar__links.active.right::after, 
+.sideBar__links.active.left::before{
+  content: '';
+  opacity: 1;
+  height: 100%;
+  width: 3px;
+  background: rgb(4, 73, 73);
+  position: absolute;
+  top: 0;
+  bottom :0;
+}
+.sideBar__links.active a{
+  font-weight: bolder;
+  font-size: 1.8rem;
+}
+.sideBar .right::after{
+  right: -20px;
+}
+.sideBar .left::before{
+  left: -20px;
+}
+.sideBar__links svg{
+  height: 1.8rem;
+  width: 1.8rem;
+}

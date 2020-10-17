@@ -1,0 +1,25 @@
+.profile__image{
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  border-radius: 50%;
+  border: 4px darkcyan solid;
+}
+.profile__image img{
+  border-radius: 50%;
+}
+#loader{
+  margin: auto;
+  display: block;
+}
+.cover_picture{
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 270px;
+}
+.cover_picture img{
+  visibility: hidden;
+}

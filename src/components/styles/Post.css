@@ -1,0 +1,58 @@
+.post{
+  border-radius: 10px;
+  box-shadow: -2px 2px 5px gray;
+  padding: 40px;
+  background: transparent;
+  background: rgba(230, 230, 230, 0.63);
+}
+
+.post__header{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+.post__header h4{
+  font-size: 18px;
+}
+.post__header img{
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 20px;
+}
+.poster__details{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.poster__details *{
+  margin: 0;
+}
+.postImage{
+  position: relative;
+}
+.likeButtons{
+  position: absolute;
+  left: 20px;
+  bottom: 10px;
+  padding: 10px;
+  border-radius: 20px;
+  width: 90px;
+  background-color: rgb(0, 163, 163);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+}
+.likeButtons p{
+  margin: 0;
+  font-weight: bold;
+  font-size: 18px;
+}
+.likeButtons svg{
+  display: inline-block;
+  margin-right: 10px;
+}
