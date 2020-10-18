@@ -14,7 +14,7 @@ function Sidebar(props) {
 
   function userTypeDeterminant() {
     return (
-      <div className={`sideBar__links right ${active === 'cart' ? 'active' : ''}`}>
+      <div className={`sideBar__links right ${active === 'cart' || 'store' ? 'active' : ''}`}>
       <div className='top'></div>
       <div className='bottom'></div>
       {!userDetails.id ? userDetails.userType === 'buyer' ? <Link onClick = {() => dispatch(editSidebar({ value: 'cart' }))} to='/login'><ShoppingBasket/>Your Cart</Link> :
