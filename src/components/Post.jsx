@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {Link } from 'react-router-dom';
-import { editPost } from '../fetch';
+import { editPost, backendAPI } from '../fetch';
 import { ThumbUpAltOutlined } from '@material-ui/icons'
 import './styles/Post.css'
 import { Redirect } from 'react-router-dom';
@@ -51,7 +51,13 @@ function Post(props) {
     return (
       <div className="post my-4">
         <div className="post__header">
-          <img src={`http://localhost:8000${props.postDetails.posterPicture}`} alt="" className='img-responsive img-fluid img-rounded' />
+          <div className="posterImage" style = {{backgroundImage: `url(${backendAPI + props.postDetails.posterPicture})`}}>
+          <img 
+            src={`${backendAPI}${props.postDetails.posterPicture}`} 
+            alt="" className='img-responsive img-fluid img-rounded'
+            style = {{backgroundImage: `${backendAPI}${props.postDetails.posterPicture}`}}
+          />
+          </div>
           <div className="poster__details">
             <Link to = {`/view/user-profile/${props.postDetails.poster}`} className='font-weight-bold'>{props.postDetails.poster}</Link>
             <small>{getTimeDifference(props.postDetails.dateCreated)}</small>
@@ -60,7 +66,7 @@ function Post(props) {
         <hr />
         <p>{props.postDetails.content}</p>
         <div className="postImage">
-          <img src={`http://localhost:8000${props.postDetails.image}`} alt="" className='img-responsive img-fluid' />
+          <img src={`${backendAPI}${props.postDetails.image}`} alt="" className='img-responsive img-fluid' />
           <div className="likeButtons" onClick={handleLike}>
             <p className='like'><ThumbUpAltOutlined/>{likeCount}</p>
           </div>

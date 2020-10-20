@@ -15,12 +15,18 @@
 .post__header h4{
   font-size: 18px;
 }
-.post__header img{
+.posterImage{
   width: 60px;
   height: 60px;
   border-radius: 50%;
   display: inline-block;
   margin-right: 20px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+}
+.posterImage img{
+  visibility: hidden;
 }
 .poster__details{
   display: flex;

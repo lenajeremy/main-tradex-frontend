@@ -6,9 +6,13 @@
   left: 50%;
   border-radius: 50%;
   border: 4px darkcyan solid;
+  background-position: center;
+  background-size: cover;
+  overflow: hidden;
 }
 .profile__image img{
   border-radius: 50%;
+  visibility: hidden;
 }
 #loader{
   margin: auto;
@@ -17,9 +21,35 @@
 .cover_picture{
   position: relative;
   display: block;
+  background-position: center;
   width: 100%;
   height: 270px;
 }
 .cover_picture img{
-  visibility: hidden;
+  display: contents;
+}
+.profile__change__svg, 
+input#profileChange, 
+.cover_picture svg,
+.cover_picture input {
+  position: absolute;
+  background: darkcyan;
+  color: white;
+  bottom: 10%;
+  padding: 5px;
+  width: 1.4em!important;
+  height: 1.4em!important;
+  border-radius: 50%;
+  right: 20px;
+}
+input#profileChange, .cover_picture input{
+  overflow: hidden;
+  opacity: 0;
+}
+.cover_picture svg, .cover_picture input{
+  bottom: 3%;
+  right: 3%;
+  width: 2em!important;
+  height: 2em!important;
+  padding: 8px;
 }

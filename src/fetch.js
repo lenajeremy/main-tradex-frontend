@@ -105,11 +105,19 @@ function editPost(user_id, post_id, operation, newText, callback){
   .then(data => callback(data))
   .catch(err => console.log(err))
 }
-function editUser(user_id, newstatus, newbio, profileImage, callback){
+function editUser(user_id, details, callback){
   let formData = new FormData();
-  formData.append('status', newstatus);
-  formData.append('bio', newbio);
-  profileImage ? formData.append('profile_image', profileImage, profileImage.name): console.error('There is no profile picture');
+  if(details.field === 'profilePicture'){
+    formData.append('field', 'profile_image');
+    formData.append('profile_image', details.value.image, details.value.imageName);
+  }else if(details.field === 'coverPicture'){
+    formData.append('field', 'cover_image');
+    formData.append('cover_image', details.value.image, details.value.imageName);
+  } else{
+    formData.append('field', 'lorem');
+    formData.append('status', details.status);
+    formData.append('bio', details.bio);
+  }
   fetch(`${backendAPI}/user/${user_id}/edit`, {
     method: "POST",
     body: formData
@@ -135,4 +143,5 @@ module.exports = {
   createNewProduct, 
   editPost,
   editUser,
+  backendAPI
 }

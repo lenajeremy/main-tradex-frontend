@@ -7,7 +7,6 @@ import {removeProductAction} from '../actions';
 import {removeProduct as backendRemoval} from '../fetch';
 import './styles/Product.css';
 import Login from './Login';
-import { AnimatePresence } from 'framer-motion';
 
 function Store(props) {
   const dispatch = useDispatch()
@@ -25,7 +24,6 @@ function Store(props) {
 
   if(products){
     return (
-      <AnimatePresence>
       <div className = 'store'>
         <h5 className = 'text-center'>Your Products</h5>
         <div className = 'productsGrid'>
@@ -36,7 +34,6 @@ function Store(props) {
         {products.map((product, index) => <Product productRemover = {productDetails => removeProduct(productDetails)} key = {index} productDetails ={product} view = 'store'/>)}
         </div>
       </div>
-      </AnimatePresence>
     )
   }
   return <Redirect to = '/login'/>

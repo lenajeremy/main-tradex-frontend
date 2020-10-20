@@ -13,8 +13,12 @@ function Sidebar(props) {
   const active = useSelector(store => store.sideBar)
 
   function userTypeDeterminant() {
+    const isActive = ()=>{
+      if(active === 'cart' || active === 'store') return true
+      return false
+    }
     return (
-      <div className={`sideBar__links right ${active === 'cart' || 'store' ? 'active' : ''}`}>
+      <div className={`sideBar__links right ${isActive() ? 'active' : ''}`}>
       <div className='top'></div>
       <div className='bottom'></div>
       {!userDetails.id ? userDetails.userType === 'buyer' ? <Link onClick = {() => dispatch(editSidebar({ value: 'cart' }))} to='/login'><ShoppingBasket/>Your Cart</Link> :
@@ -36,12 +40,12 @@ function Sidebar(props) {
         <div className={`sideBar__links right ${active === 'profile' ? 'active' : ''}`}>
             <div className='top'></div>
             <div className='bottom'></div> 
-          <Link onClick = {() => dispatch(editSidebar({ value: 'profile' }))} to={userDetails.id ? `user/${userDetails.id}/profile` :'/login'}><Person/>Your Profile</Link>
+          <Link onClick = {() => dispatch(editSidebar({ value: 'profile' }))} to={userDetails.id ? `/user/${userDetails.id}/profile` :'/login'}><Person/>Your Profile</Link>
         </div>
         <div className={`sideBar__links left ${active === 'account' ? 'active' : ''}`}>
             <div className='top'></div>
             <div className='bottom'></div> 
-          <Link onClick = {() => dispatch(editSidebar({ value: 'account' }))} to={userDetails.id ? `user/${userDetails.id}/account` : '/login' }><CreditCardTwoTone/>Your Account</Link>
+          <Link onClick = {() => dispatch(editSidebar({ value: 'account' }))} to={userDetails.id ? `/user/${userDetails.id}/account` : '/login' }><CreditCardTwoTone/>Your Account</Link>
         </div>
         {userTypeDeterminant()}
         <div className={`sideBar__links right ${active === 'advertise' ? 'active' : ''}`}>

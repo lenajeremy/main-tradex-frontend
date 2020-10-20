@@ -3,6 +3,7 @@ import React from 'react';
 import './styles/Product.css';
 import {Close} from '@material-ui/icons';
 import {motion} from 'framer-motion';
+import {backendAPI} from '../fetch';
 
 const Product = ({productDetails, view, productRemover}) =>{
 
@@ -15,11 +16,7 @@ const Product = ({productDetails, view, productRemover}) =>{
       <div className="overlay"></div>
       <Close onClick = {()=>productRemover(productDetails)}/>
 
-      <div className="background" style = {{backgroundImage: `url(http://localhost:8000${productDetails.image})`}}></div>
-      {/* <div className="main">
-        <p>{productDetails.id}</p>
-        <p>{productDetails.name}</p>
-      </div> */}
+      <div className="background" style = {{backgroundImage: `url(${backendAPI}${productDetails.image})`}}></div>
       <div className="content">
         <p>{productDetails.id}</p>
         <h5>{productDetails.name}</h5>
