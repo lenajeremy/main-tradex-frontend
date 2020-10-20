@@ -15,7 +15,7 @@ button:focus{
   width: 25%;
   padding: 15px;
   overflow: scroll;
-  min-height: 100vh;
+  max-height: 100vh;
 }
 .lead{
   font-size: 1.1rem;

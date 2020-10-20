@@ -14,7 +14,7 @@ import Cart from './components/Cart';
 import {useSelector, useDispatch} from 'react-redux';
 import {getUser} from './fetch';
 import {login, profileChange, newProduct} from './actions'
-import Searchbar from './components/Searchbar';
+import Searchbar from './components/Searchbar'
 
 function App() {
   const dispatch = useDispatch();

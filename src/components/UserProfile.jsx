@@ -46,6 +46,7 @@ function UserProfile() {
             </div>
           </div>
           <p>{user.profile.bio}</p>
+          <p></p>
         </div>
         {/* <EditProfile /> */}
       </div>
