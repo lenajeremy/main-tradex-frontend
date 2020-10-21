@@ -78,17 +78,15 @@
 @media screen and (max-width: 768px){
  .sideBar{
    width: 100%;
-   background: rgba(0, 139, 139, 0.582);
-   padding: 5px;
-   border-top-left-radius: 10px;
-   border-top-right-radius: 10px;
+   background: white;
    top: unset;
    bottom: 0;
    min-height: 47px;
    z-index: 2000;
+   border: 1px solid rgb(197, 197, 197);
  }
  .sideBar svg{
-   color: white;
+   color: darkcyan;
  }
  .links{
    flex-direction: row;
@@ -97,7 +95,7 @@
    justify-content: space-around;
  }
  .sideBar__links{
-  background: rgb(0, 139, 139);
+  /* background: rgb(0, 139, 139); */
   height: 100%;
   width: 50px;
   border-radius: 50%;
@@ -113,12 +111,10 @@
   display: none
  }
  .sideBar__links.active{
-   background: rgb(6, 148, 6);
-   border: 3px solid white;
+   /* background: rgb(6, 148, 6); */
  }
  .sideBar__links.active svg{
-   color: rgb(255, 255, 255);
-   width: 1.6rem;
-   height: 1.6rem;
+   width: 2rem;
+   height: 2rem;
  }
 }
