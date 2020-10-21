@@ -6,7 +6,7 @@
   /* transform:  translate(-50%, -50%); */
 /* } */
 .MuiButton-containedPrimary{
-  background-color: darkcyan;
+  background-color: #3f51b5;
 }
 #login__loader{
   color: white;

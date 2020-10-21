@@ -2,10 +2,9 @@
   width: 150px;
   height: 150px;
   position: absolute;
-  transform: translate(-50%, -50%);
-  left: 50%;
+  transform: translate(15%,-50%);
   border-radius: 50%;
-  border: 4px darkcyan solid;
+  border: 4px #3f51b5 solid;
   background-position: center;
   background-size: cover;
   overflow: hidden;
@@ -33,7 +32,7 @@ input#profileChange,
 .cover_picture svg,
 .cover_picture input {
   position: absolute;
-  background: darkcyan;
+  background: #3f51b5;
   color: white;
   bottom: 10%;
   padding: 5px;
@@ -52,4 +51,25 @@ input#profileChange, .cover_picture input{
   width: 2em!important;
   height: 2em!important;
   padding: 8px;
+}
+@media screen and (max-width: 768px){
+  .cover_picture{
+    height: 25vh;
+  }
+  .profile__image{
+    width: 80px;
+    height: 80px;
+    border-width: 2px;
+  }
+  .profile__change__svg, 
+input#profileChange{
+  width: 1.1em!important;
+  height: 1.1em!important;
+  right: 15px;
+}
+.cover_picture svg, .cover_picture input{
+  height: 1.5em!important;
+  width: 1.5em!important;
+}
+
 }

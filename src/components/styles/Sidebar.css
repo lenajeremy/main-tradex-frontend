@@ -86,7 +86,7 @@
    border: 1px solid rgb(197, 197, 197);
  }
  .sideBar svg{
-   color: darkcyan;
+   color: #3f51b5;
  }
  .links{
    flex-direction: row;

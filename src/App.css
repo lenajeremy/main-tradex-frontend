@@ -8,7 +8,8 @@
 }
 @media screen and (max-width: 768px){
   .container:not(.header){
-    width: 97%!important;
+    width: 99%!important;
+    padding-bottom: 50px;
   }
 }
 button:focus{
