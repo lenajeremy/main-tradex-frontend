@@ -6,6 +6,11 @@
 .container:not(.header){
   width: 50%!important;
 }
+@media screen and (max-width: 768px){
+  .container:not(.header){
+    width: 97%!important;
+  }
+}
 button:focus{
   outline: none!important;
 }
@@ -16,6 +21,7 @@ button:focus{
   padding: 15px;
   overflow: scroll;
   max-height: 100vh;
+  display: none;
 }
 .lead{
   font-size: 1.1rem;

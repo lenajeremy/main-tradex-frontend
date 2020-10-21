@@ -75,7 +75,7 @@ function Login(props) {
               </Grid>
             </Grid>
             <Button type="submit" fullWidth variant="contained" color='primary'>{submit ? <React.Fragment>Logging you in...<CircularProgress variant = 'indeterminate' color = 'primary' id = 'login__loader'/></React.Fragment> : 'Log in'}</Button>
-            <Grid container spacing={2}>
+            <Grid container spacing={2} className = 'text-center mt-1'>
               <Grid item>
                 <Link to='/register'>
                   Don't have an account? Sign Up

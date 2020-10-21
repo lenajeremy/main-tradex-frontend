@@ -20,3 +20,9 @@ header a:hover{
   align-items: center;
 }
 
+@media screen and (max-width: 768px){
+  header{
+    height: 60px;
+    overflow: hidden;
+  }
+}

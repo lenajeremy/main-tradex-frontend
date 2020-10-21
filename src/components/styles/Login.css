@@ -1,9 +1,9 @@
 .login{
-  position: absolute;
-  width: 400px;
-  top: 50%;
-  left: 50%;
-  transform:  translate(-50%, -50%);
+  /* position: absolute; */
+  /* width: 400px; */
+  /* top: 50%; */
+  /* left: 50%; */
+  /* transform:  translate(-50%, -50%); */
 }
 .MuiButton-containedPrimary{
   background-color: darkcyan;
@@ -15,4 +15,12 @@
 }
 input, textarea{
   outline: none!important;
+}
+@media screen and (max-width: 768px){
+  .MuiGrid-item{
+    width: 100%;
+  }
+  .MuiContainer-root.MuiContainer-maxWidthXs{
+    margin-top: 40%;
+  }
 }

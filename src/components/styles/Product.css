@@ -99,3 +99,8 @@ a.product{
 .product:first-child{
   cursor: pointer;
 }
+@media screen and (max-width: 768px){
+  .product{
+    width: 100%;
+  }
+}

@@ -62,3 +62,11 @@
   display: inline-block;
   margin-right: 10px;
 }
+@media screen and (max-width: 768px){
+  .post{
+    padding: 20px;
+  }
+  .post__header{
+    margin-bottom: 15px;
+  }
+}

@@ -8,7 +8,6 @@
   align-items:center;
   justify-content: center;
 }
-
 .links{
   display: flex;
   height: 80vh;
@@ -51,7 +50,6 @@
 .sideBar .left .top, .sideBar .left .bottom{
   left: -20px;
 }
-
 .sideBar__links.active.right::after, 
 .sideBar__links.active.left::before{
   content: '';
@@ -76,4 +74,51 @@
 .sideBar__links svg{
   height: 1.8rem;
   width: 1.8rem;
+}
+@media screen and (max-width: 768px){
+ .sideBar{
+   width: 100%;
+   background: rgba(0, 139, 139, 0.582);
+   padding: 5px;
+   border-top-left-radius: 10px;
+   border-top-right-radius: 10px;
+   top: unset;
+   bottom: 0;
+   min-height: 47px;
+   z-index: 2000;
+ }
+ .sideBar svg{
+   color: white;
+ }
+ .links{
+   flex-direction: row;
+   height: 50px;
+   width: 100%;
+   justify-content: space-around;
+ }
+ .sideBar__links{
+  background: rgb(0, 139, 139);
+  height: 100%;
+  width: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+ }
+ .sideBar__links.active .top,
+ .sideBar__links.active .bottom,
+ .sideBar__links.active::before,
+ .sideBar__links.active::after,
+ .text{
+  display: none
+ }
+ .sideBar__links.active{
+   background: rgb(6, 148, 6);
+   border: 3px solid white;
+ }
+ .sideBar__links.active svg{
+   color: rgb(255, 255, 255);
+   width: 1.6rem;
+   height: 1.6rem;
+ }
 }

@@ -21,10 +21,10 @@ function Sidebar(props) {
       <div className={`sideBar__links right ${isActive() ? 'active' : ''}`}>
       <div className='top'></div>
       <div className='bottom'></div>
-      {!userDetails.id ? userDetails.userType === 'buyer' ? <Link onClick = {() => dispatch(editSidebar({ value: 'cart' }))} to='/login'><ShoppingBasket/>Your Cart</Link> :
-      <Link onClick = {() => dispatch(editSidebar({ value: 'store' }))} to={'/login'}><ShoppingBasket/>Your Store</Link> : 
-      userDetails.userType === 'buyer' ? <Link onClick = {() => dispatch(editSidebar({ value: 'cart' }))} to={'/user/' + userDetails.id.toString() + '/cart'}><ShoppingBasket/>Your Cart</Link> :
-      <Link onClick = {() => dispatch(editSidebar({ value: 'store' }))} to={'/user/' + userDetails.id.toString() + '/store'}><ShoppingBasket/>Your Store</Link>
+      {!userDetails.id ? userDetails.userType === 'buyer' ? <Link onClick = {() => dispatch(editSidebar({ value: 'cart' }))} to='/login'><ShoppingBasket/><span className = 'text'>Your Cart</span></Link> :
+      <Link onClick = {() => dispatch(editSidebar({ value: 'store' }))} to={'/login'}><ShoppingBasket/><span className = 'text'>Your Store</span></Link> : 
+      userDetails.userType === 'buyer' ? <Link onClick = {() => dispatch(editSidebar({ value: 'cart' }))} to={'/user/' + userDetails.id.toString() + '/cart'}><ShoppingBasket/><span className = 'text'>Your Cart</span></Link> :
+      <Link onClick = {() => dispatch(editSidebar({ value: 'store' }))} to={'/user/' + userDetails.id.toString() + '/store'}><ShoppingBasket/><span className = 'text'>Your Store</span></Link>
       }
   </div>
     )
@@ -35,23 +35,23 @@ function Sidebar(props) {
         <div className={`sideBar__links left ${active === 'explore' ? 'active' : ''}`}>
             <div className='top'></div>
             <div className='bottom'></div>
-          <Link onClick = {() => dispatch(editSidebar({ value: 'explore' }))} to='/'><EcoSharp/>Explore</Link>
+          <Link onClick = {() => dispatch(editSidebar({ value: 'explore' }))} to='/'><EcoSharp/><span className = 'text'>Explore</span></Link>
         </div>
         <div className={`sideBar__links right ${active === 'profile' ? 'active' : ''}`}>
             <div className='top'></div>
             <div className='bottom'></div> 
-          <Link onClick = {() => dispatch(editSidebar({ value: 'profile' }))} to={userDetails.id ? `/user/${userDetails.id}/profile` :'/login'}><Person/>Your Profile</Link>
+          <Link onClick = {() => dispatch(editSidebar({ value: 'profile' }))} to={userDetails.id ? `/user/${userDetails.id}/profile` :'/login'}><Person/><span className = 'text'>Your Profile</span></Link>
         </div>
         <div className={`sideBar__links left ${active === 'account' ? 'active' : ''}`}>
             <div className='top'></div>
             <div className='bottom'></div> 
-          <Link onClick = {() => dispatch(editSidebar({ value: 'account' }))} to={userDetails.id ? `/user/${userDetails.id}/account` : '/login' }><CreditCardTwoTone/>Your Account</Link>
+          <Link onClick = {() => dispatch(editSidebar({ value: 'account' }))} to={userDetails.id ? `/user/${userDetails.id}/account` : '/login' }><CreditCardTwoTone/><span className = 'text'>Your AccountM</span></Link>
         </div>
         {userTypeDeterminant()}
         <div className={`sideBar__links right ${active === 'advertise' ? 'active' : ''}`}>
             <div className='top'></div>
             <div className='bottom'></div>
-          <Link onClick = {() => dispatch(editSidebar({ value: 'advertise' }))} to='/core/ads'><Add/>Advertise on TradeX</Link>
+          <Link onClick = {() => dispatch(editSidebar({ value: 'advertise' }))} to='/core/ads'><Add/><span className = 'text'>Advertise on TradeX</span></Link>
         </div>
       </div>
     </div>
