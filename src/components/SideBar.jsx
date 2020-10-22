@@ -59,7 +59,7 @@ function Sidebar(props) {
         <div className={`sideBar__links left ${active === 'account' ? 'active' : ''}`}>
             <div className='top'></div>
             <div className='bottom'></div> 
-          <Link onClick = {() => dispatch(editSidebar({ value: 'account' }))} to={userDetails.id ? `/user/${userDetails.id}/account` : '/login' }>{active === 'account' ? <CreditCard/> :<CreditCardOutlined/>}<span className = 'text'>Your AccountM</span></Link>
+          <Link onClick = {() => dispatch(editSidebar({ value: 'account' }))} to={userDetails.id ? `/user/${userDetails.id}/account` : '/login' }>{active === 'account' ? <CreditCard/> :<CreditCardOutlined/>}<span className = 'text'>Your Account</span></Link>
         </div>
         {userTypeDeterminant()}
         <div className={`sideBar__links right ${active === 'advertise' ? 'active' : ''}`}>

@@ -8,7 +8,8 @@
 }
 @media screen and (max-width: 768px){
   .container:not(.header){
-    width: 99%!important;
+    width: 100%!important;
+    padding: 0;
     padding-bottom: 50px;
   }
 }

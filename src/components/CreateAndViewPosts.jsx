@@ -52,7 +52,7 @@ function CreatePosts(props) {
   if (!toRedirect) {
     return (
       <React.Fragment>
-        <form onSubmit={handleFormSubmission} className = 'mb-4' id = 'createForm'>
+        <form onSubmit={handleFormSubmission} className = 'mb-md-4' id = 'createForm'>
           <TextareaAutosize id = 'create_textarea' name = 'post_content' value = {postContent} onChange = {event => setPostContent(event.target.value)} placeholder = {`What's going on ${user_id ? user.firstName : ''}??`} />
           <div className = 'stuff'>
           <div className="imageCreate">
@@ -62,8 +62,8 @@ function CreatePosts(props) {
           <span id = 'message'>Text Ain't Enough? Add an Image</span>
           <button id = 'createFormButton' type='submit'>{isCreated ? <CheckSharp className = 'post_sent'/> : 'POST'}</button>
           </div>
+          {error ? <p className = 'text-danger post_error text-center'>{error}</p> : ''}
         </form>
-        {error ? <p className = 'text-danger text-center'>{error}</p> : ''}
       </React.Fragment>
     )
   } else {
@@ -86,6 +86,7 @@ function AllPosts(props) {
   useEffect(() => {
     window.addEventListener('scroll', scrollEvent);
     getAllPosts(lastPostRef.current, data => dispatch(fetchposts(data.posts)));
+    return () => window.removeEventListener('scroll', scrollEvent)
   },[]);
 
   useEffect(() => setLastPostValue(allPosts.length),[allPosts]);
@@ -104,7 +105,6 @@ function AllPosts(props) {
 
   return (
     <React.Fragment>
-      <h1>Posts</h1>
       { allPosts.map((post, index) => <Post key={index} postDetails={post} />)}
       {loading ? <CircularProgress variant = 'indeterminate' color = 'primary' id = 'loader'/> : ''}
     </React.Fragment>

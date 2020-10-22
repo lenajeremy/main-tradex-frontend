@@ -3,7 +3,6 @@ a.product{
 }
 .product{
   width: 49%;
-  border: 3px solid #3f51b5;
   height: 250px;
   margin-bottom: 17px;
   border-radius: 10px;
@@ -12,6 +11,9 @@ a.product{
   position: relative;
   display: flex;
   align-items: center;
+}
+.product:first-child{
+  border: 3px solid #3f51b5;
 }
 .product .background,
 .product .overlay, 
@@ -102,5 +104,13 @@ a.product{
 @media screen and (max-width: 768px){
   .product{
     width: 100%;
+    height: 200px;
+  }
+  .product .content h5{
+    margin: 0.2rem;
+  }
+  .productsGrid{
+    width: 90%;
+    margin: auto
   }
 }

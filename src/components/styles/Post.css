@@ -57,6 +57,7 @@
   margin: 0;
   font-weight: bold;
   font-size: 18px;
+  display: flex;
 }
 .likeButtons svg{
   display: inline-block;
@@ -65,8 +66,28 @@
 @media screen and (max-width: 768px){
   .post{
     padding: 20px;
+    border-radius: 0;
+    margin: 0!important;
+    box-shadow: -2px -1px 3px grey;
   }
   .post__header{
-    margin-bottom: 15px;
+    margin: 0;
+  }
+  hr{
+    margin: 0.5rem;
+  }
+  .posterImage{
+    width: 45px;
+    height: 45px;
+    margin-right: 10px;
+  }
+  .postContent{
+    font-size: 15px;
+  }
+  .likeButtons{
+    left: 0;
+    bottom: 0;
+    width: 70px;
+    padding: 5px;
   }
 }

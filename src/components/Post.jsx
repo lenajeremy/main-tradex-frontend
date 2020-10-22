@@ -59,12 +59,12 @@ function Post(props) {
           />
           </div>
           <div className="poster__details">
-            <Link to = {`/view/user-profile/${props.postDetails.poster}`} className='font-weight-bold'>{props.postDetails.poster}</Link>
+            <Link to = {`/view/user-profile/${props.postDetails.poster}`}>{props.postDetails.poster}</Link>
             <small>{getTimeDifference(props.postDetails.dateCreated)}</small>
           </div>
         </div>
         <hr />
-        <p>{props.postDetails.content}</p>
+        <p className = 'postContent'>{props.postDetails.content}</p>
         <div className="postImage">
           <img src={`${backendAPI}${props.postDetails.image}`} alt="" className='img-responsive img-fluid' />
           <div className="likeButtons" onClick={handleLike}>

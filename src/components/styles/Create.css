@@ -95,7 +95,7 @@ button#createFormButton{
 
 @media screen and (max-width: 768px){
   #createForm{
-    padding: 15px;
+    padding: 30px 15px;
   }
   textarea#create_textarea{
     min-height: 50px;
@@ -118,5 +118,13 @@ button#createFormButton{
   #loader{
     width:25px!important;
     height: 25px!important;
+  }
+  .post_error{
+    font-size: 14px;
+    margin: 0;
+  }
+  #createForm{
+    border-radius: 0;
+    box-shadow: -2px -1px 3px grey;
   }
 }

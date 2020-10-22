@@ -19,10 +19,6 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-.btn{
-  background: rgb(0, 71, 83)!important;
-  transition: opacity 0.5s ease-out;
-}
 .btn:hover{
   opacity: 0.8;
 }

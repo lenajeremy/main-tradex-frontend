@@ -6,7 +6,7 @@ function productReducer(state = [], action ){
       index === -1 ? console.log('') : newState.splice(index, 1);
       return newState;
     case 'newProduct':
-      return action.payload.quantity === 'batch' ? [...action.payload.value, ...state] : [action.payload.value, ...state];
+      return action.payload.quantity === 'batch' ? [...action.payload.value] : [action.payload.value, ...state];
     default:
       return state
   }
