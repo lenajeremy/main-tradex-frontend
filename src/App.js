@@ -5,7 +5,7 @@ import "./App.css";
 import Header from "./components/Header";
 import Login from "./components/Login";
 import Register from "./components/Register";
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import UserProfile from "./components/UserProfile";
 import WrapperFunction from "./components/CreateAndViewPosts";
 import Sidebar from "./components/SideBar";
@@ -40,11 +40,13 @@ function App() {
           exact
           component={WrapperFunction}
         />
-        <Route path={/user\/[0-9]{1,}\/profile/} component={UserProfile} />
-        {userType === 'buyer' ? <Route path = {/user\/[0-9]{1,}\/cart/} component = {Cart}/> : <Route path = {/user\/[0-9]{1,}\/store/} component = {Store}/>}
         <Route path="/login" component={Login} />
-        <Route path = {/view\/user-profile\/[a-z]{1,}/i} component = {UserProfile }/>
         <Route path="/register" component={Register} />
+        <Route path='user/:userId/profile' component={UserProfile} />
+        <Switch>
+          {userType === 'buyer' ? <Route path = '/user/:userId/cart' component = {Cart}/> : <Route path = '/user/:userId/store' component = {Store}/>}
+          <Route path = '/view/user-profile/:userName' component = {UserProfile }/>
+        </Switch>
       </div>
     </div>
   );

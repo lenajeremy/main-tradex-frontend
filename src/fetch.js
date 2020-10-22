@@ -73,17 +73,17 @@ function createNewPost(user_id, postContent, image, callback){
   .catch(err => console.log(err))
 }
 
-function createNewProduct(user_id, name, description, price, imageUrl, callback){
-  fetch(`${backendAPI}/posts/new`, {
+function createNewProduct(user_id, name, description, availableQuantity, price, imageUrl, callback){
+  let formData = new FormData();
+  formData.append('user_id', user_id);
+  formData.append('name', name)
+  formData.append('price', price);
+  formData.append('availableQuantity', availableQuantity);
+  formData.append('description', description);
+  formData.append('imageUrl', imageUrl, imageUrl.name);
+  fetch(`${backendAPI}/product/new`, {
     method: "POST",
-    body: JSON.stringify(
-      {
-        user_id: user_id,
-        name: name,
-        description: description,
-        price: price,
-        imageUrl: imageUrl
-    })
+    body: formData
   })
   .then(data => data.json())
   .then(data => callback(data))

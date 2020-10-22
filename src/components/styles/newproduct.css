@@ -1,0 +1,73 @@
+.productAddForm{
+  position: fixed;
+  /* position: absolute; */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  min-height: 350px;
+  padding: 20px;
+  z-index: 22;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.productAddForm form{
+  width: 80%;
+  margin: auto;
+}
+@media screen and (max-width: 768px){
+  .productAddForm{
+    width: 90vw;
+  }
+}
+div.formOverlay{
+  background: rgba(0, 0, 0, 0.877);
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  z-index: 21;
+  position: fixed;
+  transition: all 0.5s ease-in-out;
+}
+.productAddForm .back__to__store{
+  position:absolute;
+  height: 35px;
+  width: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 20px;
+  right: 20px;
+  background: rgb(156, 0, 0);
+  outline: none;
+  border: none;
+  border-radius: 50%;
+  padding: 5px;
+  text-decoration: none;
+  color: white;
+}
+.MuiLinearProgress-colorPrimary.MuiLinearProgress-root{
+  position: absolute;
+  width: 102%;
+  height: 6px;
+  top: 0;
+  left: -1%;
+}
+.MuiLinearProgress-barColorPrimary{
+  border-radius: 10rem;
+}
+textarea#product_change,
+.MuiOutlinedInput-input{
+  padding: 15px;
+  width: 100%;
+  border-radius: 4px;
+}
+textarea#product_changeg{
+  padding: 7px;
+}
+textarea#product_change:focus{
+  border: 2px solid #3f51b5;
+}

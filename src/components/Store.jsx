@@ -6,7 +6,9 @@ import Product from './Product';
 import {removeProductAction} from '../actions';
 import {removeProduct as backendRemoval} from '../fetch';
 import './styles/Product.css';
+import {motion} from 'framer-motion';
 import Login from './Login';
+import NewProductForm from './NewProductForm';
 
 function Store(props) {
   const dispatch = useDispatch()
@@ -16,9 +18,9 @@ function Store(props) {
   function removeProduct(productDetails){
     if(confirm('Are you sure you want to remove this product?')){
       dispatch(removeProductAction(productDetails));
-      // backendRemoval(user_id, productDetails.id, data => {
-      //   data.status === 200 ? console.log('the data has been removed') : console.log('');
-      // });
+      backendRemoval(user_id, productDetails.id, data => {
+        data.status === 200 ? console.log('the data has been removed') : console.log('');
+      });
     }
   }
 
@@ -27,10 +29,10 @@ function Store(props) {
       <div className = 'store'>
         <h5 className = 'text-center'>Your Products</h5>
         <div className = 'productsGrid'>
-          <Link className = 'product' to ={`/user/${user_id}/store/product/new`}>
+          <Link className = 'product' to ={`/user/${user_id}/store/products/new`}>
             <p className = 'plus'>+</p>
           </Link>
-          <Route path = {/user\/[0-9]{1,}\/store\/product\/new/} exact component = {Login}/>
+        <Route path = '/user/:userId/store/products/new' exact component = {NewProductForm}/>
         {products.map((product, index) => <Product productRemover = {productDetails => removeProduct(productDetails)} key = {index} productDetails ={product} view = 'store'/>)}
         </div>
       </div>
@@ -39,14 +41,4 @@ function Store(props) {
   return <Redirect to = '/login'/>
 }
 
-export default Store
-
-function NewProductForm(props){
-  const [name, setName ] = useState('');
-  const [count, setCount] = useState(0);
-  const [image, setImage] = useState('');
-
-  return(
-    <p>Hello</p>
-  )
-}
+export default Store;
