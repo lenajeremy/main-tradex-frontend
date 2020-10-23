@@ -6,6 +6,7 @@ import {editUser, backendAPI} from '../fetch';
 import {Settings,Edit, CameraAlt } from '@material-ui/icons';
 import './styles/Profile.css';
 import {editPictures} from '../actions';
+import Post from './Post'
 
 function ProfileImage({ image, userName, id, changeHandler}) {
   return (
@@ -39,16 +40,18 @@ function UserProfile() {
               <CameraAlt/>
               <input type = 'file' accept = 'image/*' name = 'coverPicture' onChange = {({target}) => editProfile(user.id, target.name, target.files[0])}/>
             </div>
-            <ProfileImage userName={user.userName} image={editProfileUrl(user.profilePicture)} id = {user.id} changeHandler = {(id, field, value) => editProfile(id, field, value)}/>
-            <div className="details">
-              <h4><Link to ={`/user/${user.id}/profile'`}>{user.userName}<span role='img' aria-labelledby='img'>💎</span></Link></h4>
-              <p className='lead'>{user.profile.status}</p>
+            <div className= 'profile__details'>
+              <ProfileImage userName={user.userName} image={editProfileUrl(user.profilePicture)} id = {user.id} changeHandler = {(id, field, value) => editProfile(id, field, value)}/>
+              <div className="details">
+                <h4><Link to ={`/user/${user.id}/profile'`}>{user.userName}<span role='img' aria-labelledby='img'>💎</span></Link></h4>
+                <p className='lead'>{user.profile.status}</p>
+              </div>
             </div>
           </div>
-          <p>{user.profile.bio}</p>
-          <p></p>
+          <p className = 'bio'>{user.profile.bio}</p>
+          
         </div>
-        {/* <EditProfile /> */}
+      {/* <EditProfile /> */}
       </div>
     )
   } else return <Redirect to='/login' />
