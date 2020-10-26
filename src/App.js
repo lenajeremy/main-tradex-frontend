@@ -42,10 +42,10 @@ function App() {
         />
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
-        <Route path='/user/:userId/profile' component={UserProfile} />
+        <Route path='/user/:userId/profile' component={props => <UserProfile self = {true} routeProps = {props}/>} />
         <Switch>
           {userType === 'buyer' ? <Route path = '/user/:userId/cart' component = {Cart}/> : <Route path = '/user/:userId/store' component = {Store}/>}
-          <Route path = '/view/user-profile/:userName' component = {UserProfile }/>
+          <Route path = '/view/user-profile/:userId' component = {(props) => <UserProfile self = {false} routeProps = {props}/> }/>
         </Switch>
       </div>
     </div>

@@ -12,7 +12,7 @@ a.product{
   display: flex;
   align-items: center;
 }
-.product:first-child{
+.product.first{
   border: 3px solid #3f51b5;
 }
 .product .background,
@@ -62,16 +62,19 @@ a.product{
 .product:nth-child(odd){
   margin-right: 7px;
 }
-.product:hover .background{
+.product:hover .background,
+.product:focus .background{
   filter: blur(5px);
   transform: translateY(-30px) scale(1.2);
 }
-.product:hover .content{
+.product:hover .content,
+.product:focus .content{
   transform: translateY(25%);
   background: rgba(0, 139, 139, 0.719);
   color: white;
 }
-.product:hover .overlay{
+.product:hover .overlay,
+.product:focus .overlay{
   z-index: 1;
 }
 .product .main{
@@ -84,7 +87,8 @@ a.product{
 .product svg{
   display: none;
 }
-.product:hover svg{
+.product:hover svg,
+.product:focus svg{
   border-radius: 50%;
   display: block;
   background: rgb(199, 119, 0);

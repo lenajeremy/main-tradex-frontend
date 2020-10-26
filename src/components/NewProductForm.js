@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {Close} from '@material-ui/icons';
 import {Link } from 'react-router-dom';
@@ -11,6 +11,7 @@ import {newProduct} from '../actions';
 function NewProductForm(props){
   const user_id = useSelector(state => state.userDetails.id);
   const dispatch = useDispatch();
+  const styleTimer = useRef(null);
 
   useEffect(() => {
     const overlay = document.createElement('div');
@@ -18,12 +19,12 @@ function NewProductForm(props){
     document.querySelector('#root').appendChild(overlay);
 
     return () => {
-      clearInterval(animation);
-      overlay.style.opacity = '0'
-      overlay.addEventListener('transitionend', function gohome(){
-        overlay.removeEventListener('transitionend', gohome);
-        overlay.remove();
-      });
+      clearInterval(styleTimer.current);
+      // overlay.style.opacity = '0.4';
+      // overlay.addEventListener('transitionend', function gohome(){
+      //   overlay.removeEventListener('transitionend', gohome);
+      overlay.remove();
+      // });
     }
   },[]);
 
@@ -33,6 +34,7 @@ function NewProductForm(props){
   const [description, setDescription] = useState('');
   const [clicked, setClicked] = useState(false);
   const [price, setPrice] = useState(0);
+  const [error, setError ] = useState({bool: false, value: null});
 
   function handleClick(event){
     event.preventDefault()
@@ -50,18 +52,22 @@ function NewProductForm(props){
 
   function handleFormSubmission(event){
     event.preventDefault();
-    setClicked(true);
-    setInterval(animation,2100);
-    createNewProduct(user_id, name, description, count, price, image, data =>{
-      if(data.status === 200){
-        clearInterval(animation);
-        dispatch(newProduct({quantity: 'single', value: data.details}));
-        setClicked(false);
-      }
-    })
-    console.log(name, count, image, description);
+    if(!(price && description && image && name && count)){
+      setError({bool: true, value: 'Please fill the required fields!!'});
+    }else{
+      setClicked(true);
+      let styleInterval = setInterval(() =>{document.querySelector('.MuiLinearProgress-barColorPrimary').style.background = getRandomColors(); console.log('animation')},2100);
+      styleTimer.current = styleInterval;
+      
+      createNewProduct(user_id, name, description, count, price, image, data =>{
+        if(data.status === 200){
+          clearInterval(styleInterval);
+          dispatch(newProduct({quantity: 'single', value: data.details}));
+          setClicked(false);
+        }
+      })
+    }
   }
-  const animation = () =>{document.querySelector('.MuiLinearProgress-barColorPrimary').style.background = getRandomColors(); console.log('animation')}
 
   return(
     <AnimatePresence>
@@ -70,7 +76,7 @@ function NewProductForm(props){
       <Link className = 'back__to__store' to = '/user/2/store'><Close /></Link>
       <form onSubmit = {handleFormSubmission} className = 'mt-2'>
         <h4 className = 'font-weight-lighter'>New Product</h4>
-      <Grid container spacing={2} className = 'mt-4'>
+      <Grid container spacing={2} className = 'mt-2 mt-md-4'>
               <Grid item lg={12}>
                 <TextField
                   name='product_name'
@@ -91,7 +97,7 @@ function NewProductForm(props){
                   value = {description}
                   onChange = {event => setDescription(event.target.value)} 
                   placeholder = 'Enter product details'
-                  rows = '3'
+                  rows = '2'
                 />
               </Grid>
             </Grid>
@@ -101,6 +107,7 @@ function NewProductForm(props){
         <input type = 'file' accept = 'image/*' name = 'product__image' onChange = {event => setImage(event.target.files[0])}/>
         <input type = 'number' name = 'price' value = {price} onChange= {event => setPrice(event.target.value)}/>
         <button type = 'submit'>Create Product</button>
+        {error.bool ? <p className = 'text-danger text-center'>{error.value}</p> : ''}
       </form>
     </motion.div>
     </AnimatePresence>

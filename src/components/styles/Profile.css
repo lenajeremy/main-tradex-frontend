@@ -1,8 +1,7 @@
 .profile__image{
   width: 150px;
   height: 150px;
-  /* position: absolute; */
-  /* transform: translate(15%,-50%); */
+  position: relative;
   border-radius: 50%;
   border: 4px #3f51b5 solid;
   background-position: center;
@@ -28,6 +27,7 @@
   background-position: center;
   width: 100%;
   height: 270px;
+  background-size: cover;
 }
 .cover_picture img{
   display: contents;
@@ -67,6 +67,9 @@ input#profileChange, .cover_picture input{
   .cover_picture{
     height: 30vh;
   }
+.profile{
+  background: rgba(230, 230, 230, 0.63);
+}
   .profile__image{
     width: 70px;
     height: 70px;
@@ -76,7 +79,7 @@ input#profileChange, .cover_picture input{
   input#profileChange{
     width: 1.1em!important;
     height: 1.1em!important;
-    right: 15px;
+    right: 7px;
   }
   .cover_picture svg,
   .cover_picture input{
@@ -90,7 +93,7 @@ input#profileChange, .cover_picture input{
     margin: 5px 10px
   }
   .bio{
-    margin: 6px;
+    margin: 0;
     font-size: 1.1rem;
     font-style: italic;
   }

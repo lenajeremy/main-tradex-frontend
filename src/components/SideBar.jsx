@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link} from 'react-router-dom';
 import { editSidebar } from '../actions';
-import { CreditCardOutlined, HomeOutlined, PersonOutlined, ShoppingBasketOutlined, Add, Home, Person, ShoppingBasket, CreditCard} from '@material-ui/icons';
+import { CreditCardOutlined, HomeOutlined, PersonOutlined, ShoppingBasketOutlined, Add, Home, Person, ShoppingBasket, CreditCardTwoTone} from '@material-ui/icons';
 import './styles/Sidebar.css';
 
 
@@ -59,7 +59,7 @@ function Sidebar(props) {
         <div className={`sideBar__links left ${active === 'account' ? 'active' : ''}`}>
             <div className='top'></div>
             <div className='bottom'></div> 
-          <Link onClick = {() => dispatch(editSidebar({ value: 'account' }))} to={userDetails.id ? `/user/${userDetails.id}/account` : '/login' }>{active === 'account' ? <CreditCard/> :<CreditCardOutlined/>}<span className = 'text'>Your Account</span></Link>
+          <Link onClick = {() => dispatch(editSidebar({ value: 'account' }))} to={userDetails.id ? `/user/${userDetails.id}/account` : '/login' }>{active === 'account' ? <CreditCardTwoTone/> :<CreditCardOutlined/>}<span className = 'text'>Your Account</span></Link>
         </div>
         {userTypeDeterminant()}
         <div className={`sideBar__links right ${active === 'advertise' ? 'active' : ''}`}>

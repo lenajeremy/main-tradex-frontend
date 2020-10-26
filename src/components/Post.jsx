@@ -59,7 +59,7 @@ function Post(props) {
           />
           </div>
           <div className="poster__details">
-            <Link to = {`/view/user-profile/${props.postDetails.poster}`}>{props.postDetails.poster}</Link>
+            <Link to = {`/view/user-profile/${props.postDetails.posterId}`}>{props.postDetails.poster}</Link>
             <small>{getTimeDifference(props.postDetails.dateCreated)}</small>
           </div>
         </div>

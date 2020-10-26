@@ -4,7 +4,7 @@ import { createPost, fetchposts } from '../actions';
 import Post from './Post';
 import { createNewPost, getAllPosts } from '../fetch';
 import {TextareaAutosize, CircularProgress} from '@material-ui/core';
-import {AddAPhoto, CheckSharp} from '@material-ui/icons';
+import {AddAPhoto} from '@material-ui/icons';
 import { Redirect } from 'react-router-dom';
 import './styles/Create.css';
 
@@ -16,7 +16,6 @@ function CreatePosts(props) {
   const user_id = user.id;
   const [toRedirect, setRedirect] = useState(false);
   const [error, setError] = useState('');
-  const [isCreated, setCreated] = useState(false);
 
   function handleFormSubmission(event) {
     event.preventDefault();
@@ -26,7 +25,6 @@ function CreatePosts(props) {
       }else{
         createNewPost(user_id, postContent, postImage, data => {
           if(data.status === 200){
-            setCreated(true);
             setPostImage('');
             setPostContent('');
             dispatch(createPost(data.post_details));
@@ -35,8 +33,6 @@ function CreatePosts(props) {
       }
     }else setRedirect(true);
   }
-  // change the content of the post button to text when sending another post
-  useEffect(() => setCreated(false),[postContent, postImage]);
 
   function isValidImage(imageFile){
     if(!imageFile){
@@ -60,7 +56,7 @@ function CreatePosts(props) {
           <div className="postCreatorImage"><AddAPhoto /></div>
           </div>
           <span id = 'message'>Text Ain't Enough? Add an Image</span>
-          <button id = 'createFormButton' type='submit'>{isCreated ? <CheckSharp className = 'post_sent'/> : 'POST'}</button>
+          <button id = 'createFormButton' type='submit'>POST</button>
           </div>
           {error ? <p className = 'text-danger post_error text-center'>{error}</p> : ''}
         </form>
@@ -73,7 +69,7 @@ function CreatePosts(props) {
 
 function AllPosts(props) {
   const allPosts = useSelector(store => store.posts)
-  const [lastPost, setLastPost] = useState(allPosts.length === 0 ? 1 : allPosts.length);
+  const [lastPost, setLastPost] = useState(allPosts.length === 0 ? 1 : allPosts.length + 1);
   const [loading, setLoading] = useState(true);
   let lastPostRef = useRef(lastPost);
 
@@ -89,16 +85,20 @@ function AllPosts(props) {
     return () => window.removeEventListener('scroll', scrollEvent)
   },[]);
 
-  useEffect(() => setLastPostValue(allPosts.length),[allPosts]);
+  useEffect(() => setLastPostValue(allPosts.length + 1),[allPosts]);
 
   let scrollEvent = () =>{
     if(window.scrollY + window.innerHeight >= document.body.offsetHeight){
       setLoading(true);
       window.removeEventListener('scroll', scrollEvent);
-      getAllPosts(lastPostRef.current + 1, data => {
-        dispatch(fetchposts(data.posts));
-        setLoading(false);
-        window.addEventListener('scroll', scrollEvent);
+      getAllPosts(lastPostRef.current, data => {
+        if(data.status === 200){
+          dispatch(fetchposts(data.posts));
+          window.addEventListener('scroll', scrollEvent);
+          setLoading(false);
+        }else{
+          window.removeEventListener('scroll', scrollEvent);
+        }
       });
     }
   }

@@ -1,14 +1,13 @@
 /* eslint-disable no-restricted-globals */
-import React, {useState} from 'react'
+import React, {useEffect}from 'react'
 import {Route, Redirect, Link} from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
 import Product from './Product';
 import {removeProductAction} from '../actions';
 import {removeProduct as backendRemoval} from '../fetch';
 import './styles/Product.css';
-import {motion} from 'framer-motion';
-import Login from './Login';
 import NewProductForm from './NewProductForm';
+import {editSidebar} from '../actions';
 
 function Store(props) {
   const dispatch = useDispatch()
@@ -29,7 +28,7 @@ function Store(props) {
       <div className = 'store'>
         <h5 className = 'text-center'>Your Products</h5>
         <div className = 'productsGrid'>
-          <Link className = 'product' to ={`/user/${user_id}/store/products/new`}>
+          <Link className = 'product first' to ={`/user/${user_id}/store/products/new`}>
             <p className = 'plus'>+</p>
           </Link>
         <Route path = '/user/:userId/store/products/new' exact component = {NewProductForm}/>

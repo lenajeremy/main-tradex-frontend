@@ -16,11 +16,14 @@
 input, textarea{
   outline: none!important;
 }
+.MuiContainer-root.MuiContainer-maxWidthXs{
+  margin-top: 40%;
+}
 @media screen and (max-width: 768px){
   .MuiGrid-item{
     width: 100%;
   }
-  .MuiContainer-root.MuiContainer-maxWidthXs{
-    margin-top: 40%;
-  }
+}
+.MuiOutlinedInput-input{
+  padding: 15px!important;
 }
