@@ -22,9 +22,11 @@ function App() {
     let userId = localStorage.getItem('user_id');
     if(userId){
       getUser(userId, data => {
-        dispatch(login(data.user));
-        dispatch(profileChange(data.user.profile)); 
-        dispatch(newProduct({quantity: 'batch', value: data.user.userType === 'buyer' ? data.user.cart.products : data.user.products.products}))
+        if(data.status === 200){
+          dispatch(login(data.user));
+          dispatch(profileChange(data.user.profile)); 
+          dispatch(newProduct({quantity: 'batch', value: data.user.userType === 'buyer' ? data.user.cart.products : data.user.products.products}))
+        }
       });
     }
   },[])
