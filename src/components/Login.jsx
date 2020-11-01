@@ -23,7 +23,7 @@ function Login(props) {
         getUser(data.id, userDetails => {
           dispatch(login(userDetails.user));
           dispatch(profileChange(userDetails.user.profile));
-          dispatch(newProduct({quantity: 'batch', value: userDetails.user.products.products}))
+          userDetails.user.userType === 'buyer' ? dispatch(newProduct({quantity: 'batch', value: userDetails.user.cart.products})) : dispatch(newProduct({quantity: 'batch', value: userDetails.user.products.products}));
           localStorage.setItem('user_id', userDetails.user.id);
           setError(false);
           setRedirect(true);

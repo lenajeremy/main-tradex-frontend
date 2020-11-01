@@ -92,13 +92,13 @@ function AllPosts(props) {
       setLoading(true);
       window.removeEventListener('scroll', scrollEvent);
       getAllPosts(lastPostRef.current, data => {
-        if(data.status === 200){
+        if(data.status === 200 && data.posts.length !== 0){
           dispatch(fetchposts(data.posts));
           window.addEventListener('scroll', scrollEvent);
-          setLoading(false);
         }else{
           window.removeEventListener('scroll', scrollEvent);
         }
+        setLoading(false);
       });
     }
   }

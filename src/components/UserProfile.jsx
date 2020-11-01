@@ -8,9 +8,12 @@ import './styles/Profile.css';
 import {editPictures} from '../actions';
 import Post from './Post'
 
+
+const editProfileUrl = url => backendAPI + url;
+
 function ProfileImage({ image, userName, id, changeHandler, self}) {
   return (
-    <div className="profile__image" style = {{backgroundImage: `url(${image})`}}>
+    <div className="profile__image" style = {{backgroundImage: `url(${editProfileUrl(image)})`}}>
       <img className = 'img-responsive img-fluid' src={`${image}`} alt={userName} />
       {self ? <React.Fragment>
       <CameraAlt className = 'profile__change__svg'/>
@@ -29,7 +32,7 @@ function UserProfile(props) {
       setuserState(data.user);
     });
   }
-  const editProfileUrl = (url) => backendAPI + url;
+
   const dispatch = useDispatch();
 
   function editProfile(id, field, value){
@@ -45,11 +48,11 @@ function UserProfile(props) {
         <div className="profile">
           <div className="top">
             <div className = 'cover_picture' style = {{backgroundImage: `url(${editProfileUrl(userState.coverPicture)})`}}>
-              <img src = {editProfileUrl(userState.coverPicture)} alt = {userState.userName}/>
+              <img src = {userState.coverPicture} alt = {userState.userName}/>
               {props.self ? <React.Fragment><CameraAlt/><input type = 'file' accept = 'image/*' name = 'coverPicture' onChange = {({target}) => editProfile(userState.id, target.name, target.files[0])}/></React.Fragment>: ''}
             </div>
             <div className= 'profile__details'>
-              <ProfileImage userName={userState.userName} image={editProfileUrl(userState.profilePicture)} id = {userState.id} changeHandler = {(id, field, value) => editProfile(id, field, value)} self ={props.self}/>
+              <ProfileImage userName={userState.userName} image={userState.profilePicture} id = {userState.id} changeHandler = {(id, field, value) => editProfile(id, field, value)} self ={props.self}/>
               <div className="details">
                 <h4><Link to ={`/view/user-profile/${userState.id}`}>{userState.userName}</Link></h4>
                 <p className='lead'>{userState.profile.status}</p>

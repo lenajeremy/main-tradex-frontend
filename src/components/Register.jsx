@@ -38,28 +38,29 @@ function Register(props) {
     setPassword('');
     setConfPassword('');
     setError('');
-    setErrors('');
+    setErrors([]);
   }
   function handleFormSubmission(event) {
     event.preventDefault();
-    registerUser(username, first_name, last_name, userType, password, email, paypal, conf_password, data => {
-      if (data.status === 200) {
-        getUser(data.id, userDetails => {
-          dispatch(login(userDetails.user))
-          dispatch(profileChange(userDetails.user.profile))
-          setError(false)
-        })
-        resetState()
-      } else { setError(true); setErrors(data.errors) }
-    })
-    setError(false);
+    if(!(username && first_name && last_name && userType && password && email && paypal && conf_password)){
+      registerUser(username, first_name, last_name, userType, password, email, paypal, conf_password, data => {
+        if (data.status === 200) {
+          getUser(data.id, userDetails => {
+            dispatch(login(userDetails.user))
+            dispatch(profileChange(userDetails.user.profile))
+            setError(false);
+          })
+          resetState()
+        } else { setError(true); setErrors(data.errors) }
+      })
+    } else {setError(true); setErrors(['Please fill the required fields']);}
   }
   return (
     <Container component = 'main' maxWidth = 'lg'>
       <div className = 'registration'>
         <Typography component = 'h2' variant = 'h5' className = 'text-center my-3'>Register</Typography>
-        {isError ? errors.map(error => <p>{error}</p>) : ''}
-        <form className = 'register__form' noValidate onSubmit = {handleFormSubmission}>
+        {isError ? errors.map((error, key) => <p className = 'text-center text-danger' key = {{key}}>{error}</p>) : ''}
+        <form className = 'register__form' onSubmit = {handleFormSubmission}>
           <Grid container spacing = {2}>
             <Grid item sm = {6}>
               <TextField
@@ -159,7 +160,7 @@ function Register(props) {
             variant="contained"
             color = 'primary'
           >Sign Up  {isError ? <CircularProgress variant = 'indeterminate'/> : ''}</Button>
-          <Grid container>
+          <Grid container className = 'text-center'>
             <Grid item>
               <Link to="/login" variant="body2">
                 Already have an account? Sign in

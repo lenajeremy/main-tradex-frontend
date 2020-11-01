@@ -20,11 +20,7 @@ function NewProductForm(props){
 
     return () => {
       clearInterval(styleTimer.current);
-      // overlay.style.opacity = '0.4';
-      // overlay.addEventListener('transitionend', function gohome(){
-      //   overlay.removeEventListener('transitionend', gohome);
       overlay.remove();
-      // });
     }
   },[]);
 
@@ -37,6 +33,7 @@ function NewProductForm(props){
   const [error, setError ] = useState({bool: false, value: null});
 
   function handleClick(event){
+
     event.preventDefault()
     event.target.innerText === '-' ? count - 1 < 0 ? setCount(count) : setCount(count - 1): setCount(count + 1);
   }
@@ -53,7 +50,7 @@ function NewProductForm(props){
   function handleFormSubmission(event){
     event.preventDefault();
     if(!(price && description && image && name && count)){
-      setError({bool: true, value: 'Please fill the required fields!!'});
+      setError({bool: true, values: ['Please fill the required fields!!']});
     }else{
       setClicked(true);
       let styleInterval = setInterval(() =>{document.querySelector('.MuiLinearProgress-barColorPrimary').style.background = getRandomColors(); console.log('animation')},2100);
@@ -107,7 +104,7 @@ function NewProductForm(props){
         <input type = 'file' accept = 'image/*' name = 'product__image' onChange = {event => setImage(event.target.files[0])}/>
         <input type = 'number' name = 'price' value = {price} onChange= {event => setPrice(event.target.value)}/>
         <button type = 'submit'>Create Product</button>
-        {error.bool ? <p className = 'text-danger text-center'>{error.value}</p> : ''}
+        {error.bool ? error.values.map((message, index) => <p className = 'text-center text-dangeer' key = {index}>{message}</p>) : ''}
       </form>
     </motion.div>
     </AnimatePresence>
