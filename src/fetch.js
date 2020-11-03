@@ -13,8 +13,8 @@ function getPost(post_id, callback){
   .catch(err => console.log(err))
 }
 
-function getAllPosts(start, callback){
-  fetch(`${backendAPI}/posts/all?start=${start}&end=${start+4}`)
+function getAllPosts(user, start, callback){
+  fetch(`${backendAPI}/posts/all?start=${start}&end=${start+4}&user=${user}`)
   .then(data => data.json())
   .then(data => callback(data))
   .catch(err => console.log(err))

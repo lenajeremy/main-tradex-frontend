@@ -81,7 +81,7 @@ function AllPosts(props) {
   const dispatch = useDispatch();
   useEffect(() => {
     window.addEventListener('scroll', scrollEvent);
-    getAllPosts(lastPostRef.current, data => dispatch(fetchposts(data.posts)));
+    getAllPosts(localStorage.getItem('user_id') || 0, lastPostRef.current, data => dispatch(fetchposts(data.posts)));
     return () => window.removeEventListener('scroll', scrollEvent)
   },[]);
 
@@ -91,7 +91,7 @@ function AllPosts(props) {
     if(window.scrollY + window.innerHeight >= document.body.offsetHeight){
       setLoading(true);
       window.removeEventListener('scroll', scrollEvent);
-      getAllPosts(lastPostRef.current, data => {
+      getAllPosts(localStorage.getItem('user_id') || 0, lastPostRef.current, data => {
         if(data.status === 200 && data.posts.length !== 0){
           dispatch(fetchposts(data.posts));
           window.addEventListener('scroll', scrollEvent);

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {Link } from 'react-router-dom';
 import { editPost, backendAPI } from '../fetch';
-import { ThumbUpAltOutlined } from '@material-ui/icons'
+import { ThumbUpAltOutlined, ThumbUpAlt } from '@material-ui/icons'
 import './styles/Post.css'
 import { Redirect } from 'react-router-dom';
 import { likepost } from '../actions'
@@ -34,14 +34,18 @@ function Post(props) {
 
   const [toRedirect, setRedirect] = useState(false);
   const [likeCount, setLikeCount] = useState(props.postDetails.number_of_likes);
+  const [isLiked, setLiked] = useState(props.postDetails.isLiked);
   const id = useSelector(store => store.userDetails.id);
   const dispatch = useDispatch()
 
   function handleLike() {
     if (id) {
       editPost(id, props.postDetails.id, 'like', null, data => {
-        data.status === 200 ? dispatch(likepost(props.postDetails.id, data.newLikeCount)) : console.error('some error');
-        data.status === 200 ? setLikeCount(data.newLikeCount) : console.error('some error');
+        data.status === 200 ? (function() {
+          dispatch(likepost(props.postDetails.id, data.newLikeCount, data.liked));
+          setLikeCount(data.newLikeCount);
+          setLiked(!isLiked);
+        })() : console.error('some error');
       })
     } else setRedirect(true)
   }
@@ -68,7 +72,7 @@ function Post(props) {
         <div className="postImage">
           <img src={`${backendAPI}${props.postDetails.image}`} alt="" className='img-responsive img-fluid' />
           <div className="likeButtons" onClick={handleLike}>
-            <p className='like'><ThumbUpAltOutlined/>{likeCount}</p>
+            <p className='like'>{isLiked ? <ThumbUpAlt/> : <ThumbUpAltOutlined/>}{likeCount}</p>
           </div>
         </div>
       </div>

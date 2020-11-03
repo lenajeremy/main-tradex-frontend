@@ -4,8 +4,8 @@ function fetchposts(data) {
     payload: data,
   };
 }
-const likepost = (id, presentCount) => {
-  return { type: "like", payload: {id, presentCount} };
+const likepost = (id, presentCount, isLiked) => {
+  return { type: "like", payload: {id, presentCount, isLiked}};
 };
 
 const login = (details) => {
