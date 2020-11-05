@@ -46,9 +46,10 @@ function App() {
         <Route path="/register" component={Register} />
         <Route path='/user/:userId/profile' component={props => <UserProfile self = {true} routeProps = {props}/>} />
         <Switch>
-          {userType === 'buyer' ? <Route path = '/user/:userId/cart' component = {Cart}/> : <Route path = '/user/:userId/store' component = {Store}/>}
+          {userType === 'buyer' ? <Route path = '/user/:userId/cart' component = {() => <Cart self = {true}/>}/> : <Route path = '/user/:userId/store' component = {Store}/>}
           <Route path = '/view/user-profile/:userId' component = {(props) => <UserProfile self = {false} routeProps = {props}/> }/>
         </Switch>
+        <Route path = '/view/user/store/:userName' component = {props => <Cart routeProps = {props} self = {false}/>}/>
       </div>
     </div>
   );

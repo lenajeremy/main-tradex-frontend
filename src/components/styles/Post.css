@@ -91,3 +91,9 @@
     padding: 5px;
   }
 }
+.cart h4{
+  text-transform: capitalize;
+}
+.liked{
+  color: rgb(236, 9, 179);
+}

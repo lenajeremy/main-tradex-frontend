@@ -101,7 +101,7 @@ function NewProductForm(props){
         <button onClick = {handleClick}>-</button>
         <input type = 'text' name = 'count' id = 'product__count' value = {count} readOnly/>
         <button onClick = {handleClick}>+</button>
-        <input type = 'file' accept = 'image/*' name = 'product__image' onChange = {event => setImage(event.target.files[0])}/>
+        <input type = 'file' multiple accept = 'image/*' name = 'product__image' onChange = {event => setImage(event.target.files[0])}/>
         <input type = 'number' name = 'price' value = {price} onChange= {event => setPrice(event.target.value)}/>
         <button type = 'submit'>Create Product</button>
         {error.bool ? error.values.map((message, index) => <p className = 'text-center text-dangeer' key = {index}>{message}</p>) : ''}

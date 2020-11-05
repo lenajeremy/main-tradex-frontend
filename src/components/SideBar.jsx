@@ -27,8 +27,8 @@ function Sidebar(props) {
         <div className='bottom'></div>
         {!userDetails.id ? userDetails.userType === 'buyer' ? <Link onClick = {() => dispatch(editSidebar({ value: 'cart' }))} to='/login'><ShoppingBasket/><span className = 'text'>Your Cart</span></Link> :
         <Link onClick = {() => dispatch(editSidebar({ value: 'store' }))} to={'/login'}><ShoppingBasket/><span className = 'text'>Your Store</span></Link> : 
-      userDetails.userType === 'buyer' ? <Link onClick = {() => dispatch(editSidebar({ value: 'cart' }))} to={'/user/' + userDetails.id.toString() + '/cart'}><ShoppingBasket/><span className = 'text'>Your Cart{products.length}</span></Link> :
-      <Link onClick = {() => dispatch(editSidebar({ value: 'store' }))} to={'/user/' + userDetails.id.toString() + '/store'}><ShoppingBasket/><span className = 'text'>Your Store</span>{products.length}</Link>
+      userDetails.userType === 'buyer' ? <Link onClick = {() => dispatch(editSidebar({ value: 'cart' }))} to={'/user/' + userDetails.id.toString() + '/cart'}><ShoppingBasket/><span className = 'text'>Your Cart<span className = 'products_length'>{products.length}</span></span></Link> :
+      <Link onClick = {() => dispatch(editSidebar({ value: 'store' }))} to={'/user/' + userDetails.id.toString() + '/store'}><ShoppingBasket/><span className = 'text'>Your Store</span><span className = 'products_length'>{products.length}</span></Link>
         }
       </div>
       )
@@ -39,8 +39,8 @@ function Sidebar(props) {
         <div className='bottom'></div>
         {!userDetails.id ? userDetails.userType === 'buyer' ? <Link onClick = {() => dispatch(editSidebar({ value: 'cart' }))} to='/login'><ShoppingBasketOutlined/><span className = 'text'>Your Cart</span></Link> :
         <Link onClick = {() => dispatch(editSidebar({ value: 'store' }))} to={'/login'}><ShoppingBasketOutlined/><span className = 'text'>Your Store</span></Link> : 
-    userDetails.userType === 'buyer' ? <Link onClick = {() => dispatch(editSidebar({ value: 'cart' }))} to={'/user/' + userDetails.id.toString() + '/cart'}><ShoppingBasketOutlined/><span className = 'text'>Your Cart{products.length}</span></Link> :
-    <Link onClick = {() => dispatch(editSidebar({ value: 'store' }))} to={'/user/' + userDetails.id.toString() + '/store'}><ShoppingBasketOutlined/><span className = 'text'>Your Store</span>{products.length}</Link>
+    userDetails.userType === 'buyer' ? <Link onClick = {() => dispatch(editSidebar({ value: 'cart' }))} to={'/user/' + userDetails.id.toString() + '/cart'}><ShoppingBasketOutlined/><span className = 'text'>Your Cart<span className = 'products_length'>{products.length}</span></span></Link> :
+    <Link onClick = {() => dispatch(editSidebar({ value: 'store' }))} to={'/user/' + userDetails.id.toString() + '/store'}><ShoppingBasketOutlined/><span className = 'text'>Your Store</span><span className = 'products_length'>{products.length}</span></Link>
         }
       </div>
     )

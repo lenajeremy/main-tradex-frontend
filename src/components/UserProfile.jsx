@@ -4,6 +4,7 @@ import {Link, Redirect } from 'react-router-dom';
 import { profileChange } from '../actions';
 import {editUser, backendAPI, getUser} from '../fetch';
 import {Settings,Edit, CameraAlt } from '@material-ui/icons';
+import {Button} from '@material-ui/core';
 import './styles/Profile.css';
 import {editPictures} from '../actions';
 import Post from './Post'
@@ -27,11 +28,12 @@ function UserProfile(props) {
   let user = useSelector(store => store.userDetails);
   const [userState, setuserState] = useState(user);
 
-  if(!props.self){
+  React.useEffect(() => {
+    console.log('hello');
     getUser(props.routeProps.match.params.userId, data => {
       setuserState(data.user);
     });
-  }
+  },[])
 
   const dispatch = useDispatch();
 
@@ -51,6 +53,7 @@ function UserProfile(props) {
               <img src = {userState.coverPicture} alt = {userState.userName}/>
               {props.self ? <React.Fragment><CameraAlt/><input type = 'file' accept = 'image/*' name = 'coverPicture' onChange = {({target}) => editProfile(userState.id, target.name, target.files[0])}/></React.Fragment>: ''}
             </div>
+            {userState.userType === 'seller' ? <Button variant = 'contained' color = 'primary' size = 'small'><Link to = {`/view/user/store/${userState.userName}`}>View Store</Link></Button> : ''}
             <div className= 'profile__details'>
               <ProfileImage userName={userState.userName} image={userState.profilePicture} id = {userState.id} changeHandler = {(id, field, value) => editProfile(id, field, value)} self ={props.self}/>
               <div className="details">

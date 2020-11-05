@@ -43,6 +43,7 @@ function Register(props) {
   function handleFormSubmission(event) {
     event.preventDefault();
     if(!(username && first_name && last_name && userType && password && email && paypal && conf_password)){
+    console.log('thee function should be called now')
       registerUser(username, first_name, last_name, userType, password, email, paypal, conf_password, data => {
         if (data.status === 200) {
           getUser(data.id, userDetails => {
@@ -144,12 +145,12 @@ function Register(props) {
               />
             </Grid>
             <Grid item sm = {6} className = 'd-flex justify-content-center'>
-              <FormControlLabel control= {<Radio value = 'buyer' name='userType' color= 'primary' onChange = {event=> setUserType(event.target.value)}/>}
+              <FormControlLabel control= {<Radio value = 'buyer' inputProps = {{name: 'userType'}} color= 'primary' onChange = {event=> setUserType(event.target.value)}/>}
                 label = 'Register as a buyer'
               />
             </Grid>
             <Grid item sm = {6} className = 'd-flex justify-content-center'>
-              <FormControlLabel control = {<Radio value = 'seller' name = 'userType' color= 'primary' onChange = {event=> setUserType(event.target.value)}/>}
+              <FormControlLabel control = {<Radio value = 'seller' inputProps = {{name: 'userType'}} color= 'primary' onChange = {event=> setUserType(event.target.value)}/>}
                 label = 'Register as a seller'
               />
             </Grid>

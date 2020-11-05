@@ -75,6 +75,22 @@
   height: 1.8rem;
   width: 1.8rem;
 }
+.sideBar__links .products_length {
+  align-items: center;
+  background: #007bff;
+  color: white;
+  font-size: 1.0rem;
+  border-radius: 50%;
+  width: 20px;
+  left: 65%;
+  justify-content: center;
+  height: 20px;
+  display: inline-flex;
+  position: absolute;
+}
+.sideBar__links.active .products_length{
+  font-weight:normal;
+}
 @media screen and (max-width: 768px){
  .sideBar{
    width: 100%;

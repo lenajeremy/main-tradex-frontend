@@ -32,7 +32,7 @@ function Store(props) {
             <p className = 'plus'>+</p>
           </Link>
         <Route path = '/user/:userId/store/products/new' exact component = {NewProductForm}/>
-        {products.map((product, index) => <Product productRemover = {productDetails => removeProduct(productDetails)} key = {index} productDetails ={product} view = 'store'/>)}
+        {products.map((product, index) => <Product manage = {productDetails => removeProduct(productDetails)} key = {index} productDetails ={product} view = 'store'/>)}
         </div>
       </div>
     )

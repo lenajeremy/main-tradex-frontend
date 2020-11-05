@@ -20,6 +20,24 @@ function getAllPosts(user, start, callback){
   .catch(err => console.log(err))
 }
 
+function getStore(store_owner, callback){
+  fetch(`${backendAPI}/store?owner_username=${store_owner}`)
+  .then(data => data.json())
+  .then(data => callback(data))
+  .catch(error => console.error(error.message));
+}
+
+function addToCart(product_id, user_id, callback){
+  fetch(`${backendAPI}/cart/add`, {
+    method: "POST",
+    body: JSON.stringify({
+      product_id,
+      user_id
+    })
+  }).then(data => data.json())
+  .then(data => callback(data))
+  .catch(er => console.log(er))
+}
 function getAllProducts(user_id, start, callback){
   fetch(`${backendAPI}/store/${user_id}?start=${start}&end=${start+9}`)
   .then(data => data.json())
@@ -143,5 +161,7 @@ module.exports = {
   createNewProduct, 
   editPost,
   editUser,
-  backendAPI
+  backendAPI,
+  getStore,
+  addToCart
 }

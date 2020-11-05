@@ -72,7 +72,7 @@ function Post(props) {
         <div className="postImage">
           <img src={`${backendAPI}${props.postDetails.image}`} alt="" className='img-responsive img-fluid' />
           <div className="likeButtons" onClick={handleLike}>
-            <p className='like'>{isLiked ? <ThumbUpAlt/> : <ThumbUpAltOutlined/>}{likeCount}</p>
+            <p className='like'>{isLiked ? <ThumbUpAlt className = 'liked'/> : <ThumbUpAltOutlined/>}{likeCount}</p>
           </div>
         </div>
       </div>
