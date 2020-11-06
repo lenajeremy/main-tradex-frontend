@@ -9,13 +9,12 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { useDispatch } from 'react-redux';
-import {login, profileChange} from '../actions'
+import {login, profileChange, newProduct} from '../actions'
 import {Link} from 'react-router-dom';
 
 function Register(props) {
 
   const dispatch = useDispatch();
-
   // useful states
   const [first_name, setFirstName] = useState('');
   const [last_name, setLastName] = useState('');
@@ -24,7 +23,7 @@ function Register(props) {
   const [paypal, setPaypal] = useState('');
   const [password, setPassword] = useState('');
   const [conf_password, setConfPassword] = useState('');
-  const [userType, setUserType] = useState('buyer')
+  const [userType, setUserType] = useState(null);
   const [isError, setError] = useState(false);
   const [errors, setErrors] = useState([]);
 
@@ -42,19 +41,22 @@ function Register(props) {
   }
   function handleFormSubmission(event) {
     event.preventDefault();
-    if(!(username && first_name && last_name && userType && password && email && paypal && conf_password)){
-    console.log('thee function should be called now')
+    if((username && first_name && last_name && userType && password && email && paypal && conf_password && password === conf_password )){
+    console.log('thee function should be called now');
       registerUser(username, first_name, last_name, userType, password, email, paypal, conf_password, data => {
         if (data.status === 200) {
           getUser(data.id, userDetails => {
             dispatch(login(userDetails.user))
-            dispatch(profileChange(userDetails.user.profile))
+            dispatch(profileChange(userDetails.user.profile));
+            userDetails.user.userType === 'buyer' ? dispatch(newProduct({quantity: 'batch', value: userDetails.user.cart.products})) : dispatch(newProduct({quantity: 'batch', value: userDetails.user.products.products}));
             setError(false);
+            localStorage.setItem('user_id', userDetails.user.id);
           })
           resetState()
         } else { setError(true); setErrors(data.errors) }
       })
-    } else {setError(true); setErrors(['Please fill the required fields']);}
+    } else if(password !== conf_password) {setError(true); setErrors([...errors, 'Passwords do not match'])}
+    else {setError(true); setErrors([...errors, 'Please fill the required fields']);}
   }
   return (
     <Container component = 'main' maxWidth = 'lg'>
@@ -62,7 +64,7 @@ function Register(props) {
         <Typography component = 'h2' variant = 'h5' className = 'text-center my-3'>Register</Typography>
         {isError ? errors.map((error, key) => <p className = 'text-center text-danger' key = {{key}}>{error}</p>) : ''}
         <form className = 'register__form' onSubmit = {handleFormSubmission}>
-          <Grid container spacing = {2}>
+          <Grid container spacing = {1}>
             <Grid item sm = {6}>
               <TextField
                 name = 'first_name'
@@ -145,12 +147,12 @@ function Register(props) {
               />
             </Grid>
             <Grid item sm = {6} className = 'd-flex justify-content-center'>
-              <FormControlLabel control= {<Radio value = 'buyer' inputProps = {{name: 'userType'}} color= 'primary' onChange = {event=> setUserType(event.target.value)}/>}
+              <FormControlLabel control= {<Radio value = 'buyer'checked = {userType === 'buyer'} inputProps = {{name: 'userType'}} color= 'primary' onChange = {event=> setUserType(event.target.value)}/>}
                 label = 'Register as a buyer'
               />
             </Grid>
             <Grid item sm = {6} className = 'd-flex justify-content-center'>
-              <FormControlLabel control = {<Radio value = 'seller' inputProps = {{name: 'userType'}} color= 'primary' onChange = {event=> setUserType(event.target.value)}/>}
+              <FormControlLabel control = {<Radio value = 'seller' checked = {userType === 'seller'} inputProps = {{name: 'userType'}} color= 'primary' onChange = {event=> setUserType(event.target.value)}/>}
                 label = 'Register as a seller'
               />
             </Grid>

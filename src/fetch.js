@@ -27,12 +27,14 @@ function getStore(store_owner, callback){
   .catch(error => console.error(error.message));
 }
 
-function addToCart(product_id, user_id, callback){
+function cartOperation(product_id, user_id, operation, callback){
   fetch(`${backendAPI}/cart/add`, {
     method: "POST",
     body: JSON.stringify({
       product_id,
-      user_id
+      user_id,
+      operation,
+      quantity: 1
     })
   }).then(data => data.json())
   .then(data => callback(data))
@@ -163,5 +165,5 @@ module.exports = {
   editUser,
   backendAPI,
   getStore,
-  addToCart
+  cartOperation
 }

@@ -97,7 +97,7 @@
    background: white;
    top: unset;
    bottom: 0;
-   min-height: 47px;
+   min-height: 40px;
    z-index: 20;
    border: 1px solid rgb(197, 197, 197);
  }
@@ -106,7 +106,7 @@
  }
  .links{
    flex-direction: row;
-   height: 50px;
+   height: 45px;
    width: 100%;
    justify-content: space-around;
  }
@@ -126,11 +126,11 @@
  .text{
   display: none
  }
- .sideBar__links.active{
-   /* background: rgb(6, 148, 6); */
- }
  .sideBar__links.active svg{
    width: 2rem;
    height: 2rem;
- }
+  }
+  .sideBar__links a{
+    display: flex;
+  }
 }

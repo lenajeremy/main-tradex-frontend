@@ -70,7 +70,7 @@ a.product{
 .product:hover .content,
 .product:focus .content{
   transform: translateY(25%);
-  background: rgba(0, 139, 139, 0.719);
+  background: rgba(2, 105, 146, 0.719);
   color: white;
 }
 .product:hover .overlay,

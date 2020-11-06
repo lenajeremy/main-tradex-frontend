@@ -33,4 +33,7 @@ const newProduct = product =>{
 const editPictures = details => {
   return {type: 'editPictures', payload: details}
 }
-export { likepost, fetchposts, login, profileChange, createPost, editSidebar, removeProductAction, newProduct, editPictures};
+const addToCart = product_details => {
+  return {type : 'addToCart', payload: product_details}
+}
+export { likepost, fetchposts, login, profileChange, createPost, editSidebar, removeProductAction, newProduct, editPictures, addToCart};

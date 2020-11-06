@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {Close} from '@material-ui/icons';
 import {Link } from 'react-router-dom';
 import './styles/newproduct.css';
-import {TextField, FormControlLabel, Button, LinearProgress, Grid } from '@material-ui/core';
+import {TextField, Button, LinearProgress, Grid } from '@material-ui/core';
 import {createNewProduct } from '../fetch';
 import {useSelector, useDispatch} from 'react-redux';
 import {newProduct} from '../actions';
@@ -61,6 +61,10 @@ function NewProductForm(props){
           clearInterval(styleInterval);
           dispatch(newProduct({quantity: 'single', value: data.details}));
           setClicked(false);
+          setName('');
+          setDescription('');
+          setImage('');
+          setCount(0);
         }
       })
     }
@@ -103,7 +107,9 @@ function NewProductForm(props){
         <button onClick = {handleClick}>+</button>
         <input type = 'file' multiple accept = 'image/*' name = 'product__image' onChange = {event => setImage(event.target.files[0])}/>
         <input type = 'number' name = 'price' value = {price} onChange= {event => setPrice(event.target.value)}/>
-        <button type = 'submit'>Create Product</button>
+        <Grid container spacing = {1}>
+          <Button className = 'btn btn-block' variant = 'contained' color= 'primary' type = 'submit'>Create Product</Button>
+        </Grid>
         {error.bool ? error.values.map((message, index) => <p className = 'text-center text-dangeer' key = {index}>{message}</p>) : ''}
       </form>
     </motion.div>
