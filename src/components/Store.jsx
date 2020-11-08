@@ -1,5 +1,5 @@
 /* eslint-disable no-restricted-globals */
-import React, {useEffect}from 'react'
+import React/* , {useEffect} */ from 'react'
 import {Route, Redirect, Link} from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
 import Product from './Product';
@@ -7,7 +7,7 @@ import {removeProductAction} from '../actions';
 import {removeProduct as backendRemoval} from '../fetch';
 import './styles/Product.css';
 import NewProductForm from './NewProductForm';
-import {editSidebar} from '../actions';
+// import {editSidebar} from '../actions';
 
 function Store(props) {
   const dispatch = useDispatch()
@@ -32,7 +32,7 @@ function Store(props) {
             <p className = 'plus'>+</p>
           </Link>
         <Route path = '/user/:userId/store/products/new' exact component = {NewProductForm}/>
-        {products.map((product, index) => <Product manage = {productDetails => removeProduct(productDetails)} key = {index} productDetails ={product} view = 'store'/>)}
+        {products.map((product, index) => <Product index = {index} self = {props.self} manage = {productDetails => removeProduct(productDetails)} key = {index} productDetails ={product} view = 'store'/>)}
         </div>
       </div>
     )

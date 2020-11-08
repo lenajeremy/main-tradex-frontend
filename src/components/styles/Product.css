@@ -117,4 +117,10 @@ a.product{
     width: 90%;
     margin: auto
   }
+  .floating-action-button{
+    position: fixed!important;
+    right: 20px;
+    bottom: 50px;
+    z-index: 100;
+  }
 }

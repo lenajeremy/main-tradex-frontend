@@ -46,7 +46,7 @@
   padding: 10px;
   border-radius: 20px;
   width: 90px;
-  background-color: rgb(0, 163, 163);
+  background: rgb(91 118 205);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -93,7 +93,4 @@
 }
 .cart h4{
   text-transform: capitalize;
-}
-.liked{
-  color: rgb(236, 9, 179);
 }

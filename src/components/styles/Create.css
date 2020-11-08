@@ -54,6 +54,9 @@ input#create{
   width: 50%;
   height: 50%;
 }
+.imageCreate{
+  overflow: hidden;
+}
 span#message{
   color: rgb(121, 121, 121);
   font-size: 18px;

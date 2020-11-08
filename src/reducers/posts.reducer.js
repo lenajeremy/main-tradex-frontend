@@ -4,7 +4,8 @@ function postReducer(state = [], action) {
       return [...state, ...action.payload];
     case "like":
       let postToLike = state.find((post) => (post.id = action.payload.id));
-      postToLike = {...postToLike, number_of_likes: action.payload.presentCount, isLiked: action.payload.isLiked}
+      postToLike.number_of_likes = action.payload.presentCount;
+      postToLike.isLiked = action.payload.isLiked;
       return state;
     case "created":
       return [action.payload, ...state];

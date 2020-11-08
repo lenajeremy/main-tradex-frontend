@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import {LockOutlined} from '@material-ui/icons';
 import{TextField, Typography, Container, FormControlLabel, Button, Checkbox, CircularProgress, Grid} from '@material-ui/core';
 import { loginUser, getUser } from '../fetch';
-import { login, profileChange, editSidebar, newProduct } from '../actions';
+import { login, profileChange, newProduct } from '../actions';
 import { Redirect, Link } from 'react-router-dom';
 import './styles/Login.css';
 

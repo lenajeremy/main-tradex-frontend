@@ -63,7 +63,7 @@ function NewProductForm(props){
           setClicked(false);
           setName('');
           setDescription('');
-          setImage('');
+          setPrice(0);
           setCount(0);
         }
       })

@@ -14,7 +14,8 @@ import Cart from './components/Cart';
 import {useSelector, useDispatch} from 'react-redux';
 import {getUser} from './fetch';
 import {login, profileChange, newProduct} from './actions'
-import Searchbar from './components/Searchbar'
+import Searchbar from './components/Searchbar';
+import Checkout from './components/Checkout';
 
 function App() {
   const dispatch = useDispatch();
@@ -46,10 +47,11 @@ function App() {
         <Route path="/register" component={Register} />
         <Route path='/user/:userId/profile' component={props => <UserProfile self = {true} routeProps = {props}/>} />
         <Switch>
-          {userType === 'buyer' ? <Route path = '/user/:userId/cart' component = {() => <Cart self = {true}/>}/> : <Route path = '/user/:userId/store' component = {Store}/>}
+          {userType === 'buyer' ? <Route path = '/user/:userId/cart' component = {() => <Cart self = {true}/>}/> : <Route path = '/user/:userId/store' component = {() => <Store self = {true}/>}/>}
           <Route path = '/view/user-profile/:userId' component = {(props) => <UserProfile self = {false} routeProps = {props}/> }/>
         </Switch>
         <Route path = '/view/user/store/:userName' component = {props => <Cart routeProps = {props} self = {false}/>}/>
+        <Route path = '/checkout' component = {Checkout}/>
       </div>
     </div>
   );

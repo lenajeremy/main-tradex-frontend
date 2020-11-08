@@ -1,9 +1,9 @@
-import React, { useState, useRef } from 'react';
+import React, { useState /* , useRef */ } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {Link, Redirect } from 'react-router-dom';
-import { profileChange } from '../actions';
+// import { profileChange } from '../actions';
 import {editUser, backendAPI, getUser} from '../fetch';
-import {Settings,Edit, CameraAlt } from '@material-ui/icons';
+import {/* Settings,Edit, */ CameraAlt } from '@material-ui/icons';
 import {Button} from '@material-ui/core';
 import './styles/Profile.css';
 import {editPictures} from '../actions';
@@ -28,12 +28,9 @@ function UserProfile(props) {
   let user = useSelector(store => store.userDetails);
   const [userState, setuserState] = useState(user);
 
-  React.useEffect(() => {
-    console.log('hello');
-    getUser(props.routeProps.match.params.userId, data => {
-      setuserState(data.user);
-    });
-  },[])
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  React.useEffect(() => getUser(props.routeProps.match.params.userId, data => setuserState(data.user)),[])
 
   const dispatch = useDispatch();
 
