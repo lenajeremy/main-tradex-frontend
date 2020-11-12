@@ -41,8 +41,8 @@ input#profileChange,
   color: white;
   bottom: 10%;
   padding: 5px;
-  width: 1.4em!important;
-  height: 1.4em!important;
+  width: 2rem!important;
+  height: 2rem!important;
   border-radius: 50%;
   right: 20px;
 }
@@ -51,10 +51,10 @@ input#profileChange, .cover_picture input{
   opacity: 0;
 }
 .cover_picture svg, .cover_picture input{
-  bottom: 3%;
-  right: 3%;
-  width: 2em!important;
-  height: 2em!important;
+  bottom:1rem;
+  right: 1rem;
+  width: 3rem!important;
+  height: 3rem!important;
   padding: 8px;
 }
 .details{

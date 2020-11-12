@@ -1,14 +1,13 @@
 import React, { useState /* , useRef */ } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {Link, Redirect } from 'react-router-dom';
+import {Link, Redirect, useHistory } from 'react-router-dom';
 // import { profileChange } from '../actions';
 import {editUser, backendAPI, getUser} from '../fetch';
-import {/* Settings,Edit, */ CameraAlt } from '@material-ui/icons';
+import {/* Settings,Edit, */ CameraAlt, ArrowBackIos } from '@material-ui/icons';
 import {Button} from '@material-ui/core';
 import './styles/Profile.css';
 import {editPictures} from '../actions';
 import Post from './Post'
-
 
 const editProfileUrl = url => backendAPI + url;
 
@@ -27,6 +26,7 @@ function ProfileImage({ image, userName, id, changeHandler, self}) {
 function UserProfile(props) {
   let user = useSelector(store => store.userDetails);
   const [userState, setuserState] = useState(user);
+  const history = useHistory()
 
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -47,10 +47,11 @@ function UserProfile(props) {
         <div className="profile">
           <div className="top">
             <div className = 'cover_picture' style = {{backgroundImage: `url(${editProfileUrl(userState.coverPicture)})`}}>
+              <ArrowBackIos/>
               <img src = {userState.coverPicture} alt = {userState.userName}/>
               {props.self ? <React.Fragment><CameraAlt/><input type = 'file' accept = 'image/*' name = 'coverPicture' onChange = {({target}) => editProfile(userState.id, target.name, target.files[0])}/></React.Fragment>: ''}
             </div>
-            {userState.userType === 'seller' ? <Button variant = 'text' color = 'primary' size = 'small'><Link to = {`/view/user/store/${userState.userName}`}>View Store</Link></Button> : ''}
+            {userState.userType === 'seller' ? <Button variant = 'outlined' color = 'primary' size = 'small'><Link to = {`/view/user/store/${userState.userName}`}>View Store</Link></Button> : ''}
             <div className= 'profile__details'>
               <ProfileImage userName={userState.userName} image={userState.profilePicture} id = {userState.id} changeHandler = {(id, field, value) => editProfile(id, field, value)} self ={props.self}/>
               <div className="details">

@@ -2,6 +2,8 @@
 import React from 'react';
 import './styles/Product.css';
 import {Close} from '@material-ui/icons';
+import Button from '@material-ui/core/Button';
+import {Link } from 'react-router-dom';
 import {motion} from 'framer-motion';
 import {backendAPI} from '../fetch';
 import {useSelector} from 'react-redux';
@@ -9,9 +11,9 @@ import {useSelector} from 'react-redux';
 const Product = ({productDetails, view, manage, self}) =>{
   const products = useSelector(store => store.products);
 
-  function advertiseProduct(event){
-    alert(JSON.stringify(productDetails));
-  }
+  // function advertiseProduct(event){
+  //   alert(JSON.stringify(productDetails));
+  // }
   const incart = () => products.findIndex(product => product.id === productDetails.id) !== -1;
 
   return(
@@ -20,12 +22,11 @@ const Product = ({productDetails, view, manage, self}) =>{
       {self ? <Close onClick = {()=>manage(productDetails, 'remove_from_cart')}/> : ''}
       <div className="background" style = {{backgroundImage: `url(${backendAPI}${productDetails.image})`}}></div>
       <div className="content">
-        <p>{productDetails.id}</p>
-        <h5>{productDetails.name}</h5>
-        <h5>${productDetails.price}</h5>
-        <h5><strong>x</strong>{productDetails.currentStock}</h5>
-        <button className = 'btn btn-danger btn-sm' disabled = {incart() && !self} onClick = {()=>manage(productDetails, 'add_to_cart')}>{view === 'store' ? 'Remove from Store' : self  ? "Remove From Cart" : incart() ? "In Cart" : "Add to Cart"}</button>
-        {view === 'store' ? <button className = 'btn btn-sm btn-primary' onClick = {advertiseProduct}>Advertise Product</button> : ''}
+        <h5 className = 'mb-2 mt-4'>{productDetails.name}</h5>
+        <h5>Price: NGN{productDetails.price}</h5>
+        <h6>Amount Available: {productDetails.currentStock}</h6>
+        <Link to = {`/product/${productDetails.id}`}><Button variant = 'contained' color = 'primary' size = 'small'>Details</Button></Link>
+        <Button variant = 'contained'  color = 'secondary' size = 'small' disabled = {incart() && !self} onClick = {() => manage(productDetails, incart() ? 'remove_from_cart' : 'add_to_cart')}>{view === 'store' ? 'Remove' : self  ? "Remove" : incart() ? "In Cart" : "Add to Cart"}</Button>
       </div>
     </motion.div>
   )

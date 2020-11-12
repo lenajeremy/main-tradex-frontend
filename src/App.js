@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
+import ProductDetails from './components/ProductDetails';
 import "bootstrap/dist/css/bootstrap.css";
 import "./App.css";
 import Header from "./components/Header";
@@ -16,6 +17,7 @@ import {getUser} from './fetch';
 import {login, profileChange, newProduct} from './actions'
 import Searchbar from './components/Searchbar';
 import Checkout from './components/Checkout';
+import MainCheckout from './components/MainCheckout';
 
 function App() {
   const dispatch = useDispatch();
@@ -51,7 +53,9 @@ function App() {
           <Route path = '/view/user-profile/:userId' component = {(props) => <UserProfile self = {false} routeProps = {props}/> }/>
         </Switch>
         <Route path = '/view/user/store/:userName' component = {props => <Cart routeProps = {props} self = {false}/>}/>
-        <Route path = '/checkout' component = {Checkout}/>
+        <Route path = '/review-cart' component = {Checkout}/>
+        <Route path = '/checkout' component = {MainCheckout}/>
+        <Route path = '/product/:productId' component = {ProductDetails}/>
       </div>
     </div>
   );

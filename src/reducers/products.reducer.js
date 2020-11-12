@@ -7,6 +7,11 @@ function productReducer(state = [], action ){
       return newState;
     case 'newProduct':
       return action.payload.quantity === 'batch' ? [...action.payload.value] : [action.payload.value, ...state];
+    case 'editProduct':
+      let anotherNewState = [...state];
+      let productToEdit = anotherNewState.find(product => product.id === action.payload.id);
+      productToEdit.currentStock = action.payload.currentStock;
+      return anotherNewState;
     default:
       return state
   }

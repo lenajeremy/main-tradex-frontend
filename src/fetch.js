@@ -40,10 +40,12 @@ function cartOperation(product_id, user_id, operation, callback){
   .then(data => callback(data))
   .catch(er => console.log(er))
 }
-function getAllProducts(user_id, start, callback){
-  fetch(`${backendAPI}/store/${user_id}?start=${start}&end=${start+9}`)
+function getProduct(productId, callback){
+  fetch(`${backendAPI}/product?id=${productId}`)
   .then(data => data.json())
-  .then(data => callback(data))
+  .then(data => {
+    console.log(data);
+    callback(data)})
   .catch(error => console.log(error))
 }
 
@@ -156,7 +158,7 @@ module.exports = {
   getPost, 
   getAllPosts,
   removeProduct,
-  getAllProducts,
+  getProduct,
   loginUser, 
   registerUser, 
   createNewPost, 
