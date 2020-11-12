@@ -38,13 +38,17 @@ export default function Checkout() {
         <div className="details container">
           <Link to = '/checkout/'><Button disabled = {products.length === 0} className = 'checkout__button' variant = 'contained' size = 'small' color = 'primary'>Checkout</Button></Link>
           <div className = 'd-flex justify-content-around'>
-            <p className="price">TOTAL: NGN{total}</p>
+            <p className="price">TOTAL: N{formatCurrency(total)}</p>
             <p className="price">{number} items in cart</p>
           </div>
         </div>
       </div>
     )
   } return <Redirect to = {`/user/${user.id}/store`}/>
+}
+
+const formatCurrency = value =>{
+  return value
 }
 
 
@@ -69,7 +73,7 @@ function ProductLittle({productDetails, stuff}){
         <img className = 'img-responsive img-fluid' src = {backendAPI + productDetails.image} alt = {productDetails.description}/>
       </div>
       <div className="product_little_desc">
-        <Typography component = 'p' variant = 'heading' className = 'lilbold'>{productDetails.name}</Typography>
+        <Typography component = 'p' variant = 'inherit' className = 'lilbold'>{productDetails.name}</Typography>
         <Typography component = 'p' variant = 'body2'>N{productDetails.price}</Typography>
       </div>
     </div>

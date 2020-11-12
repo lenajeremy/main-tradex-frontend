@@ -6,23 +6,24 @@ import { ThumbUpAltOutlined, ThumbUpAlt } from '@material-ui/icons'
 import './styles/Post.css'
 import { Redirect } from 'react-router-dom';
 import { likepost } from '../actions'
+import { motion } from 'framer-motion';
 
 
 function getTimeDifference(initial) {
   let difference = Math.round(Date.now() / 1000 - initial)
   const returnDiffText = difference => {
     if (difference >= 29030400) {
-      return `about ${Math.round(difference / 29030400)} year${Math.round(difference / 29030400) === 1 ? '' : 's'} ago`;
+      return `${Math.round(difference / 29030400)} year${Math.round(difference / 29030400) === 1 ? '' : 's'} ago`;
     } else if (difference >= 2419200) {
-      return `about ${Math.round(difference / 2419200)} month${Math.round(difference / 2419200) === 1 ? '' : 's'} ago`;
+      return `${Math.round(difference / 2419200)} month${Math.round(difference / 2419200) === 1 ? '' : 's'} ago`;
     } else if (difference >= 604800) {
-      return `about ${Math.round(difference / 604800)} week${Math.round(difference / 604800) === 1 ? '' : 's'} ago`;
+      return `${Math.round(difference / 604800)} week${Math.round(difference / 604800) === 1 ? '' : 's'} ago`;
     } else if (difference >= 86400) {
-      return `about ${Math.round(difference / 86400)} day${Math.round(difference / 86400) === 1 ? '' : 's'} ago`;
+      return `${Math.round(difference / 86400)} day${Math.round(difference / 86400) === 1 ? '' : 's'} ago`;
     } else if (difference >= 3600) {
-      return `about ${Math.round(difference / 3600)} hour${Math.round(difference / 3600) === 1 ? '' : 's'} ago`;
+      return `${Math.round(difference / 3600)} hour${Math.round(difference / 3600) === 1 ? '' : 's'} ago`;
     } else if (difference >= 60) {
-      return `about ${Math.round(difference / 60)} minute${Math.round(difference / 60) === 1 ? '' : 's'} ago`;
+      return `${Math.round(difference / 60)} minute${Math.round(difference / 60) === 1 ? '' : 's'} ago`;
     }
     return 'a few seconds ago';
   }
@@ -53,7 +54,7 @@ function Post(props) {
 
   if (!toRedirect) {
     return (
-      <div className="post my-4">
+      <motion.div className="post my-4" initial = {{opacity: 0}} animate = {{opacity: 1}}>
         <div className="post__header">
           <div className="posterImage" style = {{backgroundImage: `url(${backendAPI + props.postDetails.posterPicture})`}}>
           <img 
@@ -75,7 +76,7 @@ function Post(props) {
             <p className='like'>{isLiked ? <ThumbUpAlt className = 'liked'/> : <ThumbUpAltOutlined/>}{likeCount}</p>
           </div>
         </div>
-      </div>
+      </motion.div>
     )
   } else {
     return <Redirect to='/login' />

@@ -26,7 +26,7 @@
   cursor:pointer;
 }
 .checkout .top p, .product_details .top p, .maincheckout .top p, .cart .top p{
-  font-size: 19px;
+  font-size: 1.27rem;
   margin: 0;
   font-weight: 500;
 }
@@ -108,7 +108,7 @@
   border-radius: 1rem;
 }
 .checkout__button {
-  background: linear-gradient(to right,#a200f5, #3fa5b5 );
+  background: linear-gradient(to right,#532cdf, #3fa5b5 );
   width: 90%;
   position: absolute!important;
   border-radius: 1rem!important;
@@ -152,3 +152,63 @@
 }
 
 /* *****main checkout page styles */
+.checkoutAddress{
+  padding: 0 20px;
+}
+.heading{
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+.shipping_address{
+  transition: all 0.5s ease;
+  position: relative;
+  padding: 2em 3em;
+  border-radius: 1.2rem;
+  display: flex;
+  align-items: flex-start;
+}
+.shipping_address > div{
+  margin-left: 18px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.shipping_address > div svg{
+  display: flex;
+  align-self: flex-end;
+}
+.shipping_address p{
+  margin: 0;
+}
+.shipping_address .address{
+  color: rgb(110, 110, 110);
+  width: 60%;
+}
+.shipping_address .place{
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+.shipping_address.active{
+  background: rgba(230, 230, 230, 0.63);
+  box-shadow: 0 30px 15px rgb(202, 202, 202);
+  box-shadow: -5px 10px 15px lightgray, 5px -10px 15px rgb(161, 161, 161);
+}
+.shipping_address .MuiSvgIcon-root:not(.editSvg){
+  width: 1.3em!important;
+  height: 1.3em!important;
+}
+.shipping_address .editSvg{
+  position: absolute;
+  bottom: 1.5em;
+}
+@media screen and (max-width:600px){
+  .shipping_address{
+    padding: 1em 1.5em;
+  }
+  .shipping_address .address{
+    width: 85%;
+  }
+  .shipping_address .editSvg{
+     bottom: 1em;
+  }
+}

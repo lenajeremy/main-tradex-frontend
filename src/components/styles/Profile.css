@@ -27,14 +27,25 @@
   background-position: center;
   width: 100%;
   height: 270px;
+  border-radius: 1rem;
   background-size: cover;
 }
 .cover_picture img{
   display: contents;
 }
+.cover_picture svg.back{
+  background: #575757;
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  padding: 7px;
+  margin: 0.7rem 0 0 0.7rem;
+  position: relative;
+  color: white;
+}
 .profile__change__svg, 
 input#profileChange, 
-.cover_picture svg,
+.cover_picture svg:not(.back),
 .cover_picture input {
   position: absolute;
   background: #3f51b5;
@@ -50,7 +61,7 @@ input#profileChange, .cover_picture input{
   overflow: hidden;
   opacity: 0;
 }
-.cover_picture svg, .cover_picture input{
+.cover_picture svg:not(.back), .cover_picture input{
   bottom:1rem;
   right: 1rem;
   width: 3rem!important;
@@ -66,6 +77,7 @@ input#profileChange, .cover_picture input{
 @media screen and (max-width: 768px){
   .cover_picture{
     height: 30vh;
+    border-radius: 0;
   }
 .profile{
   background: rgba(230, 230, 230, 0.63);
@@ -81,7 +93,7 @@ input#profileChange, .cover_picture input{
     height: 1.1em!important;
     right: 7px;
   }
-  .cover_picture svg,
+  .cover_picture svg:not(.back),
   .cover_picture input{
     height: 1.5em!important;
     width: 1.5em!important;
