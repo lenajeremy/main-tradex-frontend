@@ -9,7 +9,6 @@ import './styles/Profile.css';
 import {editPictures} from '../actions';
 import Post from './Post'
 
-const editProfileUrl = url => url;
 
 function ProfileImage({ image, userName, id, changeHandler, self}) {
   return (
@@ -45,9 +44,9 @@ function UserProfile(props) {
       <div className='userProfile'>
         <div className="profile">
           <div className="top">
-            <div className = 'cover_picture' style = {{backgroundImage: `url(${editProfileUrl(userState.coverPicture)})`}}>
+            <div className = 'cover_picture' style = {{backgroundImage: `url(${userState.coverPicture})`}}>
               <ArrowBackIos className = 'back' onClick = {() => history.goBack()}/>
-              <img src = {editProfileUrl(userState.coverPicture)} alt = {userState.userName}/>
+              <img src = {userState.coverPicture} alt = {userState.userName}/>
               {props.self ? <React.Fragment><CameraAlt/><input type = 'file' accept = 'image/*' name = 'coverPicture' onChange = {({target}) => editProfile(userState.id, target.name, target.files[0])}/></React.Fragment>: ''}
             </div>
             {userState.userType === 'seller' ? <Button variant = 'outlined' color = 'primary' size = 'small'><Link to = {`/view/user/store/${userState.userName}`}>View Store</Link></Button> : ''}
