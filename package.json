@@ -1,6 +1,4 @@
 {
-  "name": "react-lap",
-  "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.11.0",
@@ -23,6 +21,7 @@
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
+    "scrape": "node scraper.js",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

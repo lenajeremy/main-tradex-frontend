@@ -63,7 +63,7 @@
 }
 .sideBar__links.active a{
   font-weight: bolder;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
 }
 .sideBar .right::after{
   right: -20px;
@@ -130,9 +130,7 @@
   display: none
  }
  .sideBar__links.active svg{
-   width: 2rem;
    margin-top: -15px;
-   height: 2rem;
   }
   .sideBar__links.active .text{
     display: block;
