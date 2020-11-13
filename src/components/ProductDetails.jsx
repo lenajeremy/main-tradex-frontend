@@ -22,7 +22,7 @@ function ProductDetails(props) {
       <div className = 'product_main'>
         <div className = 'product_image'>
           <ThumbUpAlt className = 'like_product'/>
-          <img src = {backendAPI + productDetails.image} alt = {productDetails.description} className = 'img-fluid img-responsive img-rounded'/>
+          <img src = {productDetails.image} alt = {productDetails.description} className = 'img-fluid img-responsive img-rounded'/>
           <div className = 'px-md-4 product_title align-items-center mt-4 mb-2 d-flex justify-content-between'>
             <Typography className = 'w-75 font-weight-bold' component = 'h5' variant = 'h5'>{productDetails.name}</Typography>
             <Button variant = 'contained' color = 'primary'>N{productDetails.price}</Button>

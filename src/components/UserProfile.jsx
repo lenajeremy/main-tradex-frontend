@@ -9,7 +9,7 @@ import './styles/Profile.css';
 import {editPictures} from '../actions';
 import Post from './Post'
 
-const editProfileUrl = url => backendAPI + url;
+const editProfileUrl = url => url;
 
 function ProfileImage({ image, userName, id, changeHandler, self}) {
   return (
