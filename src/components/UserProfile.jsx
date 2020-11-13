@@ -12,7 +12,7 @@ import Post from './Post'
 
 function ProfileImage({ image, userName, id, changeHandler, self}) {
   return (
-    <div className="profile__image" style = {{backgroundImage: `url(${editProfileUrl(image)})`}}>
+    <div className="profile__image" style = {{backgroundImage: `url(${image})`}}>
       <img className = 'img-responsive img-fluid' src={`${image}`} alt={userName} />
       {self ? <React.Fragment>
       <CameraAlt className = 'profile__change__svg'/>
