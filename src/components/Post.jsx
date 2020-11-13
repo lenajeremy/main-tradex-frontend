@@ -56,9 +56,9 @@ function Post(props) {
     return (
       <motion.div className="post my-4" initial = {{opacity: 0}} animate = {{opacity: 1}}>
         <div className="post__header">
-          <div className="posterImage" style = {{backgroundImage: `url(${backendAPI + props.postDetails.posterPicture})`}}>
+          <div className="posterImage" style = {{backgroundImage: `url(props.postDetails.posterPicture})`}}>
           <img 
-            src={`${backendAPI}${props.postDetails.posterPicture}`} 
+            src={props.postDetails.posterPicture}
             alt="" className='img-responsive img-fluid img-rounded'
             style = {{backgroundImage: `${backendAPI}${props.postDetails.posterPicture}`}}
           />
