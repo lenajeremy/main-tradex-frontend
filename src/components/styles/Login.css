@@ -8,7 +8,7 @@
 .MuiButton-containedPrimary{
   background-color: #3f51b5;
 }
-#login__loader, button svg{
+#login__loader, #reg_loader, button svg{
   color: white;
   height: 20px!important;
   width: 20px!important;

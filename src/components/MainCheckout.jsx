@@ -1,7 +1,7 @@
 import React from 'react';
 import { Edit, ArrowBackIos, ShoppingCart } from '@material-ui/icons';
 import { useHistory } from 'react-router-dom';
-import {Radio} from '@material-ui/core';
+import {Radio, Button} from '@material-ui/core';
 import { motion } from 'framer-motion';
 // import {Typography} from '@material-ui/core';
 
@@ -10,6 +10,11 @@ function MainCheckout() {
   const history = useHistory();
   const [address, setAddress] = React.useState('home');
   const [paymentMethod, setPaymentMethod] = React.useState('');
+  const [email, setEmail] = React.useState('jeremiahlena13@gmail');
+  const [price, setPrice] = React.useState(10000);
+  const [publicKey, setpublicKey] = React.useState('pk_test_e8393cf34f27bc6b1435965dfaad63d0d57c62f3');
+
+
 
   return (
     <form className = 'maincheckout'>
@@ -50,6 +55,7 @@ function MainCheckout() {
           <Radio onChange = {() => setPaymentMethod('paystack')}  checked = {paymentMethod === 'paystack'} /> <p>Paystack</p>
         </div>
       </div>
+      <Button type= "submit" variant = 'contained' color= 'primary'/>
     </form>
   )
 }

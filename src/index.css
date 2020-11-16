@@ -1,8 +1,12 @@
 body {
   margin: 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Poppins', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+@font-face{
+  src: 'fonts/Poppins-Regular.ttf';
+  font-family: 'Poppins';
 }
 #root{
   background: url('bg-hero-desktop.svg') fixed;

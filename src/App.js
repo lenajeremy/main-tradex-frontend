@@ -11,6 +11,7 @@ import UserProfile from "./components/UserProfile";
 import WrapperFunction from "./components/CreateAndViewPosts";
 import Sidebar from "./components/SideBar";
 import Store from './components/Store';
+import Notifications from './components/Notifications';
 import Cart from './components/Cart';
 import {useSelector, useDispatch} from 'react-redux';
 import {getUser} from './fetch';
@@ -56,6 +57,7 @@ function App() {
         <Route path = '/review-cart' component = {Checkout}/>
         <Route path = '/checkout' component = {MainCheckout}/>
         <Route path = '/product/:productId' component = {ProductDetails}/>
+        <Route path = '/notifications' component = {Notifications}/>
       </div>
     </div>
   );

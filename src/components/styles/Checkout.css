@@ -3,7 +3,7 @@
   overflow: scroll;
 }
 .checkout .top, .product_details .top, .maincheckout .top, .cart .top{
-  padding: 20px;
+  padding: 1.2rem;
   justify-content: space-between;
   position: relative;
 }

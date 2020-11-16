@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { createPost, fetchposts } from '../actions';
 import Post from './Post';
 import { createNewPost, getAllPosts } from '../fetch';
-import {TextareaAutosize, CircularProgress} from '@material-ui/core';
+import {TextareaAutosize, CircularProgress, Backdrop} from '@material-ui/core';
 import {AddAPhoto} from '@material-ui/icons';
 import { Redirect } from 'react-router-dom';
 import './styles/Create.css';
@@ -16,6 +16,7 @@ function CreatePosts(props) {
   const user_id = user.id;
   const [toRedirect, setRedirect] = useState(false);
   const [error, setError] = useState('');
+  const [creating, setCreating] = useState(false);
 
   function handleFormSubmission(event) {
     event.preventDefault();
@@ -46,7 +47,10 @@ function CreatePosts(props) {
   }
 
   if (!toRedirect) {
-    return (
+    if (creating){
+      return <Backdrop/>
+    }
+    else return (
       <React.Fragment>
         <form onSubmit={handleFormSubmission} className = 'mb-md-4' id = 'createForm'>
           <TextareaAutosize id = 'create_textarea' name = 'post_content' value = {postContent} onChange = {event => setPostContent(event.target.value)} placeholder = {`What's going on ${user_id ? user.firstName : ''}??`} />

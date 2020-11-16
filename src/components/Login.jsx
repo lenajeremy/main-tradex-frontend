@@ -21,6 +21,7 @@ function Login(props) {
     loginUser(userName, password, data => {
       if (data.status === 200) {
         getUser(data.id, userDetails => {
+          console.log(userDetails);
           dispatch(login(userDetails.user));
           dispatch(profileChange(userDetails.user.profile));
           userDetails.user.userType === 'buyer' ? dispatch(newProduct({quantity: 'batch', value: userDetails.user.cart.products})) : dispatch(newProduct({quantity: 'batch', value: userDetails.user.products.products}));

@@ -26,6 +26,8 @@ function Register(props) {
   const [userType, setUserType] = useState(null);
   const [isError, setError] = useState(false);
   const [errors, setErrors] = useState([]);
+  const [isClicked, setClicked] = useState(false);
+  const [toRedirect, setRedirect] = useState(false);
 
   function resetState() {
     setError(false);
@@ -40,20 +42,24 @@ function Register(props) {
     setErrors([]);
   }
   function handleFormSubmission(event) {
+    setClicked(true);
     event.preventDefault();
     if((username && first_name && last_name && userType && password && email && paypal && conf_password && password === conf_password )){
     console.log('thee function should be called now');
       registerUser(username, first_name, last_name, userType, password, email, paypal, conf_password, data => {
         if (data.status === 200) {
           getUser(data.id, userDetails => {
+            console.log(userDetails)
             dispatch(login(userDetails.user))
             dispatch(profileChange(userDetails.user.profile));
             userDetails.user.userType === 'buyer' ? dispatch(newProduct({quantity: 'batch', value: userDetails.user.cart.products})) : dispatch(newProduct({quantity: 'batch', value: userDetails.user.products.products}));
             setError(false);
             localStorage.setItem('user_id', userDetails.user.id);
+            setRedirect(true);
           })
           resetState()
         } else { setError(true); setErrors(data.errors) }
+        setClicked(false)
       })
     } else if(password !== conf_password) {setError(true); setErrors([...errors, 'Passwords do not match'])}
     else {setError(true); setErrors([...errors, 'Please fill the required fields']);}
@@ -158,11 +164,12 @@ function Register(props) {
             </Grid>
           </Grid>
           <Button
+          style = {isClicked ? {pointerEvents: 'none'} : {pointerEvents: 'all'}}
             type="submit"
             fullWidth
             variant="contained"
             color = 'primary'
-          >Sign Up  {isError ? <CircularProgress variant = 'indeterminate'/> : ''}</Button>
+          >{isClicked ? <React.Fragment>Creating your account...<CircularProgress id = 'reg_loader' color = 'primary' variant = 'indeterminate'/></React.Fragment> : 'Sign Up'}</Button>
           <Grid container className = 'text-center'>
             <Grid item>
               <Link to="/login" variant="body2">
