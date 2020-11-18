@@ -12,7 +12,7 @@ function Notifications(props) {
   const notifications = useSelector(store => store.userDetails.notifications)
   const history = useHistory();
   return (
-    <div className='checkout'>
+    <div className='cart'>
       <motion.div className="top d-flex align-items-center" initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }}>
         <div className='d-flex align-items-center' onClick={() => history.goBack()}>
           <ArrowBackIos />
