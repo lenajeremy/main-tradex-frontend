@@ -10,7 +10,7 @@ import { motion } from 'framer-motion';
 import useTimeDifference from '../hooks/useTimeDifference';
 
 
-const editProfileUrl = url => backendAPI + url;
+const editProfileUrl = url =>  url;
 function Post(props) {
   const timeDifference = useTimeDifference();
 
