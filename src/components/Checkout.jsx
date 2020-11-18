@@ -68,8 +68,8 @@ function ProductLittle({productDetails, stuff}){
     <motion.div className = {stuff === 0 ? 'product_little d-flex mb-4' : 'product_little d-flex my-4'} initial = {{opacity: 0, y: 20}} animate = {{opacity: 1, y: 0}}>
       <div className="main d-flex align-items-center">
       <Radio/>
-      <div className = 'product_little_image' style = {{backgroundImage: `url(${backendAPI + productDetails.image})`}}>
-        <img className = 'img-responsive img-fluid' src = {backendAPI + productDetails.image} alt = {productDetails.description}/>
+      <div className = 'product_little_image' style = {{backgroundImage: `url(${productDetails.image})`}}>
+        <img className = 'img-responsive img-fluid' src = {productDetails.image} alt = {productDetails.description}/>
       </div>
       <div className="product_little_desc">
         <Typography component = 'p' variant = 'inherit' className = 'lilbold'>{productDetails.name}</Typography>

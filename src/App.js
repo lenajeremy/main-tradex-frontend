@@ -17,7 +17,6 @@ import Cart from "./components/Cart";
 import { useSelector, useDispatch } from "react-redux";
 import { getUser } from "./fetch";
 import { login, profileChange, newProduct } from "./actions";
-import Searchbar from "./components/Searchbar";
 import Checkout from "./components/Checkout";
 import MainCheckout from "./components/MainCheckout";
 import socketIoClient from "socket.io-client";
@@ -55,7 +54,6 @@ function App() {
     <div className="App">
       <Header />
       <Sidebar />
-      <Searchbar />
       <div className="container">
         <Route path="/" exact component={WrapperFunction} />
         <Route path="/login" component={Login} />

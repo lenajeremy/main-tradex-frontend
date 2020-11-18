@@ -86,6 +86,7 @@ textarea#product_change:focus {
   width: 50px;
   height: 50px;
   border-radius: 50%;
+  margin-right: 15px;
 }
 .message_link .message_text {
   display: flex;
@@ -93,7 +94,7 @@ textarea#product_change:focus {
 }
 .message_searchbar {
   margin: 10px 20px;
-  background: rgb(96, 130, 243);
+  background: rgba(47, 90, 233, 0.582);
   position: relative;
   display: flex;
   align-items: center;
@@ -102,6 +103,7 @@ textarea#product_change:focus {
 .message_searchbar,
 .message_searchbar input {
   border-radius: 10rem;
+  color: white;
 }
 .message_searchbar .svg{
   width: 15%;
@@ -110,8 +112,9 @@ textarea#product_change:focus {
   justify-content: center;
 }
 .message_searchbar svg {
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
+  color: white;
 }
 .message_searchbar input {
   margin-left: auto;
@@ -119,9 +122,14 @@ textarea#product_change:focus {
   background: transparent;
   border: none;
   outline: none;
+  font-size: 18px;
   height: 100%;
   top: 0;
   left: 0;
-  padding: 20px;
+  padding: 10px;
   padding-left: 0;
+}
+.message_searchbar input::placeholder{
+  font-size: 18px;
+  color: #efefef;
 }

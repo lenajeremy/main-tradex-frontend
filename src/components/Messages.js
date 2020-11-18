@@ -19,19 +19,19 @@ function Messages(props) {
 }
 
 const MessageLink = ({ details }) => {
-  const timeDifference = useTimeDifference();
+  
   return (
     <div className="message_link">
       <img
         className="profile_image"
-        src={backendAPI + details.recipient_picture}
+        src={details.recipient_picture}
         alt={details.content}
       />
       <div className="message_text d-flex">
         <strong>
-          {details.recipient.first_name} {details.recipient.last_name}
+          <Link to = {`/message/${details.conversation_id}`}>{details.recipient.first_name} {details.recipient.last_name}</Link>
         </strong>
-        <p>{details.content + "..."}</p>
+        <p>{details.content.length <= 30 ? details.content : details.content.split('').slice(0, 30).join('') + "..."}</p>
       </div>
     </div>
   );

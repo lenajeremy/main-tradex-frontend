@@ -20,7 +20,7 @@ const Product = ({productDetails, view, manage, self}) =>{
     <motion.div key ={productDetails.id} initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1}} exit={{ opacity: 0.5, scale: 0.5 }} className = 'product'>
       <div className="overlay"></div>
       {self ? <Close onClick = {()=>manage(productDetails, 'remove_from_cart')}/> : ''}
-      <div className="background" style = {{backgroundImage: `url(${backendAPI + productDetails.image})`}}></div>
+      <div className="background" style = {{backgroundImage: `url(${ productDetails.image})`}}></div>
       <div className="content">
         <h5 className = 'mb-2 mt-4'>{productDetails.name}</h5>
         <h5>Price: NGN{productDetails.price}</h5>

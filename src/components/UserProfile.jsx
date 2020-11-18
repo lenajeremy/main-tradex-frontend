@@ -12,7 +12,7 @@ import Post from './Post'
 
 function ProfileImage({ image, userName, id, changeHandler, self}) {
   return (
-    <div className="profile__image" style = {{backgroundImage: `url(${backendAPI + image})`}}>
+    <div className="profile__image" style = {{backgroundImage: `url(${ image})`}}>
       <img className = 'img-responsive img-fluid' src={`${image}`} alt={userName} />
       {self ? <React.Fragment>
       <CameraAlt className = 'profile__change__svg'/>
@@ -44,9 +44,9 @@ function UserProfile(props) {
       <div className='userProfile'>
         <div className="profile">
           <div className="top">
-            <div className = 'cover_picture' style = {{backgroundImage: `url(${backendAPI + userState.coverPicture})`}}>
+            <div className = 'cover_picture' style = {{backgroundImage: `url(${userState.coverPicture})`}}>
               <ArrowBackIos className = 'back' onClick = {() => history.goBack()}/>
-              <img src = {userState.coverPicture} alt = {backendAPI + userState.userName}/>
+              <img src = {userState.coverPicture} alt = {userState.userName}/>
               {props.self ? <React.Fragment><CameraAlt/><input type = 'file' accept = 'image/*' name = 'coverPicture' onChange = {({target}) => editProfile(userState.id, target.name, target.files[0])}/></React.Fragment>: ''}
             </div>
             {userState.userType === 'seller' ? <Button variant = 'outlined' color = 'primary' size = 'small'><Link to = {`/view/user/store/${userState.userName}`}>View Store</Link></Button> : ''}

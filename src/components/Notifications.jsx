@@ -37,7 +37,7 @@ function Notification({ notification, history }) {
   }
   return (
     <Link to={getUrl(notification)} className='notification my-3'>
-      <img src={backendAPI + notification.related_picture} alt={notification.related_user} />
+      <img src={ notification.related_picture} alt={notification.related_user} />
       <div className='noti_text'>
         <Typography variant='inherit' component='p'>{notification.text}</Typography>
         <small>{timeDifference(notification.dateCreated)}</small>

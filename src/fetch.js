@@ -1,5 +1,4 @@
-// const backendAPI = 'https://tradesocial.herokuapp.com';
-const backendAPI = 'http://localhost:8000'
+const backendAPI = 'https://tradesocial.herokuapp.com';
 function getUser(user_id, callback){
   fetch(`${backendAPI}/users/${user_id}`)
   .then(data=> data.json())
