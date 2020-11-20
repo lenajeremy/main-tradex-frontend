@@ -1,4 +1,5 @@
-const backendAPI = 'https://tradesocial.herokuapp.com';
+// const backendAPI = 'https://tradesocial.herokuapp.com';
+const backendAPI = 'http://localhost:8000'
 function getUser(user_id, callback){
   fetch(`${backendAPI}/users/${user_id}`)
   .then(data=> data.json())
@@ -153,6 +154,11 @@ function removeProduct(user_id, product_id, callback){
   .then(data => callback(data))
 }
 
+function getChatMessages(user_id, chat_id, step, callback){
+  fetch(`${backendAPI}/messages?operation=get_chat_messages&step=${step}&chat_id=${chat_id}&ref_id=${user_id}`)
+  .then(data => data.json())
+  .then(data => callback(data))
+}
 module.exports = {
   getUser,
   getPost, 
@@ -167,5 +173,6 @@ module.exports = {
   editUser,
   backendAPI,
   getStore,
-  cartOperation
+  cartOperation,
+  getChatMessages
 }

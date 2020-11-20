@@ -80,7 +80,7 @@ textarea#product_change:focus {
 }
 .message_link {
   display: flex;
-  padding: 20px;
+  padding: 5px 20px;
 }
 .message_link img {
   width: 50px;
@@ -94,7 +94,7 @@ textarea#product_change:focus {
 }
 .message_searchbar {
   margin: 10px 20px;
-  background: rgba(47, 90, 233, 0.582);
+  background: rgba(77, 112, 228, 0.473);
   position: relative;
   display: flex;
   align-items: center;
@@ -122,14 +122,14 @@ textarea#product_change:focus {
   background: transparent;
   border: none;
   outline: none;
-  font-size: 18px;
+  font-size: 16px;
   height: 100%;
   top: 0;
   left: 0;
-  padding: 10px;
+  padding: 6px;
   padding-left: 0;
 }
 .message_searchbar input::placeholder{
-  font-size: 18px;
+  font-size: 16px;
   color: #efefef;
 }

@@ -2,6 +2,7 @@
 import React from "react";
 import ProductDetails from "./components/ProductDetails";
 import Messages from "./components/Messages";
+import ChatArea from './components/ChatArea';
 import "bootstrap/dist/css/bootstrap.css";
 import "./App.css";
 import Header from "./components/Header";
@@ -49,7 +50,7 @@ function App() {
       });
     }
   }, []);
-  const userType = useSelector((state) => state.userDetails.userType);
+  const user = useSelector((state) => state.userDetails);
   return (
     <div className="App">
       <Header />
@@ -63,7 +64,7 @@ function App() {
           component={(props) => <UserProfile self={true} routeProps={props} />}
         />
         <Switch>
-          {userType === "buyer" ? (
+          {user.userType === "buyer" ? (
             <Route
               path="/user/:userId/cart"
               component={() => <Cart self={true} />}
@@ -90,6 +91,7 @@ function App() {
         <Route path="/product/:productId" component={ProductDetails} />
         <Route path="/notifications" component={Notifications} />
         <Route path="/messages" component={Messages} />
+        <Route path = '/chat/:chatId' component = {props => <ChatArea routeProps = {props} user_id = {user.id}/>}/>
       </div>
     </div>
   );

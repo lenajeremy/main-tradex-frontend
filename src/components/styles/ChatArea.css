@@ -1,0 +1,96 @@
+.chat_area .top {
+  position: relative;
+  padding-left: 10px;
+  background: linear-gradient(to right, #3f51b5, #7eaff8);
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 60px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  color: white;
+}
+.chat_area .top .content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  padding-left: 5px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.chat_area .top .content img {
+  display: block;
+  width: 35px;
+  height: 35px;
+  margin-right: 15px;
+  border-radius: 50%;
+}
+.user_name{
+  line-height: 0.9rem;
+  font-weight: 400;
+}
+.userDetails{
+  display: flex;
+  margin-bottom: -10px;
+  flex-direction: column;
+}
+.chat_area .main{
+  padding: 20px;
+  /* position: relative; */
+}
+.chat_area .main #messageForm {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 92%;
+  left: 50%;
+  position: absolute;
+  transform: translateX(-50%);
+  bottom: 10px;
+  border-radius: 10rem;
+  height: 50px;
+  background: rgb(202, 204, 204);
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-left: 10px;
+}
+
+.chat_area .main #messageForm textarea,
+.chat_area .main #messageForm button {
+  border: none;
+  background: none;
+  outline: none;
+}
+
+.chat_area .main #messageForm textarea {
+  width: calc(100% - 40px);
+  height: 70%;
+  resize: none;
+}
+
+.chat_area .main #messageForm textarea::placeholder {
+  color: #636363;
+  font-size: 16px;
+}
+
+.chat_area .main #messageForm button {
+  width: 30px;
+  border-radius: 50%;
+  background: #3e2753;
+  color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 30px;
+}
