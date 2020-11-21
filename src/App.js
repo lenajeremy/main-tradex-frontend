@@ -20,17 +20,11 @@ import { getUser } from "./fetch";
 import { login, profileChange, newProduct } from "./actions";
 import Checkout from "./components/Checkout";
 import MainCheckout from "./components/MainCheckout";
-import socketIoClient from "socket.io-client";
-const $ENDPOINT = "http://localhost:4000";
+import socket from './hooks/socket';
 
 function App() {
   const dispatch = useDispatch();
   React.useEffect(() => {
-    (function Realtime() {
-      const socket = socketIoClient($ENDPOINT);
-      socket.on("message", (data) => console.log(data));
-    })();
-
     let userId = localStorage.getItem("user_id");
     if (userId) {
       getUser(userId, (data) => {
@@ -51,6 +45,10 @@ function App() {
     }
   }, []);
   const user = useSelector((state) => state.userDetails);
+  React.useEffect(() => {
+    if(user.id)socket.initialize(user.id)
+  },[user])
+
   return (
     <div className="App">
       <Header />

@@ -3,15 +3,19 @@ const server = require("http").createServer(app);
 const io = require("socket.io")(server);
 const axios = require("./axios");
 
-app.get("/", (req, res) => {
-  res.json({ name: "jeremiah", value: "some really cool value" });
-});
+
+let users = [];
 
 io.on("connection", socket => {
-  socket.on('message', async data => {
-    const stuff = await axios.get('/posts/all?start=0&end=5')
-    console.log(stuff.data)
-  })
+  socket.on('identification', publicId => {
+    users.push({...socket, publicId});
+    console.log(users.length)
+    socket.on('send_message', ({sender, receiver, messageDetails}) => {
+      console.log(messageDetails);
+      const receiverSocket = users.find(socket => socket.publicId === receiver).id;
+      io.sockets.sockets[receiverSocket].emit('receive_message', {sender, messageDetails})
+    })
+  });
 });
 
 server.listen(process.env.PORT || 4000, () =>

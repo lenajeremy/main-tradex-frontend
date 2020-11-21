@@ -1,13 +1,15 @@
 import React from "react";
-import { getChatMessages } from "../fetch";
+import { getChatMessages, backendAPI } from "../fetch";
 import ArrowBackIos from "@material-ui/icons/ArrowBackIos";
 import ArrowForwardIos from '@material-ui/icons/ArrowForwardIos'
 import "./styles/ChatArea.css";
-import { backendAPI } from "../fetch";
 import { useHistory } from "react-router-dom";
+import socketClient from '../hooks/socket';
 import { Typography } from "@material-ui/core";
+import {useSelector} from 'react-redux';
 
 const ChatArea = ({ routeProps, user_id }) => {
+  const user = useSelector(store => store.userDetails);
   const [messages, setMessages] = React.useState([]);
   const [step, setStep] = React.useState(Math.floor(messages.length / 10));
   const [userDetails, setDetails] = React.useState({
@@ -16,11 +18,13 @@ const ChatArea = ({ routeProps, user_id }) => {
     lastName: "",
   });
   const history = useHistory();
+  const socket = socketClient.get();
+  socket.on('receive_message', ({sender, messageDetails}) => {
+    console.log(messageDetails);
+  })
 
   React.useEffect(() => {
     document.querySelector(".sideBar").style.display =
-      window.innerWidth < 600 ? "none" : "block";
-    document.querySelector("header").style.display =
       window.innerWidth < 600 ? "none" : "block";
     window.addEventListener("scroll", scrollEvent);
     getChatMessages(user_id, routeProps.match.params.chatId, step, (data) => {
@@ -30,7 +34,6 @@ const ChatArea = ({ routeProps, user_id }) => {
     });
     return () => {
       document.querySelector(".sideBar").style.display = "block";
-      document.querySelector("header").style.display = "block";
       window.removeEventListener("scroll", scrollEvent);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -41,6 +44,7 @@ const ChatArea = ({ routeProps, user_id }) => {
   };
   const sendMessage = (event, message) => {
     event.preventDefault();
+    socket.emit('send_message', {sender: user.id, receiver: userDetails.id, messageDetails: message})
   }
   return (
     <div className="chat_area">
