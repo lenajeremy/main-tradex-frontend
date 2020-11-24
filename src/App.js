@@ -20,7 +20,6 @@ import { getUser } from "./fetch";
 import { login, profileChange, newProduct } from "./actions";
 import Checkout from "./components/Checkout";
 import MainCheckout from "./components/MainCheckout";
-import socket from './hooks/socket';
 
 function App() {
   const dispatch = useDispatch();
@@ -45,10 +44,6 @@ function App() {
     }
   }, []);
   const user = useSelector((state) => state.userDetails);
-  React.useEffect(() => {
-    if(user.id)socket.initialize(user.id)
-  },[user])
-
   return (
     <div className="App">
       <Header />
@@ -59,10 +54,10 @@ function App() {
         <Route path="/register" component={Register} />
         <Route
           path="/user/:userId/profile"
-          component={(props) => <UserProfile self={true} routeProps={props} />}
+          component={props => <UserProfile self={true} routeProps={props} />}
         />
         <Switch>
-          {user.userType === "buyer" ? (
+          user.userType === "buyer" ? (
             <Route
               path="/user/:userId/cart"
               component={() => <Cart self={true} />}
@@ -72,7 +67,7 @@ function App() {
               path="/user/:userId/store"
               component={() => <Store self={true} />}
             />
-          )}
+          )
           <Route
             path="/view/user-profile/:userId"
             component={(props) => (

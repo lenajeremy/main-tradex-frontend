@@ -12,7 +12,7 @@ import Post from './Post'
 
 function ProfileImage({ image, userName, id, changeHandler, self}) {
   return (
-    <div className="profile__image" style = {{backgroundImage: `url(${ image})`}}>
+    <div className="profile__image" style = {{backgroundImage: `url(${backendAPI + image})`}}>
       <img className = 'img-responsive img-fluid' src={`${image}`} alt={userName} />
       {self ? <React.Fragment>
       <CameraAlt className = 'profile__change__svg'/>
@@ -27,8 +27,13 @@ function UserProfile(props) {
   const [userState, setuserState] = useState(props.self ? user : {userName: "Loading", profile: {status: 'Loading', bio: 'Loading'}, postsMade: []});
   const history = useHistory()
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  React.useEffect(() => getUser(props.routeProps.match.params.userId, data => setuserState(data.user)),[])
+  React.useEffect(() => {
+    async function getUserFromAPI(){
+      await getUser(props.routeProps.match.params.userId, data => setuserState(data.user))
+    }
+    getUserFromAPI()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[])
 
   const dispatch = useDispatch();
 
@@ -44,7 +49,7 @@ function UserProfile(props) {
       <div className='userProfile'>
         <div className="profile">
           <div className="top">
-            <div className = 'cover_picture' style = {{backgroundImage: `url(${userState.coverPicture})`}}>
+            <div className = 'cover_picture' style = {{backgroundImage: `url(${backendAPI + userState.coverPicture})`}}>
               <ArrowBackIos className = 'back' onClick = {() => history.goBack()}/>
               <img src = {userState.coverPicture} alt = {userState.userName}/>
               {props.self ? <React.Fragment><CameraAlt/><input type = 'file' accept = 'image/*' name = 'coverPicture' onChange = {({target}) => editProfile(userState.id, target.name, target.files[0])}/></React.Fragment>: ''}
@@ -59,7 +64,6 @@ function UserProfile(props) {
             </div>
           </div>
           <p className = 'text-center my-2 bio'>{userState.profile.bio}</p>
-          
         </div>
       {/* <EditProfile /> */}
       {userState.postsMade.map((post, index) => <Post key = {index} postDetails = {post}/>)}

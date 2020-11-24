@@ -16,7 +16,7 @@ function CreatePosts(props) {
   const user_id = user.id;
   const [toRedirect, setRedirect] = useState(false);
   const [error, setError] = useState('');
-  const [creating, setCreating] = useState(false);
+  const [creating, setCreating] = useState(true);
 
   function handleFormSubmission(event) {
     event.preventDefault();
@@ -47,10 +47,7 @@ function CreatePosts(props) {
   }
 
   if (!toRedirect) {
-    if (creating){
-      return <Backdrop/>
-    }
-    else return (
+    return (
       <React.Fragment>
         <form onSubmit={handleFormSubmission} className = 'mb-md-4' id = 'createForm'>
           <TextareaAutosize id = 'create_textarea' name = 'post_content' value = {postContent} onChange = {event => setPostContent(event.target.value)} placeholder = {`What's going on ${user_id ? user.firstName : ''}??`} />

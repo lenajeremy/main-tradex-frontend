@@ -4,7 +4,6 @@ import ArrowBackIos from "@material-ui/icons/ArrowBackIos";
 import ArrowForwardIos from '@material-ui/icons/ArrowForwardIos'
 import "./styles/ChatArea.css";
 import { useHistory } from "react-router-dom";
-import socketClient from '../hooks/socket';
 import { Typography } from "@material-ui/core";
 import {useSelector} from 'react-redux';
 
@@ -18,10 +17,6 @@ const ChatArea = ({ routeProps, user_id }) => {
     lastName: "",
   });
   const history = useHistory();
-  const socket = socketClient.get();
-  socket.on('receive_message', ({sender, messageDetails}) => {
-    console.log(messageDetails);
-  })
 
   React.useEffect(() => {
     document.querySelector(".sideBar").style.display =
@@ -44,7 +39,6 @@ const ChatArea = ({ routeProps, user_id }) => {
   };
   const sendMessage = (event, message) => {
     event.preventDefault();
-    socket.emit('send_message', {sender: user.id, receiver: userDetails.id, messageDetails: message})
   }
   return (
     <div className="chat_area">
@@ -55,7 +49,7 @@ const ChatArea = ({ routeProps, user_id }) => {
           </div>
           <img
             className="avatar"
-            src={userDetails.picture}
+            src={backendAPI + userDetails.picture}
             alt="avatar"
           />
           <div className="userDetails">
@@ -65,8 +59,8 @@ const ChatArea = ({ routeProps, user_id }) => {
         </div>
       </div>
       <div className="main">
-        {messages.reverse().map((message, index) => (
-          <MessageLittle details={message} key={index} />
+        {messages.map((message, index) => (
+          <MessageLittle details={message} key={index} user = {user.id}/>
         ))}
       <ChatForm send = {(event, message) => sendMessage(event, message)}/>
       </div>
@@ -75,7 +69,7 @@ const ChatArea = ({ routeProps, user_id }) => {
 };
 
 const MessageLittle = (props) => {
-  return <div className="message__little">{props.details.content}</div>;
+  return <div className={`message__little ${props.details.sender.id === props.user ? 'self' : 'not_self'}`}>{props.details.content}</div>;
 };
 
 function ChatForm(props) {

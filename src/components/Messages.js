@@ -25,10 +25,10 @@ const MessageLink = ({ details, userId }) => {
   const timeDifference = useTimeDifference();
 
   return (
-    <div className="message_link">
+    <div className="message_link my-2">
       <img
         className="profile_image"
-        src={details.recipient.id === userId ? details.sender.picture : details.recipient.picture}
+        src={backendAPI + (details.recipient.id === userId ? details.sender.picture : details.recipient.picture)}
         alt={details.content}
       />
       <div className="message_text d-flex">
@@ -45,7 +45,7 @@ const MessageLink = ({ details, userId }) => {
             : details.content.split("").slice(0, 30).join("") + "..."}
         </p>
       </div>
-      <div>{timeDifference(details.date_sent)}</div>
+      {/* <div>{timeDifference(details.date_sent)}</div> */}
     </div>
   );
 };
