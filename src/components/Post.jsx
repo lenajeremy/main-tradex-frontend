@@ -9,7 +9,6 @@ import { likepost } from '../actions'
 import { motion } from 'framer-motion';
 import useTimeDifference from '../hooks/useTimeDifference';
 
-
 const editProfileUrl = url => backendAPI +  url;
 function Post(props) {
   const timeDifference = useTimeDifference();

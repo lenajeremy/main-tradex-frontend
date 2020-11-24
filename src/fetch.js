@@ -179,7 +179,7 @@ module.exports = {
   createNewProduct,
   editPost,
   editUser,
-  backendAPI,
+  backendAPI : '',
   getStore,
   cartOperation,
   getChatMessages,
