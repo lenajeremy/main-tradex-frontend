@@ -3,7 +3,7 @@
   height: 150px;
   position: relative;
   border-radius: 50%;
-  border: 4px #3f51b5 solid;
+  border: 3px #562001 solid;
   background-position: center;
   background-size: cover;
   overflow: hidden;
@@ -48,7 +48,7 @@ input#profileChange,
 .cover_picture svg:not(.back),
 .cover_picture input {
   position: absolute;
-  background: #3f51b5;
+  background:#562001;
   color: white;
   bottom: 10%;
   padding: 5px;

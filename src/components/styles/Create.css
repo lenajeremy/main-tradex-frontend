@@ -10,7 +10,7 @@ textarea#create_textarea{
   background: rgba(255, 255, 255, 0.363);
 }
 textarea#create_textarea:focus{
-  border: 3px solid #3f51b5;
+  border: 3px solid #562001;
   background: rgba(255, 255, 255, 0.822);
 }
 .stuff{
@@ -40,7 +40,7 @@ input#create{
   position: absolute;
   top: 0;
   left: 0;
-  background: #3f51b5;
+  background: #562001;
   width: 60px;
   height: 60px;
   pointer-events: none;
@@ -62,14 +62,14 @@ span#message{
   font-size: 18px;
 }
 button#createFormButton{
-  background: rgb(2, 141, 2);
+  background: white;
   width: 60px;
   height: 60px;
   border-radius: 50%;
   appearance: none;
-  border: none;
+  border: 2px solid #562001;
   outline: none;
-  color: white;
+  color: #562001;
 }
 @media screen and (max-width: 768px){
   button#createFormButton,

@@ -1,4 +1,5 @@
 import React from 'react';
+import useProfileUrl from '../hooks/useProfileUrl';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, Redirect, Link } from 'react-router-dom';
 import { Typography, Radio, Button } from '@material-ui/core';
@@ -12,7 +13,6 @@ export default function Checkout() {
   const history = useHistory();
   const products = useSelector(store => store.products);
   const user = useSelector(store => store.userDetails);
-
 
   const calculateTotal = (products) => products.length === 0 ? 0 : products.length === 1 ? products[0].price * products[0].currentStock : products.reduce((a, b) => typeof a === 'object' ? a.price * a.currentStock + b.price * b.currentStock : a + b.price * b.currentStock);
   const productsTotal = products => products.length === 0 ? products : products.map(product => product.currentStock).reduce((a, b) => a + b);
@@ -53,7 +53,7 @@ const formatCurrency = value => {
 
 
 function ProductLittle({ productDetails, stuff }) {
-
+  const realUrl = useProfileUrl()
   const dispatch = useDispatch();
   const userId = useSelector(store => store.userDetails.id);
 
@@ -68,7 +68,7 @@ function ProductLittle({ productDetails, stuff }) {
     <motion.div className={stuff === 0 ? 'product_little d-flex mb-4' : 'product_little d-flex my-4'} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
       <div className="main d-flex align-items-center">
         <Radio />
-        <div className='product_little_image' style={{ backgroundImage: `url(${backendAPI + productDetails.image})` }}>
+        <div className='product_little_image' style={{ backgroundImage: `url(${realUrl(productDetails.image)})` }}>
           <img className='img-responsive img-fluid' src={productDetails.image} alt={productDetails.description} />
         </div>
         <div className="product_little_desc">

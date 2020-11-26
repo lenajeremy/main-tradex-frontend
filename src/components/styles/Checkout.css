@@ -13,7 +13,7 @@
     top: 13px;
     font-size: 12px!important;
     font-weight: bold!important;
-    background: chocolate;
+    background: #562001;
     padding: 6px;
     border-radius: 50%;
     height: 20px;
@@ -31,7 +31,7 @@
   font-weight: 500;
 }
 .MuiRadio-colorSecondary.Mui-checked {
-  color: #3fa5b5!important;
+  color: #562001!important;
 }
 .product_little_image{
   background-size: cover;
@@ -121,8 +121,8 @@
 }
 .checkout__button:hover, .checkout__button:active{
   background: white!important;
-  border:  2px solid blue;
-  color: blue;
+  border:  2px solid #562001;
+  color:#562001;
   font-weight: bold;
 }
 .checkout .details{

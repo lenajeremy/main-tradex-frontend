@@ -2,17 +2,19 @@ import React, { useState /* , useRef */ } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {Link, Redirect, useHistory } from 'react-router-dom';
 // import { profileChange } from '../actions';
-import {editUser, backendAPI, getUser} from '../fetch';
+import {editUser, getUser} from '../fetch';
 import {/* Settings,Edit, */ CameraAlt, ArrowBackIos } from '@material-ui/icons';
 import {Button} from '@material-ui/core';
 import './styles/Profile.css';
 import {editPictures} from '../actions';
-import Post from './Post'
+import Post from './Post';
+import useProfileUrl from '../hooks/useProfileUrl';
 
 
 function ProfileImage({ image, userName, id, changeHandler, self}) {
+  const realUrl = useProfileUrl();
   return (
-    <div className="profile__image" style = {{backgroundImage: `url(${backendAPI + image})`}}>
+    <div className="profile__image" style = {{backgroundImage: `url(${realUrl(image)})`}}>
       <img className = 'img-responsive img-fluid' src={`${image}`} alt={userName} />
       {self ? <React.Fragment>
       <CameraAlt className = 'profile__change__svg'/>
@@ -27,6 +29,7 @@ function UserProfile(props) {
   const [userState, setuserState] = useState(props.self ? user : {userName: "Loading", profile: {status: 'Loading', bio: 'Loading'}, postsMade: []});
   const history = useHistory()
 
+  const realUrl = useProfileUrl();
   React.useEffect(() => {
     async function getUserFromAPI(){
       await getUser(props.routeProps.match.params.userId, data => setuserState(data.user))
@@ -49,12 +52,11 @@ function UserProfile(props) {
       <div className='userProfile'>
         <div className="profile">
           <div className="top">
-            <div className = 'cover_picture' style = {{backgroundImage: `url(${backendAPI + userState.coverPicture})`}}>
+            <div className = 'cover_picture' style = {{backgroundImage: `url(${realUrl(userState.coverPicture)})`}}>
               <ArrowBackIos className = 'back' onClick = {() => history.goBack()}/>
               <img src = {userState.coverPicture} alt = {userState.userName}/>
               {props.self ? <React.Fragment><CameraAlt/><input type = 'file' accept = 'image/*' name = 'coverPicture' onChange = {({target}) => editProfile(userState.id, target.name, target.files[0])}/></React.Fragment>: ''}
             </div>
-            {userState.userType === 'seller' ? <Button variant = 'outlined' color = 'primary' size = 'small'><Link to = {`/view/user/store/${userState.userName}`}>View Store</Link></Button> : ''}
             <div className= 'profile__details'>
               <ProfileImage userName={userState.userName} image={userState.profilePicture} id = {userState.id} changeHandler = {(id, field, value) => editProfile(id, field, value)} self ={props.self}/>
               <div className="details">
@@ -64,6 +66,7 @@ function UserProfile(props) {
             </div>
           </div>
           <p className = 'text-center my-2 bio'>{userState.profile.bio}</p>
+              {userState.userType === 'seller' ? <Link to = {`/view/user/store/${userState.userName}`}><Button variant = 'contained' color = 'primary' size = 'small'>View Store</Button></Link> : ''}
         </div>
       {/* <EditProfile /> */}
       {userState.postsMade.map((post, index) => <Post key = {index} postDetails = {post}/>)}

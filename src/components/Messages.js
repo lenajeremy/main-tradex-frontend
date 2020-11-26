@@ -1,19 +1,20 @@
 import React from "react";
+import useProfileUrl from '../hooks/useProfileUrl';
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import useTimeDifference from "../hooks/useTimeDifference";
-import { backendAPI } from "../fetch";
 import SearchBar from "./Searchbar";
 import Fab from '@material-ui/core/Fab';
 import {Add} from '@material-ui/icons';
 
 function Messages(props) {
   const user = useSelector((store) => store.userDetails);
+  const [messages, setMessages] = React.useState([]);
 
+  React.useEffect(() => setMessages(user.latestMessages), [user])
   return (
     <div className="messages">
       <SearchBar />
-      {user.latestMessages.map((message, index) => (
+      {messages.map((message, index) => (
         <MessageLink details={message} userId={user.id} key={index} />
       ))}
       <Fab variant= 'extended' color = 'primary'><Add/></Fab>
@@ -22,13 +23,12 @@ function Messages(props) {
 }
 
 const MessageLink = ({ details, userId }) => {
-  const timeDifference = useTimeDifference();
-
+  const realUrl = useProfileUrl();
   return (
     <div className="message_link my-2">
       <img
         className="profile_image"
-        src={backendAPI + (details.recipient.id === userId ? details.sender.picture : details.recipient.picture)}
+        src={realUrl(details.recipient.id === userId ? details.sender.picture : details.recipient.picture)}
         alt={details.content}
       />
       <div className="message_text d-flex">

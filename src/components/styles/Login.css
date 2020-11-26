@@ -6,7 +6,7 @@
   /* transform:  translate(-50%, -50%); */
 /* } */
 .MuiButton-containedPrimary{
-  background-color: #3f51b5;
+  background-color: #562001;
 }
 #login__loader, #reg_loader, button svg{
   color: white;

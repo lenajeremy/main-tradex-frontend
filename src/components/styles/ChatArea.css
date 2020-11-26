@@ -81,7 +81,7 @@
 .chat_area .main #messageForm button {
   width: 30px;
   border-radius: 50%;
-  background: #3e2753;
+  background:#562001;
   color: white;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -106,7 +106,7 @@
   width: -moz-fit-content;
   width: fit-content;
   border-radius: 10px;
-  background: rgb(67, 90, 221);
+  background: #562001;
   -webkit-box-shadow: 0px 5px 5px lightgray;
           box-shadow: 0px 5px 5px lightgray;
 }
