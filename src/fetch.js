@@ -167,6 +167,13 @@ function getChatMessages(user_id, chat_id, step, callback) {
     .then((data) => data.json())
     .then((data) => callback(data));
 }
+function sendMessage(user_id, chat_id,content, callback){
+  let form = new FormData();
+  form.append('content', content);
+  fetch(`${backendAPI}/messages/?operation=send_message&chat_id=${chat_id}&ref_id=${user_id}`, {method: "POST", body: form})
+  .then(data=> data.json())
+  .then(data => callback(data));
+}
 module.exports = {
   getUser,
   getPost,
@@ -183,4 +190,5 @@ module.exports = {
   getStore,
   cartOperation,
   getChatMessages,
+  sendMessage
 };

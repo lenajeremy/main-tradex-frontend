@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import useTimeDifference from "../hooks/useTimeDifference";
-import { backendAPI } from "../fetch";
+import useUrl from '../hooks/useProfileUrl';
 import SearchBar from "./Searchbar";
 import Fab from '@material-ui/core/Fab';
 import {Add} from '@material-ui/icons';
@@ -23,13 +23,13 @@ function Messages(props) {
 }
 
 const MessageLink = ({ details, userId }) => {
-  const timeDifference = useTimeDifference();
+  const url = useUrl();
 
   return (
     <div className="message_link my-2">
       <img
         className="profile_image"
-        src={backendAPI + (details.recipient.id === userId ? details.sender.picture : details.recipient.picture)}
+        src={url(details.recipient.id === userId ? details.sender.picture : details.recipient.picture)}
         alt={details.content}
       />
       <div className="message_text d-flex">

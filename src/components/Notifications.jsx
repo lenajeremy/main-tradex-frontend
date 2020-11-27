@@ -1,5 +1,5 @@
 import React from 'react';
-import { backendAPI } from '../fetch';
+import useUrl from '../hooks/useProfileUrl';
 import { useSelector } from 'react-redux';
 import { useHistory, Link } from 'react-router-dom';
 import useTimeDifference from '../hooks/useTimeDifference';
@@ -9,8 +9,6 @@ import { Typography } from '@material-ui/core';
 import './styles/Notification.css';
 
 function Notifications(props) {
-  
-  
   const store_notifications = useSelector(store => store.userDetails);
   const [notifications, setNotifications] = React.useState([{ dateCreated: 100000, related_user: 1, related_picture: 'null', notification_type: 'undefined', text: 'Loading' }])
   const history = useHistory();
@@ -36,7 +34,7 @@ function Notifications(props) {
 
 function Notification({ notification, history }) {
   const timeDifference = useTimeDifference();
-
+  const url = useUrl()
   const getUrl = notification => {
     if (['from_store_to_cart', 'to_store_from_cart', 'like_post', 'followed', 'update_profile', 'view_store'].indexOf(notification.notification_type) !== -1) {
       return '/view/user-profile/' + notification.related_user;
@@ -45,7 +43,7 @@ function Notification({ notification, history }) {
   }
   return (
     <Link to={getUrl(notification)} className='notification my-3'>
-      <img src={backendAPI + notification.related_picture} alt={notification.related_user} />
+      <img src={url(notification.related_picture)} alt={notification.related_user} />
       <div className='noti_text'>
         <Typography variant='inherit' component='p'>{notification.text}</Typography>
         <small>{timeDifference(notification.dateCreated)}</small>

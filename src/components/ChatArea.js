@@ -1,12 +1,12 @@
 import React from "react";
-import { getChatMessages, backendAPI } from "../fetch";
+import { getChatMessages, backendAPI, sendMessage as messageSend } from "../fetch";
 import {motion} from 'framer-motion';
 import ArrowBackIos from "@material-ui/icons/ArrowBackIos";
 import ArrowForwardIos from '@material-ui/icons/ArrowForwardIos'
 import "./styles/ChatArea.css";
 import { useHistory } from "react-router-dom";
-import { Typography } from "@material-ui/core";
 import {useSelector} from 'react-redux';
+import useUrl from '../hooks/useProfileUrl';
 
 const ChatArea = ({ routeProps, user_id }) => {
   const user = useSelector(store => store.userDetails);
@@ -26,6 +26,7 @@ const ChatArea = ({ routeProps, user_id }) => {
     getChatMessages(user_id, routeProps.match.params.chatId, step, (data) => {
       console.log(data);
       setMessages(data.messages.reverse());
+      document.querySelector('.scrollIntoView').scrollIntoView();
       setDetails(data.users[0]);
     });
     return () => {
@@ -34,12 +35,17 @@ const ChatArea = ({ routeProps, user_id }) => {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  const url = useUrl();
 
   const scrollEvent = (e) => {
-    console.log(e);
+
   };
   const sendMessage = (event, message) => {
     event.preventDefault();
+    messageSend(user_id, routeProps.match.params.chatId, message, data => {
+      setMessages(messages => [...messages, data.message]);
+      document.querySelector('.scrollIntoView').scrollIntoView();
+    })
   }
   return (
     <div className="chat_area">
@@ -50,7 +56,7 @@ const ChatArea = ({ routeProps, user_id }) => {
           </div>
           <img
             className="avatar"
-            src={backendAPI + userDetails.picture}
+            src={url(userDetails.picture)}
             alt="avatar"
           />
           <div className="userDetails">
@@ -63,6 +69,7 @@ const ChatArea = ({ routeProps, user_id }) => {
         {messages.map((message, index) => (
           <MessageLittle details={message} key={index} user = {user.id}/>
         ))}
+        <div className = 'scrollIntoView'></div>
       <ChatForm send = {(event, message) => sendMessage(event, message)}/>
       </div>
     </div>
