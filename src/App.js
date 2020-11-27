@@ -20,9 +20,21 @@ import { getUser } from "./fetch";
 import { login, profileChange, newProduct } from "./actions";
 import Checkout from "./components/Checkout";
 import MainCheckout from "./components/MainCheckout";
+import withFirebaseAuth from 'react-with-firebase-auth'
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import firebaseConfig from './firebaseconfig';
 
-function App() {
+// firebase Configurations
+const firebaseApp = firebase.initializeApp(firebaseConfig);
+const firebaseAppAuth = firebaseApp.auth();
+const providers = {
+  googleProvider: new firebase.auth.GoogleAuthProvider(),
+};
+
+function App(props) {
   const dispatch = useDispatch();
+  console.log(props);
   React.useEffect(() => {
     let userId = localStorage.getItem("user_id");
     if (userId) {
@@ -90,4 +102,7 @@ function App() {
   );
 }
 
-export default App;
+export default withFirebaseAuth({
+  providers,
+  firebaseAppAuth,
+})(App);

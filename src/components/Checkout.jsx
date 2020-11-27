@@ -7,6 +7,7 @@ import { cartOperation, backendAPI } from '../fetch';
 import { motion } from 'framer-motion';
 import './styles/Checkout.css';
 import { editProduct, removeProductAction } from '../actions';
+import useUrl from '../hooks/useProfileUrl';
 
 export default function Checkout() {
   const history = useHistory();
@@ -53,7 +54,7 @@ const formatCurrency = value => {
 
 
 function ProductLittle({ productDetails, stuff }) {
-
+  const url = useUrl();
   const dispatch = useDispatch();
   const userId = useSelector(store => store.userDetails.id);
 
@@ -68,7 +69,7 @@ function ProductLittle({ productDetails, stuff }) {
     <motion.div className={stuff === 0 ? 'product_little d-flex mb-4' : 'product_little d-flex my-4'} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
       <div className="main d-flex align-items-center">
         <Radio />
-        <div className='product_little_image' style={{ backgroundImage: `url(${backendAPI + productDetails.image})` }}>
+        <div className='product_little_image' style={{ backgroundImage: `url(${url(productDetails.image)})` }}>
           <img className='img-responsive img-fluid' src={productDetails.image} alt={productDetails.description} />
         </div>
         <div className="product_little_desc">
