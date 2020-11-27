@@ -81,10 +81,9 @@ function AllPosts(props) {
   
   const dispatch = useDispatch();
   useEffect(() => {
-    window.addEventListener('scroll', scrollEvent);
-    getAllPosts(localStorage.getItem('user_id') || 0, lastPostRef.current, data => dispatch(fetchposts(data.posts)));
-    return () => window.removeEventListener('scroll', scrollEvent)
-    
+      window.addEventListener('scroll', scrollEvent);
+      getAllPosts(localStorage.getItem('user_id') || 0, lastPostRef.current, data => dispatch(fetchposts(data.posts)));
+    return () => window.removeEventListener('scroll', scrollEvent);
     //eslint-disable-next-line react-hooks/exhaustive-deps
   },[]);
 

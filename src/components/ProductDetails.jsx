@@ -5,7 +5,7 @@ import { ArrowBackIos, ThumbUpAlt } from '@material-ui/icons';
 import { Button, Typography } from '@material-ui/core';
 
 function ProductDetails(props) {
-  const history = useHistory()
+  const history = useHistory();
   const [productDetails, setProductDetails] = React.useState({ name: 'Loading' });
 
   //eslint-disable-next-line react-hooks/exhaustive-deps

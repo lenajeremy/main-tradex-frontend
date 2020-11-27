@@ -74,6 +74,7 @@
 .sideBar__links svg{
   height: 1.8rem;
   width: 1.8rem;
+  transition: all 0.5s ease-in;
 }
 .sideBar__links .products_length {
   align-items: center;
@@ -95,15 +96,14 @@
 @media screen and (max-width: 768px){
  .sideBar{
    width: 100%;
-   background: white;
+   background: var(--dark);
    top: unset;
    bottom: 0;
    min-height: 40px;
    z-index: 20;
-   border: 1px solid rgb(197, 197, 197);
  }
  .sideBar svg, .text{
-   color: #3f51b5;
+   color: white;
    transition: all 1s;
  }
  .links{
@@ -131,12 +131,14 @@
  }
  .sideBar__links.active svg{
    margin-top: -15px;
+   color: var(--primary);
   }
   .sideBar__links.active .text{
     display: block;
     font-size: 14px;
     position: absolute;
     bottom: 0;
+    color: var(--primary);
     left: 0%;
     text-align: center;
     width: 100%;

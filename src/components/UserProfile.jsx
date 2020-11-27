@@ -13,7 +13,7 @@ import useUrl from '../hooks/useProfileUrl';
 
 function ProfileImage({ image, userName, id, changeHandler, self}) {
   return (
-    <div className="profile__image" style = {{backgroundImage: `url(${backendAPI + image})`}}>
+    <div className="profile__image" style = {{backgroundImage: `url(${ image})`}}>
       <img className = 'img-responsive img-fluid' src={`${image}`} alt={userName} />
       {self ? <React.Fragment>
       <CameraAlt className = 'profile__change__svg'/>
@@ -62,10 +62,11 @@ function UserProfile(props) {
               <div className="details">
                 <h4><Link to ={`/view/user-profile/${userState.id}`}>{userState.userName}</Link></h4>
                 <p className='lead'>{userState.profile.status}</p>
+                <p className = 'bio'>{userState.profile.bio}</p>
               </div>
             </div>
           </div>
-          <p className = 'text-center my-2 bio'>{userState.profile.bio}</p>
+
         </div>
       {/* <EditProfile /> */}
       {userState.postsMade.map((post, index) => <Post key = {index} postDetails = {post}/>)}

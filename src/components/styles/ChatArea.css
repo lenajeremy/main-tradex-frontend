@@ -1,5 +1,5 @@
 .chat_area .top {
-  position: relative;
+  position: fixed;
   padding-left: 10px;
   background: linear-gradient(to right, #3f51b5, #7eaff8);
   width: 100%;
@@ -40,9 +40,9 @@
 }
 .chat_area .main{
   padding: 5px 20px;
-  /* position: relative; */
+  padding-top: 50px;
 }
-.chat_area .main #messageForm {
+/* .chat_area .main #messageForm {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -58,6 +58,26 @@
       -ms-flex-align: center;
           align-items: center;
   padding-left: 10px;
+} */
+.chat_area .main #messageForm{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  position: fixed;
+  height: 45px;
+  bottom: 0px;
+  left: 0;
+}
+#messageForm div{
+  display: flex;
+  width: 96%;
+  padding-left: 20px;
+  height: 100%;
+  margin: auto;
+  background: rgb(238, 238, 238);
+  border-radius: 10rem;
+  padding-right: 5px;
+  align-items: center;
 }
 
 .chat_area .main #messageForm textarea,
@@ -69,19 +89,21 @@
 
 .chat_area .main #messageForm textarea {
   width: calc(100% - 40px);
-  height: 70%;
   resize: none;
+  color: rgb(70, 76, 134);
+  border-radius: inherit;
+  height: 50%;
 }
 
 .chat_area .main #messageForm textarea::placeholder {
-  color: #636363;
+  color: #8d8d8d;
   font-size: 16px;
 }
 
 .chat_area .main #messageForm button {
-  width: 30px;
+  width: 35px;
   border-radius: 50%;
-  background: #3e2753;
+  background: #0f27ac;
   color: white;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -92,7 +114,7 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  height: 30px;
+  height: 35px;
 }
 
 .chat_area .main .self,
@@ -106,9 +128,9 @@
   width: -moz-fit-content;
   width: fit-content;
   border-radius: 10px;
-  background: rgb(67, 90, 221);
-  -webkit-box-shadow: 0px 5px 5px lightgray;
-          box-shadow: 0px 5px 5px lightgray;
+  background: rgb(15, 22, 68);
+  -webkit-box-shadow: 0px 5px 5px rgb(97, 97, 97);
+          box-shadow: 0px 5px 5px rgb(97, 97, 97);
 }
 .chat_area .main .self {
   margin-left: auto;

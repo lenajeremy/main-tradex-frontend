@@ -1,5 +1,6 @@
 import React from "react";
 import { getChatMessages, backendAPI } from "../fetch";
+import {motion} from 'framer-motion';
 import ArrowBackIos from "@material-ui/icons/ArrowBackIos";
 import ArrowForwardIos from '@material-ui/icons/ArrowForwardIos'
 import "./styles/ChatArea.css";
@@ -24,7 +25,7 @@ const ChatArea = ({ routeProps, user_id }) => {
     window.addEventListener("scroll", scrollEvent);
     getChatMessages(user_id, routeProps.match.params.chatId, step, (data) => {
       console.log(data);
-      setMessages(data.messages);
+      setMessages(data.messages.reverse());
       setDetails(data.users[0]);
     });
     return () => {
@@ -75,9 +76,11 @@ const MessageLittle = (props) => {
 function ChatForm(props) {
   const [message, setMessage] = React.useState('')
   return (
-    <form id="messageForm" onSubmit = {event => {props.send(event, message); setMessage('')}}>
+    <motion.form id="messageForm" onSubmit = {event => {props.send(event, message); setMessage('')}} initial = {{y : 50, opacity : 0}} animate ={{y: 0, opacity: 1}}>
+      <div>
       <textarea
         type="text"
+        autoFocus = {true}
         onChange={event => setMessage(event.target.value)}
         value = {message}
         name="message"
@@ -87,7 +90,8 @@ function ChatForm(props) {
       <button type="submit">
         <ArrowForwardIos/>
       </button>
-    </form>
+      </div>
+    </motion.form>
   );
 }
 export default ChatArea;

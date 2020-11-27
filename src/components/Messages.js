@@ -6,18 +6,19 @@ import { backendAPI } from "../fetch";
 import SearchBar from "./Searchbar";
 import Fab from '@material-ui/core/Fab';
 import {Add} from '@material-ui/icons';
+import {motion} from 'framer-motion';
 
 function Messages(props) {
   const user = useSelector((store) => store.userDetails);
 
   return (
-    <div className="messages">
+  <motion.div className="messages" initial = {{x: -50, opacity: 0}} animate = {{x: 0, opacity: 1}}>
       <SearchBar />
       {user.latestMessages.map((message, index) => (
         <MessageLink details={message} userId={user.id} key={index} />
       ))}
       <Fab variant= 'extended' color = 'primary'><Add/></Fab>
-    </div>
+    </motion.div>
   );
 }
 

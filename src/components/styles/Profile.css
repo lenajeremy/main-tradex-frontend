@@ -80,7 +80,7 @@ input#profileChange, .cover_picture input{
     border-radius: 0;
   }
 .profile{
-  background: rgba(230, 230, 230, 0.63);
+  background: rgba(64, 62, 62, 0.7);
 }
   .profile__image{
     width: 70px;
@@ -106,7 +106,7 @@ input#profileChange, .cover_picture input{
   }
   .bio{
     margin: 0;
-    font-size: 1.1rem;
+    font-size: 0.9rem!important;
     font-style: italic;
   }
 }
