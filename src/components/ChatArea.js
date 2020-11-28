@@ -1,5 +1,5 @@
 import React from "react";
-import { getChatMessages, backendAPI, sendMessage as messageSend } from "../fetch";
+import { getChatMessages, sendMessage as messageSend } from "../fetch";
 import {motion} from 'framer-motion';
 import ArrowBackIos from "@material-ui/icons/ArrowBackIos";
 import ArrowForwardIos from '@material-ui/icons/ArrowForwardIos'
@@ -38,7 +38,7 @@ const ChatArea = ({ routeProps, user_id }) => {
   const url = useUrl();
 
   const scrollEvent = (e) => {
-
+    console.log(e);
   };
   const sendMessage = (event, message) => {
     event.preventDefault();
@@ -54,11 +54,13 @@ const ChatArea = ({ routeProps, user_id }) => {
           <div className="chevron" onClick={() => history.goBack()}>
             <ArrowBackIos />
           </div>
+          <div className = 'avatar' style = {{backgroundImage: `url(${url(userDetails.picture)})`}}>
           <img
             className="avatar"
             src={url(userDetails.picture)}
             alt="avatar"
           />
+          </div>
           <div className="userDetails">
             <div className="user_name">{`${userDetails.firstName} ${userDetails.lastName}`}</div>
             <small>Online</small>
@@ -77,7 +79,7 @@ const ChatArea = ({ routeProps, user_id }) => {
 };
 
 const MessageLittle = (props) => {
-  return <div className={`message__little ${props.details.sender.id === props.user ? 'self' : 'not_self'}`}>{props.details.content}</div>;
+  return <motion.div initial = {{scale: 0, opacity: 0}}  animate={{scale:1, opacity: 1}}className={`message__little ${props.details.sender.id === props.user ? 'self' : 'not_self'}`}>{props.details.content}</motion.div>;
 };
 
 function ChatForm(props) {

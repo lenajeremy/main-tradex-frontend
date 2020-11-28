@@ -10,7 +10,8 @@ import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { useDispatch } from 'react-redux';
 import {login, profileChange, newProduct} from '../actions'
-import {Link} from 'react-router-dom';
+import {Redirect, Link} from 'react-router-dom';
+
 
 
 function Register(props) {
@@ -46,26 +47,29 @@ function Register(props) {
     setClicked(true);
     event.preventDefault();
     if((username && first_name && last_name && userType && password && email && paypal && conf_password && password === conf_password )){
-    console.log('thee function should be called now');
-      // registerUser(username, first_name, last_name, userType, password, email, paypal, conf_password, data => {
-      //   if (data.status === 200) {
-      //     getUser(data.id, userDetails => {
-      //       console.log(userDetails)
-      //       dispatch(login(userDetails.user))
-      //       dispatch(profileChange(userDetails.user.profile));
-      //       userDetails.user.userType === 'buyer' ? dispatch(newProduct({quantity: 'batch', value: userDetails.user.cart.products})) : dispatch(newProduct({quantity: 'batch', value: userDetails.user.products.products}));
-      //       setError(false);
-      //       localStorage.setItem('user_id', userDetails.user.id);
-      //       setRedirect(true);
-      //     })
-      //     resetState()
-      //   } else { setError(true); setErrors(data.errors) }
-      //   setClicked(false)
-      // })
+      registerUser(username, first_name, last_name, userType, password, email, paypal, conf_password, data => {
+        if (data.status === 200) {
+          getUser(data.id, userDetails => {
+            console.log(userDetails)
+            dispatch(login(userDetails.user))
+            dispatch(profileChange(userDetails.user.profile));
+            userDetails.user.userType === 'buyer' ? dispatch(newProduct({quantity: 'batch', value: userDetails.user.cart.products})) : dispatch(newProduct({quantity: 'batch', value: userDetails.user.products.products}));
+            setError(false);
+            localStorage.setItem('user_id', userDetails.user.id);
+            setRedirect(true);
+          })
+          resetState()
+        } else { setError(true); setErrors(data.errors) }
+        setClicked(false)
+      })
     } else if(password !== conf_password) {setError(true); setErrors([...errors, 'Passwords do not match'])}
     else {setError(true); setErrors([...errors, 'Please fill the required fields']);}
   }
-  return (
+    if(toRedirect){
+      return <Redirect to = '/'/>
+    }
+    else return(
+
     <Container component = 'main' maxWidth = 'lg'>
       <div className = 'registration'>
         <Typography component = 'h2' variant = 'h5' className = 'text-center my-3'>Register</Typography>
@@ -181,7 +185,7 @@ function Register(props) {
         </form>
       </div>
     </Container>
-  )
+    )
 }
 
 export default Register

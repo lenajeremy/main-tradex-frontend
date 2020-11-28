@@ -5,7 +5,7 @@ import sideBarReducer from './sidebar.reducer';
 import productReducer from './products.reducer';
 import postReducer from './posts.reducer';
 
-const isdevmode = (state= false, action) => state;
+const isdevmode = (state= true, action) => state;
 const rootReducer = combineReducers({
   isdevmode,
   posts: postReducer,

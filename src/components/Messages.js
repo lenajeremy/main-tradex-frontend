@@ -27,11 +27,13 @@ const MessageLink = ({ details, userId }) => {
 
   return (
     <div className="message_link my-2">
+      <div className = 'profile_image' style = {{backgroundImage: `url(${url(details.recipient.id === userId ? details.sender.picture : details.recipient.picture)})`}}>
       <img
         className="profile_image"
         src={url(details.recipient.id === userId ? details.sender.picture : details.recipient.picture)}
         alt={details.content}
       />
+      </div>
       <div className="message_text d-flex">
         <strong>
           <Link to={`/chat/${details.conversation_id}`}>

@@ -148,3 +148,10 @@
     display: flex;
   }
 }
+a{
+  color: white;
+  font-weight: 600;
+}
+span#message{
+  color:rgb(221, 221, 221);
+}
