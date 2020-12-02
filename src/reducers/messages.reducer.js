@@ -1,10 +1,12 @@
 const messageReducer = (state = [], action) =>{
   switch (action.type){
-    case 'new_message':
+    case 'newMessage':
+      console.log(action)
       return state;
-    case 'lastestMessages':
-      return state;
+    case 'initialMessages':
+      return action.payload;
     default:
+      console.log(action);
       return state
   }
 }

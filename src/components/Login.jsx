@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import {LockOutlined} from '@material-ui/icons';
 import{TextField, Typography, Container, FormControlLabel, Button, Checkbox, CircularProgress, Grid} from '@material-ui/core';
 import { loginUser, getUser } from '../fetch';
-import { login, profileChange, newProduct } from '../actions';
+import { login, profileChange, newProduct, initialMessages } from '../actions';
 import { Redirect, Link } from 'react-router-dom';
 import './styles/Login.css';
 
@@ -21,9 +21,9 @@ function Login(props) {
     loginUser(userName, password, data => {
       if (data.status === 200) {
         getUser(data.id, userDetails => {
-          console.log(userDetails);
           dispatch(login(userDetails.user));
           dispatch(profileChange(userDetails.user.profile));
+          dispatch(initialMessages(userDetails.user.latestMessages));
           userDetails.user.userType === 'buyer' ? dispatch(newProduct({quantity: 'batch', value: userDetails.user.cart.products})) : dispatch(newProduct({quantity: 'batch', value: userDetails.user.products.products}));
           localStorage.setItem('user_id', userDetails.user.id);
           setError(false);

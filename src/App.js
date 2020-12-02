@@ -17,7 +17,7 @@ import Notifications from "./components/Notifications";
 import Cart from "./components/Cart";
 import { useSelector, useDispatch } from "react-redux";
 import { getUser } from "./fetch";
-import { login, profileChange, newProduct } from "./actions";
+import { login, profileChange, newProduct, initialMessages } from "./actions";
 import Checkout from "./components/Checkout";
 import MainCheckout from "./components/MainCheckout";
 // import withFirebaseAuth from 'react-with-firebase-auth'
@@ -42,6 +42,7 @@ function App(props) {
         if (data.status === 200) {
           dispatch(login(data.user));
           dispatch(profileChange(data.user.profile));
+          dispatch(initialMessages(data.user.latestMessages));
           dispatch(
             newProduct({
               quantity: "batch",
@@ -69,7 +70,7 @@ function App(props) {
           component={props => <UserProfile self={true} routeProps={props} />}
         />
         <Switch>
-          user.userType === "buyer" ? (
+          {user.userType === "buyer" ? (
             <Route
               path="/user/:userId/cart"
               component={() => <Cart self={true} />}
@@ -79,7 +80,7 @@ function App(props) {
               path="/user/:userId/store"
               component={() => <Store self={true} />}
             />
-          )
+          )}
           <Route
             path="/view/user-profile/:userId"
             component={(props) => (
