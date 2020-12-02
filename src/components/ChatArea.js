@@ -5,10 +5,12 @@ import ArrowBackIos from "@material-ui/icons/ArrowBackIos";
 import ArrowForwardIos from '@material-ui/icons/ArrowForwardIos'
 import "./styles/ChatArea.css";
 import { useHistory } from "react-router-dom";
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import useUrl from '../hooks/useProfileUrl';
+import {newMessage} from '../actions';
 
 const ChatArea = ({ routeProps, user_id }) => {
+  const dispatch = useDispatch();
   const messsages = useSelector(state => state.messsages);
   const user = useSelector(store => store.userDetails);
   const [messages, setMessages] = React.useState([]);
@@ -22,7 +24,7 @@ const ChatArea = ({ routeProps, user_id }) => {
 
   React.useEffect(() => {
     document.querySelector(".sideBar").style.display =
-      window.innerWidth < 600 ? "none" : "block";
+      window.innerWidth < 700 ? "none" : "block";
     window.addEventListener("scroll", scrollEvent);
     getChatMessages(user_id, routeProps.match.params.chatId, step, (data) => {
       console.log(data);
@@ -46,7 +48,9 @@ const ChatArea = ({ routeProps, user_id }) => {
     messageSend(user_id, routeProps.match.params.chatId, message, data => {
       setMessages(messages => [...messages, data.message]);
       document.querySelector('.scrollIntoView').scrollIntoView();
-    })
+      document.getElementById('message').focus();
+      dispatch(newMessage(data.message));
+    });
   }
   return (
     <div className="chat_area">

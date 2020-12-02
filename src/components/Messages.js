@@ -1,7 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import useTimeDifference from "../hooks/useTimeDifference";
 import useUrl from '../hooks/useProfileUrl';
 import SearchBar from "./Searchbar";
 import Fab from '@material-ui/core/Fab';
@@ -9,12 +8,13 @@ import {Add} from '@material-ui/icons';
 import {motion} from 'framer-motion';
 
 function Messages(props) {
-  const user = useSelector((store) => store.userDetails);
+  const messages = useSelector((store) => store.messages);
+  const user = useSelector(store => store.userDetails);
 
   return (
-  <motion.div className="messages" initial = {{x: -50, opacity: 0}} animate = {{x: 0, opacity: 1}}>
+  <motion.div className="messages" initial = {{x: -10, opacity: 0}} animate = {{x: 0, opacity: 1}}>
       <SearchBar />
-      {user.latestMessages.map((message, index) => (
+      {messages.map((message, index) => (
         <MessageLink details={message} userId={user.id} key={index} />
       ))}
       <Fab variant= 'extended' color = 'primary'><Add/></Fab>
