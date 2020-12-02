@@ -13,7 +13,7 @@
     top: 13px;
     font-size: 12px!important;
     font-weight: bold!important;
-    background: #562001;
+    background: chocolate;
     padding: 6px;
     border-radius: 50%;
     height: 20px;
@@ -31,7 +31,7 @@
   font-weight: 500;
 }
 .MuiRadio-colorSecondary.Mui-checked {
-  color: #562001!important;
+  color: #f50057!important;
 }
 .product_little_image{
   background-size: cover;
@@ -71,8 +71,13 @@
     height: 25px;
   }
 }
+.product_little_action button{
+  background: #f50057;
+  color: white;
+}
 .product_little_action button:last-child{
   background: rgb(196, 236, 247);
+  color: black;
 }
 .product_little_action .content{
   font-size: 23px;
@@ -121,8 +126,8 @@
 }
 .checkout__button:hover, .checkout__button:active{
   background: white!important;
-  border:  2px solid #562001;
-  color:#562001;
+  border:  2px solid blue;
+  color: blue;
   font-weight: bold;
 }
 .checkout .details{

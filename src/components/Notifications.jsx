@@ -1,6 +1,5 @@
 import React from 'react';
-import useProfileUrl from '../hooks/useProfileUrl';
-import { backendAPI } from '../fetch';
+import useUrl from '../hooks/useProfileUrl';
 import { useSelector } from 'react-redux';
 import { useHistory, Link } from 'react-router-dom';
 import useTimeDifference from '../hooks/useTimeDifference';
@@ -35,8 +34,7 @@ function Notifications(props) {
 
 function Notification({ notification, history }) {
   const timeDifference = useTimeDifference();
-  const realUrl =useProfileUrl();
-
+  const url = useUrl()
   const getUrl = notification => {
     if (['from_store_to_cart', 'to_store_from_cart', 'like_post', 'followed', 'update_profile', 'view_store'].indexOf(notification.notification_type) !== -1) {
       return '/view/user-profile/' + notification.related_user;
@@ -45,7 +43,7 @@ function Notification({ notification, history }) {
   }
   return (
     <Link to={getUrl(notification)} className='notification my-3'>
-      <img src={realUrl(notification.related_picture)} alt={notification.related_user} />
+      <img src={url(notification.related_picture)} alt={notification.related_user} />
       <div className='noti_text'>
         <Typography variant='inherit' component='p'>{notification.text}</Typography>
         <small>{timeDifference(notification.dateCreated)}</small>

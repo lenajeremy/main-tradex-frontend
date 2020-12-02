@@ -13,7 +13,7 @@ a.product{
   align-items: center;
 }
 .product.first{
-  border: 3px solid#562001;
+  border: 3px solid #3f51b5;
 }
 .product .background,
 .product .overlay, 
@@ -91,7 +91,7 @@ a.product{
 .product:focus svg{
   border-radius: 50%;
   display: block;
-  background:#562001;
+  background: rgb(199, 119, 0);
   color: white;
   padding: 4px;
   width: 1.1em;

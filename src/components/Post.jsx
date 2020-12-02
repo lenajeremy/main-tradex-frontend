@@ -8,17 +8,17 @@ import { Redirect } from 'react-router-dom';
 import { likepost } from '../actions'
 import { motion } from 'framer-motion';
 import useTimeDifference from '../hooks/useTimeDifference';
-import useProfileUrl from '../hooks/useProfileUrl';
+import useUrl from '../hooks/useProfileUrl';
 
 function Post(props) {
   const timeDifference = useTimeDifference();
+  const url = useUrl();
 
   const [toRedirect, setRedirect] = useState(false);
   const [likeCount, setLikeCount] = useState(props.postDetails.number_of_likes);
   const [isLiked, setLiked] = useState(props.postDetails.isLiked);
   const id = useSelector(store => store.userDetails.id);
   const dispatch = useDispatch()
-  const realUrl = useProfileUrl();
 
   function handleLike() {
     if (id) {
@@ -37,9 +37,9 @@ function Post(props) {
     return (
       <motion.div className="post my-4" initial = {{opacity: 0}} animate = {{opacity: 1}}>
         <div className="post__header">
-          <div className="posterImage" style = {{backgroundImage: `url(${realUrl(props.postDetails.posterPicture)})`}}>
+          <div className="posterImage" style = {{backgroundImage: `url(${url(props.postDetails.posterPicture)})`}}>
           <img 
-            src={realUrl(props.postDetails.posterPicture)}
+            src={url(props.postDetails.posterPicture)}
             alt="" className='img-responsive img-fluid img-rounded'
           />
           </div>
@@ -51,7 +51,7 @@ function Post(props) {
         <hr />
         <p className = 'postContent'>{props.postDetails.content}</p>
         <div className="postImage">
-          <img src={`${realUrl(props.postDetails.image)}`} alt="" className='img-responsive img-fluid' />
+          <img src={`${url(props.postDetails.image)}`} alt="" className='img-responsive img-fluid' />
           <div className="likeButtons" onClick={handleLike}>
             <p className='like'>{isLiked ? <ThumbUpAlt className = 'liked'/> : <ThumbUpAltOutlined/>}{likeCount}</p>
           </div>

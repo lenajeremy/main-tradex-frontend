@@ -2,7 +2,7 @@
   border-radius: 10px;
   box-shadow: -2px 2px 5px gray;
   padding: 40px;
-  background: rgba(230, 230, 230, 0.63);
+  background: rgba(64, 62, 62, 0.7);
 }
 
 .post__header{
@@ -45,7 +45,7 @@
   padding: 10px;
   border-radius: 20px;
   width: 90px;
-  background: #742d04;
+  background: rgb(91, 118, 205);
   display: flex;
   align-items: center;
   justify-content: center;

@@ -68,7 +68,7 @@ textarea#product_changeg {
   padding: 7px;
 }
 textarea#product_change:focus {
-  border: 2px solid #562001;
+  border: 2px solid #3f51b5;
 }
 @media screen and (max-width: 768px) {
   .productAddForm {
@@ -82,11 +82,16 @@ textarea#product_change:focus {
   display: flex;
   padding: 5px 20px;
 }
-.message_link img {
+.message_link .profile_image{
+  background-size: cover;
   width: 50px;
   height: 50px;
   border-radius: 50%;
   margin-right: 15px;
+  background-position: center;
+}
+.message_link img.profile_image{
+  opacity: 0;
 }
 .message_link .message_text {
   display: flex;
@@ -94,7 +99,7 @@ textarea#product_change:focus {
 }
 .message_searchbar {
   margin: 10px 20px;
-  background: rgba(145, 73, 7, 0.473);
+  background: rgba(77, 112, 228, 0.473);
   position: relative;
   display: flex;
   align-items: center;

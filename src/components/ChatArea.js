@@ -1,16 +1,18 @@
 import React from "react";
-import { getChatMessages, backendAPI } from "../fetch";
+import { getChatMessages, sendMessage as messageSend } from "../fetch";
+import {motion} from 'framer-motion';
 import ArrowBackIos from "@material-ui/icons/ArrowBackIos";
 import ArrowForwardIos from '@material-ui/icons/ArrowForwardIos'
 import "./styles/ChatArea.css";
 import { useHistory } from "react-router-dom";
-import { Typography } from "@material-ui/core";
 import {useSelector} from 'react-redux';
+import useUrl from '../hooks/useProfileUrl';
 
 const ChatArea = ({ routeProps, user_id }) => {
+  const messsages = useSelector(state => state.messsages);
   const user = useSelector(store => store.userDetails);
   const [messages, setMessages] = React.useState([]);
-  const [step, setStep] = React.useState(Math.floor(messages.length / 10));
+  const [step, setStep] = React.useState(Math.floor(messages.length / 15));
   const [userDetails, setDetails] = React.useState({
     profilePicture: "",
     firstName: "",
@@ -24,7 +26,8 @@ const ChatArea = ({ routeProps, user_id }) => {
     window.addEventListener("scroll", scrollEvent);
     getChatMessages(user_id, routeProps.match.params.chatId, step, (data) => {
       console.log(data);
-      setMessages(data.messages);
+      setMessages(data.messages.reverse());
+      document.querySelector('.scrollIntoView').scrollIntoView();
       setDetails(data.users[0]);
     });
     return () => {
@@ -33,12 +36,17 @@ const ChatArea = ({ routeProps, user_id }) => {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  const url = useUrl();
 
   const scrollEvent = (e) => {
     console.log(e);
   };
   const sendMessage = (event, message) => {
     event.preventDefault();
+    messageSend(user_id, routeProps.match.params.chatId, message, data => {
+      setMessages(messages => [...messages, data.message]);
+      document.querySelector('.scrollIntoView').scrollIntoView();
+    })
   }
   return (
     <div className="chat_area">
@@ -47,11 +55,13 @@ const ChatArea = ({ routeProps, user_id }) => {
           <div className="chevron" onClick={() => history.goBack()}>
             <ArrowBackIos />
           </div>
+          <div className = 'avatar' style = {{backgroundImage: `url(${url(userDetails.picture)})`}}>
           <img
             className="avatar"
-            src={backendAPI + userDetails.picture}
+            src={url(userDetails.picture)}
             alt="avatar"
           />
+          </div>
           <div className="userDetails">
             <div className="user_name">{`${userDetails.firstName} ${userDetails.lastName}`}</div>
             <small>Online</small>
@@ -62,6 +72,7 @@ const ChatArea = ({ routeProps, user_id }) => {
         {messages.map((message, index) => (
           <MessageLittle details={message} key={index} user = {user.id}/>
         ))}
+        <div className = 'scrollIntoView'></div>
       <ChatForm send = {(event, message) => sendMessage(event, message)}/>
       </div>
     </div>
@@ -69,15 +80,17 @@ const ChatArea = ({ routeProps, user_id }) => {
 };
 
 const MessageLittle = (props) => {
-  return <div className={`message__little ${props.details.sender.id === props.user ? 'self' : 'not_self'}`}>{props.details.content}</div>;
+  return <motion.div initial = {{scale: 0, opacity: 0}}  animate={{scale:1, opacity: 1}}className={`message__little ${props.details.sender.id === props.user ? 'self' : 'not_self'}`}>{props.details.content}</motion.div>;
 };
 
 function ChatForm(props) {
   const [message, setMessage] = React.useState('')
   return (
-    <form id="messageForm" onSubmit = {event => {props.send(event, message); setMessage('')}}>
+    <motion.form id="messageForm" onSubmit = {event => {props.send(event, message); setMessage('')}} initial = {{y : 50, opacity : 0}} animate ={{y: 0, opacity: 1}}>
+      <div>
       <textarea
         type="text"
+        autoFocus = {true}
         onChange={event => setMessage(event.target.value)}
         value = {message}
         name="message"
@@ -87,7 +100,8 @@ function ChatForm(props) {
       <button type="submit">
         <ArrowForwardIos/>
       </button>
-    </form>
+      </div>
+    </motion.form>
   );
 }
 export default ChatArea;

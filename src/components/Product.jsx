@@ -5,13 +5,13 @@ import {Close} from '@material-ui/icons';
 import Button from '@material-ui/core/Button';
 import {Link } from 'react-router-dom';
 import {motion} from 'framer-motion';
+import {backendAPI} from '../fetch';
 import {useSelector} from 'react-redux';
-import useProfileUrl from '../hooks/useProfileUrl';
+import useUrl from '../hooks/useProfileUrl';
 
 const Product = ({productDetails, view, manage, self}) =>{
-  const realUrl = useProfileUrl();
   const products = useSelector(store => store.products);
-
+  const url = useUrl();
   // function advertiseProduct(event){
   //   alert(JSON.stringify(productDetails));
   // }
@@ -21,7 +21,7 @@ const Product = ({productDetails, view, manage, self}) =>{
     <motion.div key ={productDetails.id} initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1}} exit={{ opacity: 0.5, scale: 0.5 }} className = 'product'>
       <div className="overlay"></div>
       {self ? <Close onClick = {()=>manage(productDetails, 'remove_from_cart')}/> : ''}
-      <div className="background" style = {{backgroundImage: `url(${realUrl(productDetails.image)})`}}></div>
+      <div className="background" style = {{backgroundImage: `url(${ url(productDetails.image)})`}}></div>
       <div className="content">
         <h5 className = 'mb-2 mt-4'>{productDetails.name}</h5>
         <h5>Price: NGN{productDetails.price}</h5>

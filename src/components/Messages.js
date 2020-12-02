@@ -1,36 +1,39 @@
 import React from "react";
-import useProfileUrl from '../hooks/useProfileUrl';
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import useTimeDifference from "../hooks/useTimeDifference";
+import useUrl from '../hooks/useProfileUrl';
 import SearchBar from "./Searchbar";
 import Fab from '@material-ui/core/Fab';
 import {Add} from '@material-ui/icons';
+import {motion} from 'framer-motion';
 
 function Messages(props) {
   const user = useSelector((store) => store.userDetails);
-  const [messages, setMessages] = React.useState([]);
 
-  React.useEffect(() => setMessages(user.latestMessages), [user])
   return (
-    <div className="messages">
+  <motion.div className="messages" initial = {{x: -50, opacity: 0}} animate = {{x: 0, opacity: 1}}>
       <SearchBar />
-      {messages.map((message, index) => (
+      {user.latestMessages.map((message, index) => (
         <MessageLink details={message} userId={user.id} key={index} />
       ))}
       <Fab variant= 'extended' color = 'primary'><Add/></Fab>
-    </div>
+    </motion.div>
   );
 }
 
 const MessageLink = ({ details, userId }) => {
-  const realUrl = useProfileUrl();
+  const url = useUrl();
+
   return (
     <div className="message_link my-2">
+      <div className = 'profile_image' style = {{backgroundImage: `url(${url(details.recipient.id === userId ? details.sender.picture : details.recipient.picture)})`}}>
       <img
         className="profile_image"
-        src={realUrl(details.recipient.id === userId ? details.sender.picture : details.recipient.picture)}
+        src={url(details.recipient.id === userId ? details.sender.picture : details.recipient.picture)}
         alt={details.content}
       />
+      </div>
       <div className="message_text d-flex">
         <strong>
           <Link to={`/chat/${details.conversation_id}`}>
