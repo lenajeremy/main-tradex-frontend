@@ -31,7 +31,7 @@
   font-weight: 500;
 }
 .MuiRadio-colorSecondary.Mui-checked {
-  color: #3fa5b5!important;
+  color: #f50057!important;
 }
 .product_little_image{
   background-size: cover;
@@ -71,8 +71,13 @@
     height: 25px;
   }
 }
+.product_little_action button{
+  background: #f50057;
+  color: white;
+}
 .product_little_action button:last-child{
   background: rgb(196, 236, 247);
+  color: black;
 }
 .product_little_action .content{
   font-size: 23px;
@@ -190,8 +195,6 @@
 }
 .shipping_address.active{
   background: rgba(230, 230, 230, 0.63);
-  box-shadow: 0 30px 15px rgb(202, 202, 202);
-  box-shadow: -5px 10px 15px lightgray, 5px -10px 15px rgb(161, 161, 161);
 }
 .shipping_address .MuiSvgIcon-root:not(.editSvg){
   width: 1.3em!important;

@@ -4,6 +4,7 @@ import userReducer from './user.reducer';
 import sideBarReducer from './sidebar.reducer';
 import productReducer from './products.reducer';
 import postReducer from './posts.reducer';
+import messageReducer from './messages.reducer'
 
 const isdevmode = (state= true, action) => state;
 const rootReducer = combineReducers({
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   userDetails: userReducer,
   sideBar: sideBarReducer,
   products: productReducer,
+  messages: messageReducer
 });
 
 export default rootReducer;
