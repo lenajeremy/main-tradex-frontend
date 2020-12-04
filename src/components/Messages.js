@@ -43,9 +43,9 @@ const MessageLink = ({ details, userId }) => {
           </Link>
         </strong>
         <p>
-          {details.content.length <= 30
+          {details.content.length <= 35
             ? details.content
-            : details.content.split("").slice(0, 30).join("") + "..."}
+            : details.content.split("").slice(0, 35).join("") + "..."}
         </p>
       </div>
       {/* <div>{timeDifference(details.date_sent)}</div> */}

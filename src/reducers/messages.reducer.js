@@ -3,7 +3,6 @@ const messageReducer = (state = [], action) =>{
     case 'newMessage':
       let newState = [];
       let index = state.findIndex(message => message.conversation_id === action.payload.conversation_id);
-      console.log(index);
       if (index !== -1){
         state.forEach((message, i) => i === index ? console.log('hello') : newState.push(message));
       }
