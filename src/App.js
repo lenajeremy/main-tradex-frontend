@@ -20,7 +20,6 @@ import { getUser } from "./fetch";
 import { login, profileChange, newProduct, initialMessages } from "./actions";
 import Checkout from "./components/Checkout";
 import MainCheckout from "./components/MainCheckout";
-<<<<<<< HEAD
 // import withFirebaseAuth from 'react-with-firebase-auth'
 // import firebase from 'firebase/app';
 // import 'firebase/auth';
@@ -32,19 +31,6 @@ import MainCheckout from "./components/MainCheckout";
 // const providers = {
 //   googleProvider: new firebase.auth.GoogleAuthProvider(),
 // };
-=======
-import withFirebaseAuth from 'react-with-firebase-auth'
-import firebase from 'firebase/app';
-import 'firebase/auth';
-import firebaseConfig from './firebaseconfig';
-
-// firebase Configurations
-const firebaseApp = firebase.initializeApp(firebaseConfig);
-const firebaseAppAuth = firebaseApp.auth();
-const providers = {
-  googleProvider: new firebase.auth.GoogleAuthProvider(),
-};
->>>>>>> 68a46069133d3b5b00a8b9dbe3654e8a8449519f
 
 function App(props) {
   const dispatch = useDispatch();
@@ -117,15 +103,8 @@ function App(props) {
   );
 }
 
-<<<<<<< HEAD
 // export default withFirebaseAuth({
 //   providers,
 //   firebaseAppAuth,
 // })(App);
 export default App
-=======
-export default withFirebaseAuth({
-  providers,
-  firebaseAppAuth,
-})(App);
->>>>>>> 68a46069133d3b5b00a8b9dbe3654e8a8449519f
