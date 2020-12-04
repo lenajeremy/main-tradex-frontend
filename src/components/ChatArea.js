@@ -27,7 +27,7 @@ const ChatArea = ({ routeProps, user_id }) => {
       window.innerWidth < 700 ? "none" : "block";
     window.addEventListener("scroll", scrollEvent);
     getChatMessages(user_id, routeProps.match.params.chatId, step, (data) => {
-      setMessages(data.messages.reverse());
+      setMessages(data.messages);
       document.querySelector('.scrollIntoView').scrollIntoView();
       setDetails(data.users[0]);
     });
@@ -51,14 +51,18 @@ const ChatArea = ({ routeProps, user_id }) => {
       dispatch(newMessage(data.message));
     });
   }
-
   React.useEffect(() => {
+    console.log(step);
     if(step > 0){
+      getChatMessages(user_id, routeProps.match.params.chatId, step, data => {
+        console.log(data);
+        setMessages(messages => [...data.messages, ...messages])
+        console.log(messages)
+      })
     }
-
     //eslint-disable-next-line react-hooks/exhaustive-deps
-  },[step])
-
+  }, [step])
+  
   return (
     <div className="chat_area">
       <div className="top">
@@ -80,7 +84,7 @@ const ChatArea = ({ routeProps, user_id }) => {
         </div>
       </div>
       <div className="main">
-        <div className = 'previous_messages' onClick = {() => setStep(step + 1)}>"Prev &lt;&lt;"</div>
+        <div className = 'prev' onClick = {() => setStep(step + 1)}>Prev&lt;&lt;</div>
         {messages.map((message, index) => (
           <MessageLittle details={message} key={index} user = {user.id}/>
         ))}
