@@ -14,7 +14,7 @@ const ChatArea = ({ routeProps, user_id }) => {
   const messsages = useSelector(state => state.messsages);
   const user = useSelector(store => store.userDetails);
   const [messages, setMessages] = React.useState([]);
-  const [step, setStep] = React.useState(Math.floor(messages.length / 15));
+  const [step, setStep] = React.useState(0);
   const [userDetails, setDetails] = React.useState({
     profilePicture: "",
     firstName: "",
@@ -27,7 +27,6 @@ const ChatArea = ({ routeProps, user_id }) => {
       window.innerWidth < 700 ? "none" : "block";
     window.addEventListener("scroll", scrollEvent);
     getChatMessages(user_id, routeProps.match.params.chatId, step, (data) => {
-      console.log(data);
       setMessages(data.messages.reverse());
       document.querySelector('.scrollIntoView').scrollIntoView();
       setDetails(data.users[0]);
@@ -41,7 +40,7 @@ const ChatArea = ({ routeProps, user_id }) => {
   const url = useUrl();
 
   const scrollEvent = (e) => {
-    console.log(e);
+    // console.log(e);
   };
   const sendMessage = (event, message) => {
     event.preventDefault();
@@ -52,6 +51,14 @@ const ChatArea = ({ routeProps, user_id }) => {
       dispatch(newMessage(data.message));
     });
   }
+
+  React.useEffect(() => {
+    if(step > 0){
+    }
+
+    //eslint-disable-next-line react-hooks/exhaustive-deps
+  },[step])
+
   return (
     <div className="chat_area">
       <div className="top">
@@ -73,6 +80,7 @@ const ChatArea = ({ routeProps, user_id }) => {
         </div>
       </div>
       <div className="main">
+        <div className = 'previous_messages' onClick = {() => setStep(step + 1)}>"Prev &lt;&lt;"</div>
         {messages.map((message, index) => (
           <MessageLittle details={message} key={index} user = {user.id}/>
         ))}
