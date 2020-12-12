@@ -1,15 +1,23 @@
+.chat_area{
+  position: relative;
+}
 .chat_area .top {
   position: fixed;
-  padding-left: 10px;
+  padding-left: 15px;
   background: #0f1644;
-  width: 100%;
+  width: 49%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  height: 60px;
+  height: 55px;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
   color: white;
+}
+.chat_area .top{
+  padding-left: 10px;
+  width: 100%;
+  top: 49px;
 }
 .chat_area .top .content {
   display: -webkit-box;
@@ -67,11 +75,12 @@
 .chat_area .main #messageForm {
   display: flex;
   align-items: center;
-  width: 100%;
+  width: 49%;
   position: fixed;
   height: 45px;
-  bottom: 0px;
-  left: 0;
+  bottom: 3px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 #messageForm div {
   display: flex;
@@ -154,4 +163,9 @@
 .message_text p {
   margin: 0;
   font-size: 14px;
+}
+@media screen and (max-width:700px){
+  #messageForm{
+    width: 100%!important;
+  }
 }

@@ -14,13 +14,14 @@ function Login(props) {
   const [error, setError] = useState(false);
   const [toRedirect, setRedirect] = useState(false);
   const [submit, setSubmit ] = useState(false);
+  const [visible, setVisible] = useState(false);
 
   function handleFormSubmission(event) {
     setSubmit(true);
     event.preventDefault();
     loginUser(userName, password, data => {
       if (data.status === 200) {
-        getUser(data.id, userDetails => {
+        getUser(data.id, true, userDetails => {
           dispatch(login(userDetails.user));
           dispatch(profileChange(userDetails.user.profile));
           dispatch(initialMessages(userDetails.user.latestMessages));
@@ -64,14 +65,14 @@ function Login(props) {
                   fullWidth
                   id='password'
                   label='Password'
-                  type='password'
+                  type={visible ? 'text' : 'password'}
                   onChange={event => setPassword(event.currentTarget.value)}
                 />
               </Grid>
               <Grid item lg={12}>
                 <FormControlLabel
-                  control={<Checkbox value="allowExtraEmails" color="primary" />}
-                  label="Remember Me"
+                  control={<Checkbox color="primary" onChange = {() => setVisible(!visible)}/>}
+                  label={visible ? 'Hide Password' : 'Show Password'}
                 />
               </Grid>
             </Grid>

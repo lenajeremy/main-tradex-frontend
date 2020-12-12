@@ -11,13 +11,15 @@
 .links{
   display: flex;
   height: 80vh;
+  margin-top: 30px;
   align-items: center;
   justify-content: space-around;
   flex-direction: column;
 }
 .sideBar a{
-  color: rgb(3, 82, 82);
-  font-size: 1.5rem;
+  color: white;
+  font-weight: ligher;
+  font-size: 1.3rem;
 }
 .sideBar a:hover{
   text-decoration: none;
@@ -36,7 +38,7 @@
   width: 30px;
   height: 3px;
   opacity: 1;
-  background: rgb(4, 73, 73);
+  background: white;
 }
 .sideBar .top{
   top: -3px;
@@ -56,13 +58,12 @@
   opacity: 1;
   height: 100%;
   width: 3px;
-  background: rgb(4, 73, 73);
+  background: white;
   position: absolute;
   top: 0;
   bottom :0;
 }
 .sideBar__links.active a{
-  font-weight: bolder;
   font-size: 1.5rem;
 }
 .sideBar .right::after{
@@ -107,6 +108,8 @@
    transition: all 1s;
  }
  .links{
+   margin-top: 2px;
+   margin-bottom: 2px;
    flex-direction: row;
    height: 45px;
    width: 100%;

@@ -49,7 +49,7 @@ function Register(props) {
     if((username && first_name && last_name && userType && password && email && paypal && conf_password && password === conf_password )){
       registerUser(username, first_name, last_name, userType, password, email, paypal, conf_password, data => {
         if (data.status === 200) {
-          getUser(data.id, userDetails => {
+          getUser(data.id,true, userDetails => {
             console.log(userDetails)
             dispatch(login(userDetails.user))
             dispatch(profileChange(userDetails.user.profile));

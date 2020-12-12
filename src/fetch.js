@@ -3,8 +3,8 @@ const backendAPI = "http://localhost:8000";
 
 const instance = axios.create({ baseURL: backendAPI });
 // const backendAPI = 'https://tradesocial.herokuapp.com';
-async function getUser(user_id, callback) {
-  let { data } = await instance.get("/users/" + user_id);
+async function getUser(user_id,self, callback) {
+  let { data } = await instance.get("/users/" + user_id + '?self='+self);
   callback(data);
 }
 
@@ -160,19 +160,14 @@ function removeProduct(user_id, product_id, callback) {
     .then((data) => callback(data));
 }
 
-function getChatMessages(user_id, chat_id, step, callback) {
-  fetch(
-    `${backendAPI}/messages?operation=get_chat_messages&step=${step}&chat_id=${chat_id}&ref_id=${user_id}`
-  )
-    .then((data) => data.json())
-    .then((data) => callback(data));
+const getChatMessages = async (user_id, chat_id, step, callback) =>{
+  const {data} = await instance.get(`/messages?operation=get_chat_messages&step=${step}&chat_id=${chat_id}&ref_id=${user_id}`)
+  callback(data);
 }
-function sendMessage(user_id, chat_id,content, callback){
-  let form = new FormData();
-  form.append('content', content);
-  fetch(`${backendAPI}/messages/?operation=send_message&chat_id=${chat_id}&ref_id=${user_id}`, {method: "POST", body: form})
-  .then(data=> data.json())
-  .then(data => callback(data));
+const sendMessage = async (user_id, chat_id, content, undecided, callback) => {
+  let form = new FormData();form.append('content', content);
+  const {data} = await instance.post(`/messages/?operation=send_message&chat_id=${chat_id}&ref_id=${user_id}&undecided=${String(undecided)}`, form);
+  callback(data)
 }
 module.exports = {
   getUser,

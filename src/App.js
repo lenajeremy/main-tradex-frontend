@@ -34,11 +34,10 @@ import MainCheckout from "./components/MainCheckout";
 
 function App(props) {
   const dispatch = useDispatch();
-  console.log(props);
   React.useEffect(() => {
     let userId = localStorage.getItem("user_id");
     if (userId) {
-      getUser(userId, (data) => {
+      getUser(userId, true, data => {
         if (data.status === 200) {
           dispatch(login(data.user));
           dispatch(profileChange(data.user.profile));
