@@ -27,7 +27,6 @@ const ChatArea = ({ routeProps, user_id }) => {
       window.innerWidth < 700 ? "none" : "block";
     window.addEventListener("scroll", scrollEvent);
     getChatMessages(user_id, routeProps.match.params.chatId, step, (data) => {
-      console.log(data);
       setMessages(data.messages);
       document.querySelector('.scrollIntoView').scrollIntoView();
       setDetails(data.users[0]);
@@ -41,7 +40,7 @@ const ChatArea = ({ routeProps, user_id }) => {
   const url = useUrl();
 
   const scrollEvent = (e) => {
-    console.log(e);
+    // console.log(e);
   };
   const sendMessage = (event, message) => {
     event.preventDefault();
@@ -57,8 +56,8 @@ const ChatArea = ({ routeProps, user_id }) => {
     if (step > 0) {
       getChatMessages(user_id, routeProps.match.params.chatId, step, data => {
         console.log(data);
-        setMessages(messages => [...data.messages, ...messages])
-        console.log(messages)
+        setMessages([...data.messages, ...messages]);
+        console.log(messages);
       })
     }
     //eslint-disable-next-line react-hooks/exhaustive-deps
