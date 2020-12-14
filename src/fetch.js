@@ -1,8 +1,8 @@
 const axios = require("axios");
-const backendAPI = "http://localhost:8000";
+// const backendAPI = "http://localhost:8000";
+const backendAPI = 'https://tradesocial.herokuapp.com';
 
 const instance = axios.create({ baseURL: backendAPI });
-// const backendAPI = 'https://tradesocial.herokuapp.com';
 function getUser(user_id, self, callback) {
   instance.get("/users/" + user_id + '?self=' + self)
     .then(({ data }) => callback(data));
