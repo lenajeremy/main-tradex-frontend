@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
 import {Close} from '@material-ui/icons';
 import {Link } from 'react-router-dom';
 import './styles/newproduct.css';
@@ -11,17 +10,13 @@ import {newProduct} from '../actions';
 function NewProductForm(props){
   const user_id = useSelector(state => state.userDetails.id);
   const dispatch = useDispatch();
-  const styleTimer = useRef(null);
 
   useEffect(() => {
     const overlay = document.createElement('div');
     overlay.className = 'formOverlay';
     document.querySelector('#root').appendChild(overlay);
 
-    return () => {
-      clearInterval(styleTimer.current);
-      overlay.remove();
-    }
+    return () => overlay.remove();
   },[]);
 
   const [name, setName ] = useState('');
@@ -33,32 +28,17 @@ function NewProductForm(props){
   const [error, setError ] = useState({bool: false, value: null});
 
   function handleClick(event){
-
     event.preventDefault()
     event.target.innerText === '-' ? count - 1 < 0 ? setCount(count) : setCount(count - 1): setCount(count + 1);
   }
-
-  function getRandomColors(){
-    let color = '#';
-    let colorValues = 'abcdef0123456789'.split('');
-    for(let i = 0; i < 6; i++){
-        color+=colorValues[Math.floor(Math.random() * colorValues.length)]
-    }
-    return color
-}
-
   function handleFormSubmission(event){
     event.preventDefault();
     if(!(price && description && image && name && count)){
       setError({bool: true, values: ['Please fill the required fields!!']});
     }else{
       setClicked(true);
-      let styleInterval = setInterval(() =>{document.querySelector('.MuiLinearProgress-barColorPrimary').style.background = getRandomColors(); console.log('animation')},2100);
-      styleTimer.current = styleInterval;
-      
       createNewProduct(user_id, name, description, count, price, image, data =>{
         if(data.status === 200){
-          clearInterval(styleInterval);
           dispatch(newProduct({quantity: 'single', value: data.details}));
           setClicked(false);
           setName('');
@@ -71,8 +51,7 @@ function NewProductForm(props){
   }
 
   return(
-    <AnimatePresence>
-    <motion.div className = 'productAddForm' initial = {{x:'-50%', y: '-50%', scale: 0, opacity: 0}} animate = {{ scale: 1, opacity: 1, x: '-50%', y: '-50%'}} exit = {{scale: 0, opacity: 0, x: '-50%', y: 0}}>
+    <div className = 'productAddForm'>
       {clicked ? <LinearProgress variant= 'indeterminate' color ='primary' /> : ''}
       <Link className = 'back__to__store' to = '/user/2/store'><Close /></Link>
       <form onSubmit = {handleFormSubmission} className = 'mt-2'>
@@ -110,10 +89,9 @@ function NewProductForm(props){
         <Grid container spacing = {1}>
           <Button className = 'btn btn-block' variant = 'contained' color= 'primary' type = 'submit'>Create Product</Button>
         </Grid>
-        {error.bool ? error.values.map((message, index) => <p className = 'text-center text-dangeer' key = {index}>{message}</p>) : ''}
+        {error.bool ? error.values.map((message, index) => <p className = 'text-center text-danger small' key = {index}>{message}</p>) : ''}
       </form>
-    </motion.div>
-    </AnimatePresence>
+    </div>
   )
 }
 export default NewProductForm;

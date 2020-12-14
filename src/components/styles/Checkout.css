@@ -137,7 +137,6 @@
   background: transparent;
   border-radius: 1rem;
   width: 100%;
-  box-shadow: inset 0px 8px 6px lightgray;
 }
 .checkout .details p{
   text-align: center;

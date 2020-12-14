@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {Link } from 'react-router-dom';
-import { editPost, backendAPI } from '../fetch';
+import { editPost } from '../fetch';
 import { ThumbUpAltOutlined, ThumbUpAlt } from '@material-ui/icons'
 import './styles/Post.css'
 import { Redirect } from 'react-router-dom';
 import { likepost } from '../actions'
-import { motion } from 'framer-motion';
 import useTimeDifference from '../hooks/useTimeDifference';
 import useUrl from '../hooks/useProfileUrl';
 
@@ -35,7 +34,7 @@ function Post(props) {
 
   if (!toRedirect) {
     return (
-      <motion.div className="post my-4" initial = {{opacity: 0}} animate = {{opacity: 1}}>
+      <div className="post my-4" initial = {{opacity: 0}} animate = {{opacity: 1}}>
         <div className="post__header">
           <div className="posterImage" style = {{backgroundImage: `url(${url(props.postDetails.posterPicture)})`}}>
           <img 
@@ -56,7 +55,7 @@ function Post(props) {
             <p className='like'>{isLiked ? <ThumbUpAlt className = 'liked'/> : <ThumbUpAltOutlined/>}{likeCount}</p>
           </div>
         </div>
-      </motion.div>
+      </div>
     )
   } else {
     return <Redirect to='/login' />

@@ -26,14 +26,14 @@ export default function Checkout() {
   if (user.userType === 'buyer') {
     return (
       <div className='checkout'>
-        <motion.div className="top d-flex align-items-center" initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }}>
+        <div className="top d-flex align-items-center">
           <div className='d-flex align-items-center' onClick={() => history.goBack()}>
             <ArrowBackIos />
             <p>Review Cart</p>
           </div>
           <ShoppingCart />
           <Typography variant='body1' component='p'>{number}</Typography>
-        </motion.div>
+        </div>
 
         {products.map((product, key) => <ProductLittle key={key} stuff={key} productDetails={product} />)}
         <div className="details container">
@@ -66,7 +66,7 @@ function ProductLittle({ productDetails, stuff }) {
     })
   }
   return (
-    <motion.div className={stuff === 0 ? 'product_little d-flex mb-4' : 'product_little d-flex my-4'} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+    <div className={stuff === 0 ? 'product_little d-flex mb-4' : 'product_little d-flex my-4'} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
       <div className="main d-flex align-items-center">
         <Radio />
         <div className='product_little_image' style={{ backgroundImage: `url(${url(productDetails.image)})` }}>
@@ -82,6 +82,6 @@ function ProductLittle({ productDetails, stuff }) {
         <Typography component='p' variant='body1'>{productDetails.currentStock}</Typography>
         <button onClick={() => increaseProductOrder('increase')}><span className='content'>+</span></button>
       </div>
-    </motion.div>
+    </div>
   );
 }

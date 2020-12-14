@@ -8,7 +8,6 @@ import {getStore, cartOperation} from '../fetch';
 import {newProduct, removeProductAction} from '../actions';
 import Fab from '@material-ui/core/Fab';
 import LocalGroceryStore from '@material-ui/icons/LocalGroceryStore';
-import {motion} from 'framer-motion';
 import {Link} from 'react-router-dom';
 
 
@@ -36,17 +35,17 @@ function Cart(props) {
   if(!toRedirect){
     return (
       <div className = 'cart'>
-        <motion.div className="top d-flex align-items-center" initial = {{opacity: 0, x: -10}} animate = {{opacity: 1, x: 0}}>
+        <div className="top d-flex align-items-center">
           <div className = 'd-flex align-items-center' onClick = {() => history.goBack()}>
             <ArrowBackIos />
             <p>{props.self ? 'Your' : name + '\'s'} {props.self ? 'Cart' : 'Store'}</p>
           </div>
           <ShoppingCart/>
-        </motion.div>
+        </div>
         <div className = 'productsGrid'>
         {products.map((product, index) => <Product key = {index} index ={index} productDetails ={product} view = 'cart' self = {props.self} manage = {(values, operation) => manageCart(values, operation)}/>)}
         </div>
-        <motion.div className = 'floating-action-button' initial = {{rotate: '-45deg', bottom: '30px', scale: 0, opacity: 0}} animate ={{ bottom: '70px', rotate: '0deg', scale: 1, opacity: 1}}>{props.self && <Link to = '/review-cart/' disabled = {products.length === 0}><Fab disabled = {products.length === 0} color = 'secondary' variant = 'extended'><LocalGroceryStore/>Pay</Fab></Link>}</motion.div>
+        <div className = 'floating-action-button' initial = {{rotate: '-45deg', bottom: '30px', scale: 0, opacity: 0}} animate ={{ bottom: '70px', rotate: '0deg', scale: 1, opacity: 1}}>{props.self && <Link to = '/review-cart/' disabled = {products.length === 0}><Fab disabled = {products.length === 0} color = 'secondary' variant = 'extended'><LocalGroceryStore/>Pay</Fab></Link>}</div>
       </div>
     )
   } return <Redirect to = '/login'/>

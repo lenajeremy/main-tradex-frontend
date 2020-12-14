@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { getProduct, backendAPI } from '../fetch';
+import { getProduct } from '../fetch';
 import { ArrowBackIos, ThumbUpAlt } from '@material-ui/icons';
 import { Button, Typography } from '@material-ui/core';
 import useUrl from '../hooks/useProfileUrl';

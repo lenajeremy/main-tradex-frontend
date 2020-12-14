@@ -2,7 +2,6 @@ import React from 'react';
 import { Edit, ArrowBackIos, ShoppingCart } from '@material-ui/icons';
 import { useHistory } from 'react-router-dom';
 import {Radio, Button} from '@material-ui/core';
-import { motion } from 'framer-motion';
 // import {Typography} from '@material-ui/core';
 
 
@@ -18,13 +17,13 @@ function MainCheckout() {
 
   return (
     <form className = 'maincheckout'>
-      <motion.div className="top d-flex align-items-center" initial = {{opacity: 0, x: -10}} animate = {{opacity: 1, x: 0}}>
+      <div className="top d-flex align-items-center" initial = {{opacity: 0, x: -10}} animate = {{opacity: 1, x: 0}}>
         <div className = 'd-flex align-items-center' onClick = {() => history.goBack()}>
           <ArrowBackIos />
           <p>Checkout</p>
         </div>
         <ShoppingCart/>
-      </motion.div>
+      </div>
       <div className = 'checkoutAddress'>
         <p className = 'heading'>Shipping Address</p>
         <ShippingAddress 

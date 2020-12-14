@@ -1,6 +1,5 @@
 import React from "react";
 import { getChatMessages, sendMessage as messageSend } from "../fetch";
-import { motion } from 'framer-motion';
 import ArrowBackIos from "@material-ui/icons/ArrowBackIos";
 import ArrowForwardIos from '@material-ui/icons/ArrowForwardIos'
 import "./styles/ChatArea.css";
@@ -96,7 +95,7 @@ const ChatArea = ({ routeProps, user_id }) => {
 };
 
 const MessageLittle = (props) => {
-  return <motion.div initial={{ scale: 0, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className={`message__little ${props.details.sender.id === props.user ? 'self' : 'not_self'}`}>{props.details.content}</motion.div>;
+  return <div className={`message__little ${props.details.sender.id === props.user ? 'self' : 'not_self'}`}>{props.details.content}</div>;
 };
 
 function ChatForm(props) {

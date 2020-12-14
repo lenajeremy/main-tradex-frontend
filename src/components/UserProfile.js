@@ -1,13 +1,9 @@
 import React, { useState /* , useRef */ } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, Redirect, useHistory, Route } from "react-router-dom";
-// import { profileChange } from '../actions';
 import UndecisiveMessager from "./UndecisiveMessager";
 import { editUser, getUser } from "../fetch";
-import {
-  /* Settings,Edit, */ CameraAlt,
-  ArrowBackIos,
-} from "@material-ui/icons";
+import {CameraAlt, ArrowBackIos} from "@material-ui/icons";
 import { Button } from "@material-ui/core";
 import "./styles/Profile.css";
 import { editPictures } from "../actions";

@@ -5,20 +5,20 @@ import useUrl from '../hooks/useProfileUrl';
 import SearchBar from "./Searchbar";
 import Fab from '@material-ui/core/Fab';
 import {Add} from '@material-ui/icons';
-import {motion} from 'framer-motion';
+
 
 function Messages(props) {
   const messages = useSelector((store) => store.messages);
   const user = useSelector(store => store.userDetails);
 
   return (
-  <motion.div className="messages" initial = {{x: -10, opacity: 0}} animate = {{x: 0, opacity: 1}}>
+  <div className="messages">
       <SearchBar />
       {messages.map((message, index) => (
         <MessageLink details={message} userId={user.id} key={index} />
       ))}
       <Fab variant= 'extended' color = 'primary'><Add/></Fab>
-    </motion.div>
+    </div>
   );
 }
 
