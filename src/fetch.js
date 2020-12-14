@@ -3,9 +3,9 @@ const backendAPI = "http://localhost:8000";
 
 const instance = axios.create({ baseURL: backendAPI });
 // const backendAPI = 'https://tradesocial.herokuapp.com';
-async function getUser(user_id,self, callback) {
-  let { data } = await instance.get("/users/" + user_id + '?self='+self);
-  callback(data);
+function getUser(user_id, self, callback) {
+  instance.get("/users/" + user_id + '?self=' + self)
+    .then(({ data }) => callback(data));
 }
 
 function getPost(post_id, callback) {
@@ -15,15 +15,13 @@ function getPost(post_id, callback) {
     .catch((err) => console.log(err));
 }
 
-const getAllPosts = async (user, start, callback) => {
-  const { data } = await instance.get(
-    `/posts/all?start=${start}&end=${start + 4}&user=${user}`
-  );
-  callback(data);
+const getAllPosts = (user, start, callback) => {
+  instance.get(`/posts/all?start=${start}&end=${start + 4}&user=${user}`)
+    .then(({ data }) => callback(data))
 };
-const getStore = async (store_owner, callback) => {
-  const { data } = await instance.get(`/store?owner_username=${store_owner}`);
-  callback(data);
+const getStore = (store_owner, callback) => {
+  instance.get(`/store?owner_username=${store_owner}`)
+    .then(({ data }) => callback(data));
 };
 function cartOperation(product_id, user_id, operation, callback) {
   fetch(`${backendAPI}/cart/add`, {
@@ -39,20 +37,19 @@ function cartOperation(product_id, user_id, operation, callback) {
     .then((data) => callback(data))
     .catch((er) => console.log(er));
 }
-const getProduct = async (productId, callback) => {
-  const { data } = await instance.get("/product?id=" + productId);
-  callback(data);
+const getProduct = (productId, callback) => {
+  instance.get("/product?id=" + productId)
+    .then(({ data }) => callback(data))
 };
 
-const loginUser = async (username, password, callback) => {
-  const { data } = await instance.post(
+const loginUser = (username, password, callback) => {
+  instance.post(
     "/accounts/login/",
     JSON.stringify({ username, password })
-  );
-  callback(data);
+  ).then(({ data }) => callback(data));
 };
 
-const registerUser = async (
+const registerUser = (
   username,
   firstname,
   lastname,
@@ -63,14 +60,13 @@ const registerUser = async (
   conf_password,
   callback
 ) => {
-  const { data } = await instance.post(
+  instance.post(
     "/accounts/register/",
     JSON.stringify({
-      username: username,first_name: firstname,last_name: lastname,
-      email: email,paypalEmail: paypalEmail,user_type: userType, password: password,conf_password: conf_password,
+      username: username, first_name: firstname, last_name: lastname,
+      email: email, paypalEmail: paypalEmail, user_type: userType, password: password, conf_password: conf_password,
     })
-  );
-  callback(data);
+  ).then(({ data }) => callback(data));
 };
 function createNewPost(user_id, postContent, image, callback) {
   let formData = new FormData();
@@ -160,15 +156,16 @@ function removeProduct(user_id, product_id, callback) {
     .then((data) => callback(data));
 }
 
-const getChatMessages = async (user_id, chat_id, step, callback) =>{
-  const {data} = await instance.get(`/messages?operation=get_chat_messages&step=${step}&chat_id=${chat_id}&ref_id=${user_id}`)
-  callback(data);
+const getChatMessages = (user_id, chat_id, step, callback) => {
+  instance.get(`/messages?operation=get_chat_messages&step=${step}&chat_id=${chat_id}&ref_id=${user_id}`)
+    .then(({ data }) => callback(data))
 }
-const sendMessage = async (user_id, chat_id, content, undecided, callback) => {
-  let form = new FormData();form.append('content', content);
-  const {data} = await instance.post(`/messages/?operation=send_message&chat_id=${chat_id}&ref_id=${user_id}&undecided=${String(undecided)}`, form);
-  callback(data)
+const sendMessage = (user_id, chat_id, content, undecided, callback) => {
+  let form = new FormData(); form.append('content', content);
+  instance.post(`/messages/?operation=send_message&chat_id=${chat_id}&ref_id=${user_id}&undecided=${String(undecided)}`, form)
+    .then(({ data }) => callback(data));
 }
+
 module.exports = {
   getUser,
   getPost,
