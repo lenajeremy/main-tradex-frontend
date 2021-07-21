@@ -10,7 +10,6 @@ import { newMessage } from '../actions';
 
 const ChatArea = ({ routeProps, user_id }) => {
   const dispatch = useDispatch();
-  const messsages = useSelector(state => state.messsages);
   const user = useSelector(store => store.userDetails);
   const [messages, setMessages] = React.useState([]);
   const [step, setStep] = React.useState(0);
@@ -46,19 +45,12 @@ const ChatArea = ({ routeProps, user_id }) => {
     messageSend(user_id, routeProps.match.params.chatId, message, false, data => {
       setMessages(messages => [...messages, data.message]);
       document.querySelector('.scrollIntoView').scrollIntoView();
-      document.getElementById('message').focus();
       dispatch(newMessage(data.message));
     });
   }
   React.useEffect(() => {
     console.log(step);
-    if (step > 0) {
-      getChatMessages(user_id, routeProps.match.params.chatId, step, data => {
-        console.log(data);
-        setMessages([...data.messages, ...messages]);
-        console.log(messages);
-      })
-    }
+    if (step > 0) getChatMessages(user_id, routeProps.match.params.chatId, step, data => setMessages([...data.messages, ...messages]))
     //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [step])
 

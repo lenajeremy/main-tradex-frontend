@@ -46,4 +46,7 @@ const newMessage = messageDetails => {
 const initialMessages = messages => {
   return { type: 'initialMessages', payload: messages }
 }
-export { likepost, fetchposts, login, profileChange, createPost, editSidebar, removeProductAction, newProduct, editPictures, addToCart, editProduct, initialMessages, newMessage };
+const editSidebarVisibility = visible => {
+  return {type: 'editSidebarVisibility', payload: visible}
+}
+export { likepost, fetchposts, login, profileChange, createPost, editSidebar, removeProductAction, newProduct, editPictures, addToCart, editProduct, initialMessages, newMessage, editSidebarVisibility};

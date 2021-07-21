@@ -6,13 +6,13 @@ import { MailOutline, HomeOutlined, PersonOutlined, ShoppingBasketOutlined, Noti
 import './styles/Sidebar.css';
 
 
-function Sidebar(props) {
+function Sidebar({visible}) {
+
   const dispatch = useDispatch();
   const userDetails = useSelector(store => store.userDetails);
-
   const products = useSelector(store => store.products);
 
-  const active = useSelector(store => store.sideBar)
+  const active = useSelector(store => store.sideBarVisible)
 
   function userTypeDeterminant() {
     const isActive = () => {
@@ -33,45 +33,38 @@ function Sidebar(props) {
         </div>
       )
     }
-    return (
-      <div className='sideBar__links right'>
-        <div className='top'></div>
-        <div className='bottom'></div>
-        {!userDetails.id ? userDetails.userType === 'buyer' ? <Link onClick={() => dispatch(editSidebar({ value: 'cart' }))} to='/login'><ShoppingBasketOutlined /><span className='text'>Cart</span></Link> :
-          <Link onClick={() => dispatch(editSidebar({ value: 'store' }))} to={'/login'}><ShoppingBasketOutlined /><span className='text'>Store</span></Link> :
-          userDetails.userType === 'buyer' ? <Link onClick={() => dispatch(editSidebar({ value: 'cart' }))} to={'/user/' + userDetails.id.toString() + '/cart'}><ShoppingBasketOutlined /><span className='text'>Cart<span className='products_length'>{products.length}</span></span></Link> :
-            <Link onClick={() => dispatch(editSidebar({ value: 'store' }))} to={'/user/' + userDetails.id.toString() + '/store'}><ShoppingBasketOutlined /><span className='text'>Store</span><span className='products_length'>{products.length}</span></Link>
-        }
-      </div>
-    )
   }
-  return (
-    <div className='sideBar'>
-      <div className='links'>
-        <div className={`sideBar__links left ${active === 'explore' ? 'active' : ''}`}>
-          <div className='top'></div>
-          <div className='bottom'></div>
-          <Link onClick={() => dispatch(editSidebar({ value: 'explore' }))} to='/'>{active === 'explore' ? <Home /> : <HomeOutlined />}<span className='text'>Explore</span></Link>
-        </div>
-        <div className={`sideBar__links right ${active === 'profile' ? 'active' : ''}`}>
-          <div className='top'></div>
-          <div className='bottom'></div>
-          <Link onClick={() => dispatch(editSidebar({ value: 'profile' }))} to={userDetails.id ? `/user/${userDetails.id}/profile` : '/login'}>{active === 'profile' ? <Person /> : <PersonOutlined />}<span className='text'>Profile</span></Link>
-        </div>
-        <div className={`sideBar__links left ${active === 'message' ? 'active' : ''}`}>
-          <div className='top'></div>
-          <div className='bottom'></div>
-          <Link onClick={() => dispatch(editSidebar({ value: 'message' }))} to={userDetails.id ? `/messages` : '/login'}>{active === 'message' ? <Mail /> : <MailOutline />}<span className='text'>Chats</span></Link>
-        </div>
-        {userTypeDeterminant()}
-        <div className={`sideBar__links right ${active === 'notifications' ? 'active' : ''}`}>
-          <div className='top'></div>
-          <div className='bottom'></div>
-          <Link onClick={() => dispatch(editSidebar({ value: 'notifications' }))} to='/notifications'>{active === 'notifications' ? <Notifications /> : <NotificationsOutlined />}<span className='text'>Notfcatns</span></Link>
+  if(visible){
+    return (
+      <div className='sideBar'>
+        <div className='links'>
+          <div className={`sideBar__links left ${active === 'explore' ? 'active' : ''}`}>
+            <div className='top'></div>
+            <div className='bottom'></div>
+            <Link onClick={() => dispatch(editSidebar({ value: 'explore' }))} to='/'>{active === 'explore' ? <Home /> : <HomeOutlined />}<span className='text'>Explore</span></Link>
+          </div>
+          <div className={`sideBar__links right ${active === 'profile' ? 'active' : ''}`}>
+            <div className='top'></div>
+            <div className='bottom'></div>
+            <Link onClick={() => dispatch(editSidebar({ value: 'profile' }))} to={userDetails.id ? `/user/${userDetails.id}/profile` : '/login'}>{active === 'profile' ? <Person /> : <PersonOutlined />}<span className='text'>Profile</span></Link>
+          </div>
+          <div className={`sideBar__links left ${active === 'message' ? 'active' : ''}`}>
+            <div className='top'></div>
+            <div className='bottom'></div>
+            <Link onClick={() => dispatch(editSidebar({ value: 'message' }))} to={userDetails.id ? `/messages` : '/login'}>{active === 'message' ? <Mail /> : <MailOutline />}<span className='text'>Chats</span></Link>
+          </div>
+          {userTypeDeterminant()}
+          <div className={`sideBar__links right ${active === 'notifications' ? 'active' : ''}`}>
+            <div className='top'></div>
+            <div className='bottom'></div>
+            <Link onClick={() => dispatch(editSidebar({ value: 'notifications' }))} to='/notifications'>{active === 'notifications' ? <Notifications /> : <NotificationsOutlined />}<span className='text'>Notfcatns</span></Link>
+          </div>
         </div>
       </div>
-    </div>
-  )
+    );
+  }else{
+    return <React.Fragment/>
+  }
 }
 
 export default Sidebar

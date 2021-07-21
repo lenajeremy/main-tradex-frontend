@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 .container:not(.header){
-  width: 50%!important;
+  width: 85%!important;
 }
 @media screen and (max-width: 768px){
   .container:not(.header){

@@ -6,4 +6,14 @@ const sideBarReducer = (state= 'explore', action ) => {
       return state
   }
 };
-export default sideBarReducer
+
+const sideBarVisible = (state = true, action) => {
+  switch (action.type) {
+    case 'editSidebarVisibility':
+      return action.payload;
+    default:
+      return state;
+  }
+}
+
+export { sideBarReducer, sideBarVisible };

@@ -8,9 +8,12 @@ import Typography from '@material-ui/core/Typography';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import {Lock} from '@material-ui/icons';
 import { useDispatch } from 'react-redux';
 import {login, profileChange, newProduct} from '../actions'
 import {Redirect, Link} from 'react-router-dom';
+import backgroundImage from '../assets/tradex.jpg';
+import './styles/Login.css';
 
 
 
@@ -70,16 +73,21 @@ function Register(props) {
     }
     else return(
 
-    <Container component = 'main' maxWidth = 'lg'>
-      <div className = 'registration'>
-        <Typography component = 'h2' variant = 'h5' className = 'text-center my-3'>Register</Typography>
-        {isError ? errors.map((error, key) => <p className = 'text-center text-danger' key = {{key}}>{error}</p>) : ''}
-        <form className = 'register__form' onSubmit = {handleFormSubmission}>
-          <Grid container spacing = {1}>
+    <Container component = 'main' maxWidth = 'xl' style = {{padding : 0}}>
+      <div className = 'registration login-row row'>
+        <div className = 'col-md-6 login-left' style ={{background: `url(${backgroundImage})`, backgroundSize: 'cover'}}>
+          <p>Sign up to get started</p>
+        </div>
+        <div className = 'col-md-6 d-flex align-items-center'>
+          <div className = 'w-75 mx-auto'>
+            <Typography component='h1' variant = 'h4' className = 'text-center justify-content-center mb-4 d-flex align-items-center color-primary'><Lock className = 'mr-3' style ={{width: '1.5em', height: '1.5em'}}/>Create an Account</Typography>
+            {isError ? errors.map((error, key) => <p className = 'text-center text-danger' key = {{key}}>{error}</p>) : ''}
+            <form className = 'register__form' onSubmit = {handleFormSubmission}>
+          <Grid container spacing = {2}>
             <Grid item sm = {6}>
               <TextField
                 name = 'first_name'
-                variant = 'outlined'
+                variant = 'filled'
                 label = 'First Name'
                 required
                 fullWidth
@@ -92,7 +100,7 @@ function Register(props) {
               <TextField 
                 name = 'last_name'
                 value = {last_name}
-                variant = 'outlined'
+                variant = 'filled'
                 required
                 fullWidth
                 label = 'Last Name'
@@ -102,7 +110,7 @@ function Register(props) {
             <Grid item sm = {12}>
               <TextField
                 name = 'username'
-                variant = 'outlined'
+                variant = 'filled'
                 value = {username}
                 required
                 fullWidth
@@ -113,7 +121,7 @@ function Register(props) {
             <Grid item sm = {6}>
               <TextField
                 name = 'email'
-                variant = 'outlined'
+                variant = 'filled'
                 value = {email}
                 required
                 fullWidth
@@ -125,7 +133,7 @@ function Register(props) {
             <Grid item sm = {6}>
               <TextField
                 name = 'paypal_email_address'
-                variant = 'outlined'
+                variant = 'filled'
                 value = {paypal}
                 fullWidth
                 type = 'email'
@@ -136,7 +144,7 @@ function Register(props) {
             <Grid item sm = {12}>
               <TextField
                 name = 'password'
-                variant = 'outlined'
+                variant = 'filled'
                 value = {password}
                 required
                 onChange = {event=> setPassword(event.target.value)}
@@ -148,7 +156,7 @@ function Register(props) {
             <Grid item sm = {12}>
               <TextField
                 name = 'conf_password'
-                variant = 'outlined'
+                variant = 'filled'
                 value = {conf_password}
                 required
                 onChange = {event=> setConfPassword(event.target.value)}
@@ -183,6 +191,8 @@ function Register(props) {
             </Grid>
           </Grid>
         </form>
+          </div>
+        </div>
       </div>
     </Container>
     )

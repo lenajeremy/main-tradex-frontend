@@ -1,21 +1,23 @@
 .sideBar{
-  width: 25%;
+  width: 20%;
   position: fixed;
   left: 0;
   top: 60px;
   min-height: 100vh;
   display: flex;
-  align-items:center;
-  justify-content: center;
+  align-items: center;
+  padding: 3em;
+  justify-content: flex-start;
 }
 .links{
   display: flex;
   height: 80vh;
   margin-top: 30px;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   flex-direction: column;
 }
+/*
 .sideBar a{
   color: white;
   font-weight: ligher;
@@ -157,4 +159,4 @@ a{
 }
 span#message{
   color:rgb(221, 221, 221);
-}
+} */

@@ -31,7 +31,7 @@
   font-weight: 500;
 }
 .MuiRadio-colorSecondary.Mui-checked {
-  color: #f50057!important;
+  color: #505050!important;
 }
 .product_little_image{
   background-size: cover;
@@ -72,7 +72,7 @@
   }
 }
 .product_little_action button{
-  background: #f50057;
+  background: #505050;
   color: white;
 }
 .product_little_action button:last-child{
@@ -113,7 +113,7 @@
   border-radius: 1rem;
 }
 .checkout__button {
-  background: linear-gradient(to right,#532cdf, #3fa5b5 );
+  background: #505050;
   width: 90%;
   position: absolute!important;
   border-radius: 1rem!important;

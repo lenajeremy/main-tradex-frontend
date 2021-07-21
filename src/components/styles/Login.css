@@ -5,28 +5,50 @@
   /* left: 50%; */
   /* transform:  translate(-50%, -50%); */
 /* } */
-.MuiButton-containedPrimary{
-  background-color: #3f51b5;
-}
 #login__loader, #reg_loader, button svg{
   color: white;
   height: 20px!important;
   width: 20px!important;
 }
-input, textarea{
+/* input, textarea{
   outline: none!important;
-}
-.MuiContainer-root.MuiContainer-maxWidthXs{
-  margin-top: 35%;
-}
-@media screen and (max-width: 768px){
-  .MuiGrid-item{
-    width: 100%;
-  }
-  .login__form{
-    padding: 0 20px;
-  }
 }
 .MuiOutlinedInput-input{
   padding: 15px!important;
+} */
+
+.login-row{
+  height: calc(100vh - 80px);
+  margin: 0!important;
+}
+.login > div{
+  width: 60%;
+}
+.MuiOutlinedInput-root{
+  border-radius: 10rem!important;
+}
+.login-left{
+  position:relative;
+}
+.login-left:after{
+  position: absolute;
+  content: '';
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  opacity: 0.5;
+}
+.login-left p{
+  font-size: 2.5em;
+  z-index: 10;
+  position: absolute;
+  top: 50%;
+  font-weight: bold;
+  left: 19%;
+  color: white;
+  transform: translateY(-50%);
 }

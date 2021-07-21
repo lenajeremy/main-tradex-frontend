@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import {LockOutlined} from '@material-ui/icons';
+import {Lock} from '@material-ui/icons';
 import{TextField, Typography, Container, FormControlLabel, Button, Checkbox, CircularProgress, Grid} from '@material-ui/core';
 import { loginUser, getUser } from '../fetch';
-import { login, profileChange, newProduct, initialMessages } from '../actions';
+import {editSidebarVisibility, login, profileChange, newProduct, initialMessages } from '../actions';
 import { Redirect, Link } from 'react-router-dom';
+import backgroundImage from '../assets/tradex.jpg';
 import './styles/Login.css';
 
 function Login(props) {
@@ -16,6 +17,9 @@ function Login(props) {
   const [submit, setSubmit ] = useState(false);
   const [visible, setVisible] = useState(false);
 
+  React.useEffect(() => {
+    dispatch(editSidebarVisibility(false))
+  })
   function handleFormSubmission(event) {
     setSubmit(true);
     event.preventDefault();
@@ -37,16 +41,21 @@ function Login(props) {
 
   if (!toRedirect) {
     return (
-      <Container component='main' maxWidth='xs'>
-        <div className="login">
-          <Typography component='h1' variant = 'h5' className = 'text-center my-3'><LockOutlined />Log in</Typography>
+      <Container component='main' maxWidth='xl' style = {{padding: 0}}>
+        <div className = 'row login-row w-100'>
+        <div className = 'col-md-6 login-left' style ={{background: `url(${backgroundImage})`, backgroundSize: 'cover'}}>
+          <p>Login to your account...</p>
+        </div>
+        <div className="login col-md-6 d-flex align-items-center">
+          <div className = 'mx-auto'>
+          <Typography component='h1' variant = 'h4' className = 'text-center justify-content-center mb-4 d-flex align-items-center color-primary'><Lock className = 'mr-3' style ={{width: '1.5em', height: '1.5em'}}/>Log in</Typography>
           {error ? <p className = 'text-danger text-center my-2'>Invalid Login Credentials</p> : ''}
           <form onSubmit={handleFormSubmission} className='login__form'>
-            <Grid container spacing={2}>
+            <Grid container spacing={1}>
               <Grid item lg={12}>
                 <TextField
                   name='username'
-                  variant='outlined'
+                  variant='filled'
                   required
                   value = {userName}
                   fullWidth
@@ -60,7 +69,7 @@ function Login(props) {
                 <TextField
                   name='password'
                   value = {password}
-                  variant='outlined'
+                  variant='filled'
                   required
                   fullWidth
                   id='password'
@@ -76,8 +85,8 @@ function Login(props) {
                 />
               </Grid>
             </Grid>
-            <Button type="submit" fullWidth variant="contained" color='primary'>{submit ? <React.Fragment>Logging you in...<CircularProgress variant = 'indeterminate' color = 'primary' id = 'login__loader'/></React.Fragment> : 'Log in'}</Button>
-            <Grid container spacing={2} className = 'text-center mt-1'>
+            <Button className = 'my-2' type="submit" fullWidth variant="contained" color='primary'>{submit ? <React.Fragment><CircularProgress variant = 'indeterminate' color = 'primary' id = 'login__loader'/></React.Fragment> : 'Log in'}</Button>
+            <Grid container spacing={2} className = 'text-center'>
               <Grid item>
                 <Link to='/register'>
                   Don't have an account? Sign Up
@@ -85,6 +94,8 @@ function Login(props) {
               </Grid>
             </Grid>
           </form>
+          </div>
+        </div>
         </div>
       </Container>
     )

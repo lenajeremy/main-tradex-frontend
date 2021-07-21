@@ -20,21 +20,30 @@ import { getUser } from "./fetch";
 import { login, profileChange, newProduct, initialMessages } from "./actions";
 import Checkout from "./components/Checkout";
 import MainCheckout from "./components/MainCheckout";
-// import withFirebaseAuth from 'react-with-firebase-auth'
-// import firebase from 'firebase/app';
-// import 'firebase/auth';
-// import firebaseConfig from './firebaseconfig';
-
-// firebase Configurations
-// const firebaseApp = firebase.initializeApp(firebaseConfig);
-// const firebaseAppAuth = firebaseApp.auth();
-// const providers = {
-//   googleProvider: new firebase.auth.GoogleAuthProvider(),
-// };
+import {createMuiTheme, ThemeProvider} from '@material-ui/core/styles';
 
 function App(props) {
   const dispatch = useDispatch();
+
+  const theme = createMuiTheme({
+    palette: {
+      primary: {
+        main: '#42b685',
+        light: '#efefef',
+        dark: '#333333'
+
+      },
+      secondary: {
+        main: '#efefef'
+      }
+    }
+  })
+
   React.useEffect(() => {
+
+    // get the user id from localStorage, 
+    // then make a request to the backend
+    // and then update the frontend with the data from the backend
     let userId = localStorage.getItem("user_id");
     if (userId) {
       getUser(userId, true, data => {
@@ -55,55 +64,55 @@ function App(props) {
       });
     }
   }, []);
+
+
   const user = useSelector((state) => state.userDetails);
+  const sideBarVisible = useSelector(state => state.sideBarVisible);
+
   return (
+    <ThemeProvider theme = {theme}>
     <div className="App">
       <Header />
-      <Sidebar />
-      <div className="container">
-        <Route path="/" exact component={WrapperFunction} />
-        <Route path="/login" component={Login} />
-        <Route path="/register" component={Register} />
-        <Route
-          path="/user/:userId/profile"
-          component={props => <UserProfile self={true} routeProps={props} />}
-        />
-        <Switch>
-          {user.userType === "buyer" ? (
-            <Route
-              path="/user/:userId/cart"
-              component={() => <Cart self={true} />}
-            />
-          ) : (
-            <Route
-              path="/user/:userId/store"
-              component={() => <Store self={true} />}
-            />
-          )}
+      <Sidebar visible = {sideBarVisible}/>
+      <Route path="/" exact component={WrapperFunction} />
+      <Route path="/login" component={Login} />
+      <Route path="/register" component={Register} />
+      <Route
+        path="/user/:userId/profile"
+        component={props => <UserProfile self={true} routeProps={props} />}
+      />
+      <Switch>
+        {user.userType === "buyer" ? (
           <Route
-            path="/view/user-profile/:userId"
-            component={(props) => (
-              <UserProfile self={false} routeProps={props} />
-            )}
+            path="/user/:userId/cart"
+            component={() => <Cart self={true} />}
           />
-        </Switch>
+        ) : (
+          <Route
+            path="/user/:userId/store"
+            component={() => <Store self={true} />}
+          />
+        )}
         <Route
-          path="/view/user/store/:userName"
-          component={(props) => <Cart routeProps={props} self={false} />}
+          path="/view/user-profile/:userId"
+          component={(props) => (
+            <UserProfile self={false} routeProps={props} />
+          )}
         />
-        <Route path="/review-cart" component={Checkout} />
-        <Route path="/checkout" component={MainCheckout} />
-        <Route path="/product/:productId" component={ProductDetails} />
-        <Route path="/notifications" component={Notifications} />
-        <Route path="/messages" component={Messages} />
-        <Route path = '/chat/:chatId' component = {props => <ChatArea routeProps = {props} user_id = {user.id}/>}/>
-      </div>
+      </Switch>
+      <Route
+        path="/view/user/store/:userName"
+        component={(props) => <Cart routeProps={props} self={false} />}
+      />
+      <Route path="/review-cart" component={Checkout} />
+      <Route path="/checkout" component={MainCheckout} />
+      <Route path="/product/:productId" component={ProductDetails} />
+      <Route path="/notifications" component={Notifications} />
+      <Route path="/messages" component={Messages} />
+      <Route path = '/chat/:chatId' component = {props => <ChatArea routeProps = {props} user_id = {user.id}/>}/>
     </div>
+    </ThemeProvider>
   );
 }
 
-// export default withFirebaseAuth({
-//   providers,
-//   firebaseAppAuth,
-// })(App);
 export default App

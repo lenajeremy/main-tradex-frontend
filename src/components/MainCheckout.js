@@ -1,11 +1,12 @@
 import React from 'react';
 import { Edit, ArrowBackIos, ShoppingCart } from '@material-ui/icons';
 import { useHistory } from 'react-router-dom';
-import {Radio, Button} from '@material-ui/core';
+import {Typography, Radio, Button} from '@material-ui/core';
+import {useSelector} from 'react-redux';
 // import {Typography} from '@material-ui/core';
 
-
 function MainCheckout() {
+  const products = useSelector(store => store.products);
   const history = useHistory();
   const [address, setAddress] = React.useState('home');
   const [paymentMethod, setPaymentMethod] = React.useState('');
@@ -13,16 +14,17 @@ function MainCheckout() {
   const [price, setPrice] = React.useState(10000);
   const [publicKey, setpublicKey] = React.useState('pk_test_e8393cf34f27bc6b1435965dfaad63d0d57c62f3');
 
-
+  const productsTotal = products => products.length === 0 ? products : products.map(product => product.currentStock).reduce((a, b) => a + b);
 
   return (
     <form className = 'maincheckout'>
-      <div className="top d-flex align-items-center" initial = {{opacity: 0, x: -10}} animate = {{opacity: 1, x: 0}}>
+      <div className="top d-flex align-items-center">
         <div className = 'd-flex align-items-center' onClick = {() => history.goBack()}>
           <ArrowBackIos />
           <p>Checkout</p>
         </div>
         <ShoppingCart/>
+        <Typography variant='body1' component='p'>{productsTotal(products)}</Typography>
       </div>
       <div className = 'checkoutAddress'>
         <p className = 'heading'>Shipping Address</p>

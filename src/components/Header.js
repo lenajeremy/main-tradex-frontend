@@ -9,17 +9,12 @@ function Header(props) {
 
   return (
     <header>
-      <nav className='navbar navbar-expand-sm'>
-        <div className="container header">
+      <div className = 'container'>
+        <nav className='navbar navbar-expand-sm d-flex justify-content-between'>
           <Link to='/' className='navbar-brand'>TradeX</Link>
-          <ul className="navbar-nav ml-auto">
-            <li className='nav-item'><Link to='/' className='nav-link'>Home</Link></li>
-            <li className='nav-item'><Link to='/login' className='nav-link'>Sign In</Link></li>
-            <li className='nav-item'><Link to='/register' className='nav-link'>Sign Up</Link></li>
-            <li className='nav-item'><Link to = {userDetails.id? `/user/${userDetails.id}/profile`: '/login'} className = 'd-flex align-items-center nav-link'><Person/>{userDetails.userName || 'Not Signed In'}</Link></li>
-          </ul>
-        </div>
-      </nav>
+          <Link to = {userDetails.id? `/user/${userDetails.id}/profile`: '/login'} className = 'd-flex align-items-center nav-link'><Person/>{userDetails.userName || 'Not Signed In'}</Link>
+        </nav>
+      </div>
     </header>
   )
 }

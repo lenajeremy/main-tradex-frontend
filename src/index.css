@@ -1,32 +1,37 @@
-@font-face{
-  src: 'fonts/Poppins-Regular.ttf';
-  font-family: 'Poppins';
+:root{
+  --primary-color: #42b685;
+  --primary-color-dark: #289266;
+}
+.color-primary{
+  color: var(--primary-color);
+}
+.background-primary{
+  background-color: var(--primary-color);
+}
+a:not(header a){
+  color: var(--primary-color)!important;
 }
 body {
+  background-color: #42b68515!important;
   margin: 0;
-  font-family: 'Poppins', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: var(--dark)!important;
-  color: var(--white)!important;
-  
 }
-#root{
-  background: url('bg-hero-desktop.svg') fixed;
-  min-height: 100vh;
-}
-@media screen and (max-width: 768px){
-  #root{
-    background-position: right;
-  }
-}
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body *{
+font-family: 'Montserrat', sans-serif!important;
 }
 .btn:hover{
   opacity: 0.8;
 }
 .btn:focus{
   box-shadow: none!important;
+}
+.MuiButton-containedPrimary{
+  font-size: 18px!important;
+  padding: 12px!important;
+  color: #efefef!important;
+  border-radius: 10rem!important;
+}
+.MuiButton-containedPrimary:hover{
+  background: var(--primary-color-dark)!important;
 }
