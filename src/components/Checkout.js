@@ -24,8 +24,9 @@ export default function Checkout() {
 
   if (user.userType === 'buyer') {
     return (
-      <div className='checkout'>
-        <div className="top d-flex align-items-center">
+      <div className='checkout container d-flex justify-content-between' style = {{flexDirection: 'column', height: 'calc(100vh - 100px)'}}>
+        <div>
+          <div className="top d-flex align-items-center">
           <div className='d-flex align-items-center' onClick={() => history.goBack()}>
             <ArrowBackIos />
             <p>Review Cart</p>
@@ -33,14 +34,14 @@ export default function Checkout() {
           <ShoppingCart />
           <Typography variant='body1' component='p'>{number}</Typography>
         </div>
-
-        {products.map((product, key) => <ProductLittle key={key} stuff={key} productDetails={product} />)}
-        <div className="details container">
-          <Link to='/checkout/'><Button disabled={products.length === 0} className='checkout__button' variant='contained' size='small' color='primary'>Checkout</Button></Link>
+          {products.map((product, key) => <ProductLittle key={key} stuff={key} productDetails={product} />)}
+        </div>
+        <div className="details">
           <div className='d-flex justify-content-around'>
             <p className="price">TOTAL: N{formatCurrency(total)}</p>
             <p className="price">{number} items in cart</p>
           </div>
+          <Link to='/checkout/'><Button disabled={products.length === 0} className='checkout__button' variant='contained' fullWidth color='primary'>Checkout</Button></Link>
         </div>
       </div>
     )
@@ -67,7 +68,7 @@ function ProductLittle({ productDetails, stuff }) {
   return (
     <div className={stuff === 0 ? 'product_little d-flex mb-4' : 'product_little d-flex my-4'} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
       <div className="main d-flex align-items-center">
-        <Radio />
+        <Radio color = 'primary' />
         <div className='product_little_image' style={{ backgroundImage: `url(${url(productDetails.image)})` }}>
           <img className='img-responsive img-fluid' src={productDetails.image} alt={productDetails.description} />
         </div>

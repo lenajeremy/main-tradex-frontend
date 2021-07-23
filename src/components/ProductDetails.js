@@ -12,15 +12,15 @@ function ProductDetails(props) {
 
   //eslint-disable-next-line react-hooks/exhaustive-deps
   React.useEffect(() => {
-    async function getProductDetails() {
-      await getProduct(props.match.params.productId, data => data.status === 200 ? setProductDetails(data.details) : setProductDetails(productDetails));
+    function getProductDetails() {
+      getProduct(props.match.params.productId, data => data.status === 200 ? setProductDetails(data.details) : setProductDetails(productDetails));
     }
     getProductDetails();
   }, []);
 
   return (
     <div className='product_details container'>
-      <div className='top'>
+      <div className='top' style = {{cursor: 'pointer'}}>
         <div className='d-flex align-items-center' onClick={() => history.goBack()}>
           <ArrowBackIos />
           <p>Back</p>

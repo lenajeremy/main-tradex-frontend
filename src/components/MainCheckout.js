@@ -17,7 +17,7 @@ function MainCheckout() {
   const productsTotal = products => products.length === 0 ? products : products.map(product => product.currentStock).reduce((a, b) => a + b);
 
   return (
-    <form className = 'maincheckout'>
+    <form className = 'maincheckout container'>
       <div className="top d-flex align-items-center">
         <div className = 'd-flex align-items-center' onClick = {() => history.goBack()}>
           <ArrowBackIos />

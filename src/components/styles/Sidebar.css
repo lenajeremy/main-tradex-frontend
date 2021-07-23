@@ -13,6 +13,7 @@
 }
 .sideBar__links.active{
   font-size: 25px;
+  font-weight: bold;
 }
 .sideBar__links a{
   display: flex;

@@ -124,3 +124,7 @@ a.product{
     z-index: 100;
   }
 }
+.no-product-image{
+  width: 40%;
+  margin: 60px;
+}

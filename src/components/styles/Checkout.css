@@ -1,7 +1,3 @@
-.checkout{
-  height: 70vh;
-  overflow: scroll;
-}
 .checkout .top, .product_details .top, .maincheckout .top, .cart .top{
   padding: 1.2rem;
   justify-content: space-between;
@@ -13,7 +9,7 @@
     top: 13px;
     font-size: 12px!important;
     font-weight: bold!important;
-    background: chocolate;
+    background: var(--primary-color-dark);
     padding: 6px;
     border-radius: 50%;
     height: 20px;
@@ -30,13 +26,13 @@
   margin: 0;
   font-weight: 500;
 }
-.MuiRadio-colorSecondary.Mui-checked {
+/* .MuiRadio-colorSecondary.Mui-checked {
   color: #505050!important;
-}
+} */
 .product_little_image{
   background-size: cover;
-  width: 70px;
-  height: 70px;
+  width: 50px;
+  height: 50px;
   border-radius: 10px;
   overflow: hidden;
   margin-left: 20px;
@@ -54,13 +50,13 @@
   font-weight: 600;
 }
 .product_little_action{
-  width: 23%;
+  width: 18%;
   justify-content: space-between;
   align-items: center;
 }
 .product_little_action button{
-  width: 35px;
-  height: 35px;
+  width: 30px;
+  height: 30px;
   outline: none;
   border: none;
   position: relative;
@@ -72,11 +68,11 @@
   }
 }
 .product_little_action button{
-  background: #505050;
+  background: var(--primary-color-dark);
   color: white;
 }
 .product_little_action button:last-child{
-  background: rgb(196, 236, 247);
+  background: var(--primary-color-light);
   color: black;
 }
 .product_little_action .content{
@@ -109,35 +105,6 @@
   padding: 15px;
   border-radius: 1rem;
 }
-.product_image img{
-  border-radius: 1rem;
-}
-.checkout__button {
-  background: #505050;
-  width: 90%;
-  position: absolute!important;
-  border-radius: 1rem!important;
-  bottom: 30px;
-  left: 50%;
-  transform: translate(-50%, 50%);
-  transition: all 1.5s;
-  z-index: 1;
-  border: 2px solid transparent;
-}
-.checkout__button:hover, .checkout__button:active{
-  background: white!important;
-  border:  2px solid blue;
-  color: blue;
-  font-weight: bold;
-}
-.checkout .details{
-  position: fixed;
-  height: 15vh;
-  bottom: 47px;
-  background: transparent;
-  border-radius: 1rem;
-  width: 100%;
-}
 .checkout .details p{
   text-align: center;
   font-weight: 500;
@@ -147,10 +114,10 @@
   position: absolute;
   right: 10px;
   top: 10px;
-  width: 35px!important;
-  padding: 5px;
-  height: 35px!important;
-  background: rgb(212, 17, 108);
+  width: 45px!important;
+  padding: 8px;
+  height: 45px!important;
+  background: rgb(224, 10, 171);
   color: white;
   border-radius: 50%;
 }

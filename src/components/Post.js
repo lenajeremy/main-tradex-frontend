@@ -50,7 +50,7 @@ function Post(props) {
         <hr />
         <p className = 'postContent'>{props.postDetails.content}</p>
         <div className="postImage">
-          {props.postDetails.image ? <img src={`${url(props.postDetails.image)}`} alt="" className='img-responsive img-fluid' /> : ""}
+          {props.postDetails.image ? <img src={`${url(props.postDetails.image)}`} alt="" /> : ""}
           <div className={`likeButtons ${isLiked ? 'liked' : ''}`} onClick={handleLike}>
             <p className='like'>{isLiked ? <ThumbUpAlt className = 'liked'/> : <ThumbUpAltOutlined/>}{likeCount}</p>
           </div>

@@ -2,7 +2,9 @@
   box-shadow: 0px 2px 5px #afafaf7a;
   padding: 33px;
 }
-
+.postImage img{
+  width: 100%;
+}
 .post__header{
   width: 100%;
   display: flex;

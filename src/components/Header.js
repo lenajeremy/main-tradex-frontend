@@ -16,7 +16,7 @@ function Header(props) {
           <Link to = {userDetails.id? `/user/${userDetails.id}/profile`: '/login'} className = 'd-flex align-items-center nav-link'>
             {userDetails.id ?
             <div className = 'd-flex align-items-center'>
-              <div className = 'profile_avatar' style = {{marginRight: 20, backgroundImage: `url(${appropriateUrl(userDetails.profilePicture)})`}}>
+              <div className = 'profile_avatar' style = {{marginRight: 10, backgroundImage: `url(${appropriateUrl(userDetails.profilePicture)})`}}>
               </div>
               <Link to = '/login'>Logout</Link>
             </div>:

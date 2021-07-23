@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link, Redirect, useHistory, Route } from "react-router-dom";
 import UndecisiveMessager from "./UndecisiveMessager";
 import { editUser, getUser } from "../fetch";
-import {CameraAlt, ArrowBackIos, ChatBubble, AddShoppingCart} from "@material-ui/icons";
+import {CameraAlt, ArrowBackIos, AddShoppingCart, EditOutlined, MessageRounded} from "@material-ui/icons";
 import { Button } from "@material-ui/core";
 import "./styles/Profile.css";
 import { editPictures } from "../actions";
@@ -130,7 +130,7 @@ function UserProfile(props) {
                 {userState.userType === "seller" ? (
                 <Link to={`/view/user/store/${userState.userName}`}>
                   <Button variant="contained" color="primary" size="small">
-                    View Store
+                    Store
                     <AddShoppingCart/>
                   </Button>
                 </Link>
@@ -140,11 +140,19 @@ function UserProfile(props) {
               {!props.self && userState.id !== user.id && (
                 <Link to={`/view/user-profile/${userState.id}/then-chat`}>
                   <Button variant="contained" color="primary" size="small">
-                    <ChatBubble/>
                     Chat
+                    <MessageRounded/>
                   </Button>
                 </Link>
               )}
+              {props.self ? 
+                <Link to = {'/jeremedit'}>
+                  <Button variant="contained" color="primary" size="small">
+                    <EditOutlined/>
+                    Profile
+                  </Button>
+                </Link> : ''
+              }
             </div>
             </div>
           </div>

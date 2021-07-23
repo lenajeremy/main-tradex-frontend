@@ -9,6 +9,7 @@ import {newProduct, removeProductAction} from '../actions';
 import Fab from '@material-ui/core/Fab';
 import LocalGroceryStore from '@material-ui/icons/LocalGroceryStore';
 import {Link} from 'react-router-dom';
+import emptyStoreImage from '../empty.svg';
 
 
 function Cart(props) {
@@ -42,8 +43,12 @@ function Cart(props) {
           </div>
           <ShoppingCart/>
         </div>
-        <div className = 'productsGrid'>
-        {products.map((product, index) => <Product key = {index} index ={index} productDetails ={product} view = 'cart' self = {props.self} manage = {(values, operation) => manageCart(values, operation)}/>)}
+        <div className = 'productsGrid' style = {products.length === 0 ? {flexDirection: 'column'} : null}>
+        {products.length === 0 ? 
+        <React.Fragment>
+            <img className = 'no-product-image' src = {emptyStoreImage} alt = {emptyStoreImage} />
+            <h5>{props.self ? "You have not add any product to your cart" : "No Product Found in Store"}</h5>
+        </React.Fragment> : products.map((product, index) => <Product key = {index} index ={index} productDetails ={product} view = 'cart' self = {props.self} manage = {(values, operation) => manageCart(values, operation)}/>)}
         </div>
         <div className = 'floating-action-button' initial = {{rotate: '-45deg', bottom: '30px', scale: 0, opacity: 0}} animate ={{ bottom: '70px', rotate: '0deg', scale: 1, opacity: 1}}>{props.self && <Link to = '/review-cart/' disabled = {products.length === 0}><Fab disabled = {products.length === 0} color = 'secondary' variant = 'extended'><LocalGroceryStore/>Pay</Fab></Link>}</div>
       </div>
