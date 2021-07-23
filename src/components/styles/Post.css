@@ -1,8 +1,6 @@
 .post{
-  border-radius: 10px;
-  box-shadow: -2px 2px 5px gray;
-  padding: 40px;
-  background: rgba(64, 62, 62, 0.7);
+  box-shadow: 0px 2px 5px #afafaf7a;
+  padding: 33px;
 }
 
 .post__header{
@@ -35,22 +33,21 @@
 .poster__details *{
   margin: 0;
 }
-.postImage{
-  position: relative;
-}
+
 .likeButtons{
-  position: absolute;
-  left: 20px;
-  bottom: 10px;
-  padding: 10px;
-  border-radius: 20px;
-  width: 90px;
-  background: rgb(91, 118, 205);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
+  color: var(--primary-color);
   cursor: pointer;
+  width: 100px;
+  height: 50px;
+  border-radius: 10px;
+  border: 1px solid var(--primary-color);
+}
+.likeButtons.liked{
+  background: var(--primary-color);
+  color: white;
 }
 .likeButtons p{
   margin: 0;

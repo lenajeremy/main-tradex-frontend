@@ -55,7 +55,7 @@ const ChatArea = ({ routeProps, user_id }) => {
   }, [step])
 
   return (
-    <div className="chat_area">
+    <div className="chat_area container">
       <div className="top">
         <div className="content">
           <div className="chevron" onClick={() => history.goBack()}>

@@ -1,5 +1,5 @@
 header{
-  background: #42b685;
+  background: var(--primary-color);
   color: white;
   padding: 3px 10px;
   box-shadow: 0px -3px 3px gray;
@@ -28,4 +28,12 @@ header a:hover{
     height: 50px;
     overflow: hidden;
   }
+}
+.profile_avatar{
+  background-size: cover;
+  background-position: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid var(--primary-color-light);
 }

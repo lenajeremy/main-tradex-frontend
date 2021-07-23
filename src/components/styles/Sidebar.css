@@ -1,83 +1,32 @@
 .sideBar{
-  width: 20%;
+  width: 15%;
+  background: var(--primary-color-light);
   position: fixed;
   left: 0;
-  top: 60px;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  padding: 3em;
-  justify-content: flex-start;
+  top: 80px;
+  height: calc(100vh - 80px);
+  padding: 2em;
 }
-.links{
-  display: flex;
-  height: 80vh;
-  margin-top: 30px;
-  align-items: center;
-  justify-content: space-between;
-  flex-direction: column;
-}
-/*
-.sideBar a{
-  color: white;
-  font-weight: ligher;
-  font-size: 1.3rem;
-}
-.sideBar a:hover{
-  text-decoration: none;
-}
+
 .sideBar__links{
-  position: relative;
+  margin-bottom: 30px;
 }
-.sideBar .top, .sideBar .bottom,
-.sideBar__links.left::before,
-.sideBar__links.right::after{
-  transition: all 1s ease;
-  opacity: 0;
+.sideBar__links.active{
+  font-size: 25px;
 }
-.sideBar__links.active .top, .sideBar__links.active .bottom{
-  position: absolute;
-  width: 30px;
-  height: 3px;
-  opacity: 1;
-  background: white;
-}
-.sideBar .top{
-  top: -3px;
-}
-.sideBar .bottom{
-  bottom: -3px;
-}
-.sideBar .right .top, .sideBar .right .bottom{
-  right: -20px;
-}
-.sideBar .left .top, .sideBar .left .bottom{
-  left: -20px;
-}
-.sideBar__links.active.right::after, 
-.sideBar__links.active.left::before{
-  content: '';
-  opacity: 1;
-  height: 100%;
-  width: 3px;
-  background: white;
-  position: absolute;
-  top: 0;
-  bottom :0;
-}
-.sideBar__links.active a{
-  font-size: 1.5rem;
-}
-.sideBar .right::after{
-  right: -20px;
-}
-.sideBar .left::before{
-  left: -20px;
+.sideBar__links a{
+  display: flex;
+  align-items: center;
 }
 .sideBar__links svg{
-  height: 1.8rem;
-  width: 1.8rem;
+  height: 1.2em;
+  width: 1.2em;
+  margin-right: 15px;
   transition: all 0.5s ease-in;
+}
+.sideBar__links.active svg{
+  width: 1.4em;
+  height: 1.4em;
 }
 .sideBar__links .products_length {
   align-items: center;
@@ -93,9 +42,6 @@
   position: absolute;
   top: -120%;
 }
-.sideBar__links.active .products_length{
-  font-weight:normal;
-}
 @media screen and (max-width: 768px){
  .sideBar{
    width: 100%;
@@ -110,8 +56,8 @@
    transition: all 1s;
  }
  .links{
-   margin-top: 2px;
-   margin-bottom: 2px;
+   margin-top: 10px;
+   margin-bottom: 10px;
    flex-direction: row;
    height: 45px;
    width: 100%;
@@ -155,8 +101,7 @@
 }
 a{
   color: white;
-  font-weight: 600;
 }
 span#message{
   color:rgb(221, 221, 221);
-} */
+}

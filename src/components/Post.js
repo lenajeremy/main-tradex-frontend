@@ -34,7 +34,7 @@ function Post(props) {
 
   if (!toRedirect) {
     return (
-      <div className="post my-4" initial = {{opacity: 0}} animate = {{opacity: 1}}>
+      <div className="post" initial = {{opacity: 0}} animate = {{opacity: 1}}>
         <div className="post__header">
           <div className="posterImage" style = {{backgroundImage: `url(${url(props.postDetails.posterPicture)})`}}>
           <img 
@@ -50,8 +50,8 @@ function Post(props) {
         <hr />
         <p className = 'postContent'>{props.postDetails.content}</p>
         <div className="postImage">
-          <img src={`${url(props.postDetails.image)}`} alt="" className='img-responsive img-fluid' />
-          <div className="likeButtons" onClick={handleLike}>
+          {props.postDetails.image ? <img src={`${url(props.postDetails.image)}`} alt="" className='img-responsive img-fluid' /> : ""}
+          <div className={`likeButtons ${isLiked ? 'liked' : ''}`} onClick={handleLike}>
             <p className='like'>{isLiked ? <ThumbUpAlt className = 'liked'/> : <ThumbUpAltOutlined/>}{likeCount}</p>
           </div>
         </div>

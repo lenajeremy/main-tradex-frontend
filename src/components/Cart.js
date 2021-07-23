@@ -34,7 +34,7 @@ function Cart(props) {
   
   if(!toRedirect){
     return (
-      <div className = 'cart'>
+      <div className = 'cart container'>
         <div className="top d-flex align-items-center">
           <div className = 'd-flex align-items-center' onClick = {() => history.goBack()}>
             <ArrowBackIos />

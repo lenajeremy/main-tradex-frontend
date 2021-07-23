@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { Send } from '@material-ui/icons';
 import { sendMessage } from '../fetch';
 import { useSelector } from 'react-redux';
-import { TextField } from '@material-ui/core';
+import { TextField, Button } from '@material-ui/core';
 
 
 function UndecisiveMessager(props) {
@@ -25,19 +25,18 @@ function UndecisiveMessager(props) {
   }, [])
   return (
     <div className='undecidedMessages'>
-      <textarea value={content} onChange={e => setContent(e.target.value)} />
       <TextField
         name='username'
-        variant='outlined'
+        variant='filled'
         required
         value={content}
         fullWidth
-        id='username'
-        label='Username'
+        id='Message'
+        label='Type a new message'
         autoFocus
         onChange={event => setContent(event.currentTarget.value)}
       />
-      <button onClick={sendMessageFunction}><Send /></button>
+      <Button variant="contained" color="primary" size="small" onClick={sendMessageFunction}><Send /></Button>
     </div>
   )
 }

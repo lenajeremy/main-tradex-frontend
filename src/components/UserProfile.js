@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link, Redirect, useHistory, Route } from "react-router-dom";
 import UndecisiveMessager from "./UndecisiveMessager";
 import { editUser, getUser } from "../fetch";
-import {CameraAlt, ArrowBackIos} from "@material-ui/icons";
+import {CameraAlt, ArrowBackIos, ChatBubble, AddShoppingCart} from "@material-ui/icons";
 import { Button } from "@material-ui/core";
 import "./styles/Profile.css";
 import { editPictures } from "../actions";
@@ -57,7 +57,7 @@ function UserProfile(props) {
 
   React.useEffect(() => {
     async function getUserFromAPI() {
-      await getUser(props.routeProps.match.params.userId, false, (data) =>
+      getUser(props.routeProps.match.params.userId, false, (data) =>
         setuserState(data.user)
       );
     }
@@ -80,7 +80,7 @@ function UserProfile(props) {
   }
   if (user.id) {
     return (
-      <div className="userProfile">
+      <div className="userProfile container">
         <div className="profile">
           <div className="top">
             <div
@@ -105,41 +105,47 @@ function UserProfile(props) {
                 ""
               )}
             </div>
-            {userState.userType === "seller" ? (
-              <Link to={`/view/user/store/${userState.userName}`}>
-                <Button variant="outlined" color="primary" size="small">
-                  View Store
-                </Button>
-              </Link>
-            ) : (
-              ""
-            )}
-            {!props.self && userState.id !== user.id && (
-              <Link to={`/view/user-profile/${userState.id}/then-chat`}>
-                <Button variant="outlined" color="primary" size="small">
-                  Chat
-                </Button>
-              </Link>
-            )}
-            <div className="profile__details">
-              <ProfileImage
-                userName={userState.userName}
-                image={url(userState.profilePicture)}
-                id={userState.id}
-                changeHandler={(id, field, value) =>
-                  editProfile(id, field, value)
-                }
-                self={props.self}
-              />
-              <div className="details">
-                <h4>
-                  <Link to={`/view/user-profile/${userState.id}`}>
-                    {userState.userName}
-                  </Link>
-                </h4>
-                <p className="lead">{userState.profile.status}</p>
-                <p className="bio">{userState.profile.bio}</p>
+            <div className="profile__details d-flex justify-content-between">
+              <div className = 'd-flex' style = {{marginTop: 15}}>
+                <ProfileImage
+                  userName={userState.userName}
+                  image={url(userState.profilePicture)}
+                  id={userState.id}
+                  changeHandler={(id, field, value) =>
+                    editProfile(id, field, value)
+                  }
+                  self={props.self}
+                />
+                <div className="details">
+                  <h4>
+                    <Link to={`/view/user-profile/${userState.id}`}>
+                      {userState.firstName + ' ' + userState.lastName}
+                    </Link>
+                  </h4>
+                  <p className="lead">{userState.profile.status}</p>
+                  <p className="bio">{userState.profile.bio}</p>
+                </div>
               </div>
+              <div className = 'd-flex'>
+                {userState.userType === "seller" ? (
+                <Link to={`/view/user/store/${userState.userName}`}>
+                  <Button variant="contained" color="primary" size="small">
+                    View Store
+                    <AddShoppingCart/>
+                  </Button>
+                </Link>
+              ) : (
+                ""
+              )}
+              {!props.self && userState.id !== user.id && (
+                <Link to={`/view/user-profile/${userState.id}/then-chat`}>
+                  <Button variant="contained" color="primary" size="small">
+                    <ChatBubble/>
+                    Chat
+                  </Button>
+                </Link>
+              )}
+            </div>
             </div>
           </div>
         </div>

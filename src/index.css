@@ -1,6 +1,7 @@
 :root{
   --primary-color: #42b685;
   --primary-color-dark: #289266;
+  --primary-color-light: #e1fcf2;
 }
 .color-primary{
   color: var(--primary-color);
@@ -20,17 +21,17 @@ body {
 body *{
 font-family: 'Montserrat', sans-serif!important;
 }
-.btn:hover{
-  opacity: 0.8;
-}
-.btn:focus{
-  box-shadow: none!important;
-}
 .MuiButton-containedPrimary{
-  font-size: 18px!important;
-  padding: 12px!important;
   color: #efefef!important;
   border-radius: 10rem!important;
+}
+.MuiButton-containedPrimary:not(.MuiButton-containedSizeSmall){
+  padding: 12px!important;
+  font-size: 18px!important;
+}
+.MuiButton-containedSizeSmall{
+  box-shadow: none!important;
+  padding: 9px 18px!important;
 }
 .MuiButton-containedPrimary:hover{
   background: var(--primary-color-dark)!important;

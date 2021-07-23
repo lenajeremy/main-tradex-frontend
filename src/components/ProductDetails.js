@@ -19,7 +19,7 @@ function ProductDetails(props) {
   }, []);
 
   return (
-    <div className='product_details'>
+    <div className='product_details container'>
       <div className='top'>
         <div className='d-flex align-items-center' onClick={() => history.goBack()}>
           <ArrowBackIos />

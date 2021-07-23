@@ -25,7 +25,7 @@ function Store(props) {
 
   if(products){
     return (
-      <div className = 'store'>
+      <div className = 'store container'>
         <h5 className = 'text-center'>Your Products</h5>
         <div className = 'productsGrid'>
           <Link className = 'product first' to ={`/user/${user_id}/store/products/new`}>

@@ -2,8 +2,9 @@
   width: 150px;
   height: 150px;
   position: relative;
+  margin-top: -65px;
   border-radius: 50%;
-  border: 4px #3f51b5 solid;
+  border: 4px var(--primary-color-dark) solid;
   background-position: center;
   background-size: cover;
   overflow: hidden;
@@ -16,6 +17,8 @@
   display: flex;
   align-items: center;
   margin-top: 10px;
+  width: 90%;
+  margin: auto;
 }
 #loader{
   margin: auto;
@@ -26,9 +29,9 @@
   display: block;
   background-position: center;
   width: 100%;
-  height: 270px;
-  border-radius: 1rem;
+  height: 300px;
   background-size: cover;
+  border-bottom: 4px solid var(--primary-color-dark);
 }
 .cover_picture img{
   display: contents;
@@ -48,7 +51,7 @@ input#profileChange,
 .cover_picture svg:not(.back),
 .cover_picture input {
   position: absolute;
-  background: #3f51b5;
+  background: var(--primary-color);
   color: white;
   bottom: 10%;
   padding: 5px;
@@ -56,6 +59,7 @@ input#profileChange,
   height: 2rem!important;
   border-radius: 50%;
   right: 20px;
+  cursor: pointer;
 }
 input#profileChange, .cover_picture input{
   overflow: hidden;
@@ -70,6 +74,7 @@ input#profileChange, .cover_picture input{
 }
 .details{
   height: fit-content;
+  margin-left: 15px;
 }
 .details *{
   margin: 0;

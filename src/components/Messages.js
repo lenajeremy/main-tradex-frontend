@@ -12,7 +12,7 @@ function Messages(props) {
   const user = useSelector(store => store.userDetails);
 
   return (
-  <div className="messages">
+  <div className="messages container">
       <SearchBar />
       {messages.map((message, index) => (
         <MessageLink details={message} userId={user.id} key={index} />

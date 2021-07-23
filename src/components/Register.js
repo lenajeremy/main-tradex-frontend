@@ -10,7 +10,7 @@ import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import {Lock} from '@material-ui/icons';
 import { useDispatch } from 'react-redux';
-import {login, profileChange, newProduct} from '../actions'
+import {editSidebarVisibility, login, profileChange, newProduct} from '../actions'
 import {Redirect, Link} from 'react-router-dom';
 import backgroundImage from '../assets/tradex.jpg';
 import './styles/Login.css';
@@ -33,6 +33,10 @@ function Register(props) {
   const [errors, setErrors] = useState([]);
   const [isClicked, setClicked] = useState(false);
   const [toRedirect, setRedirect] = useState(false);
+
+  React.useEffect(() => {
+    dispatch(editSidebarVisibility(false));
+  })
 
   function resetState() {
     setError(false);

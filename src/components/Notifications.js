@@ -3,7 +3,6 @@ import useUrl from '../hooks/useProfileUrl';
 import { useSelector } from 'react-redux';
 import { useHistory, Link } from 'react-router-dom';
 import useTimeDifference from '../hooks/useTimeDifference';
-import { motion } from 'framer-motion';
 import { ArrowBackIos } from '@material-ui/icons';
 import { Typography } from '@material-ui/core';
 import './styles/Notification.css';
@@ -17,13 +16,13 @@ function Notifications(props) {
 
 
   return (
-    <div className='cart'>
-      <motion.div className="top d-flex align-items-center" initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }}>
+    <div className='cart container'>
+      <div className="top d-flex align-items-center" initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }}>
         <div className='d-flex align-items-center' onClick={() => history.goBack()}>
           <ArrowBackIos />
           <p>Notifications</p>
         </div>
-      </motion.div>
+      </div>
       <div className='notifications'>
         {notifications.map((notification, index) => <Notification key={index} history={history} notification={notification} />)}
       </div>

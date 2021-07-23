@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from "react-redux"
-import { createPost, fetchposts } from '../actions';
+import { createPost, fetchposts, editSidebarVisibility } from '../actions';
 import Post from './Post';
 import { createNewPost, getAllPosts } from '../fetch';
 import {TextareaAutosize, CircularProgress, Backdrop} from '@material-ui/core';
@@ -16,7 +16,6 @@ function CreatePosts(props) {
   const user_id = user.id;
   const [toRedirect, setRedirect] = useState(false);
   const [error, setError] = useState('');
-  const [creating, setCreating] = useState(true);
 
   function handleFormSubmission(event) {
     event.preventDefault();
@@ -48,8 +47,9 @@ function CreatePosts(props) {
 
   if (!toRedirect) {
     return (
-      <React.Fragment>
-        <form onSubmit={handleFormSubmission} className = 'mb-md-4' id = 'createForm'>
+      <form onSubmit={handleFormSubmission} id = 'createForm'>
+          <div className = 'container'>
+          <h4 className = 'mb-4'>Create a new post</h4>
           <TextareaAutosize id = 'create_textarea' name = 'post_content' value = {postContent} onChange = {event => setPostContent(event.target.value)} placeholder = {`What's going on ${user_id ? user.firstName : ''}??`} />
           <div className = 'stuff'>
           <div className="imageCreate">
@@ -60,8 +60,8 @@ function CreatePosts(props) {
           <button id = 'createFormButton' type='submit'>POST</button>
           </div>
           {error ? <p className = 'text-danger post_error text-center'>{error}</p> : ''}
+        </div>
         </form>
-      </React.Fragment>
     )
   } else {
     return <Redirect to='/login' />
@@ -106,15 +106,19 @@ function AllPosts(props) {
   }
 
   return (
-    <React.Fragment>
+    <div className = 'container'>
       { allPosts.map((post, index) => <Post key={index} postDetails={post} />)}
       {loading ? <CircularProgress variant = 'indeterminate' color = 'primary' id = 'loader'/> : ''}
-    </React.Fragment>
+    </div>
   )
 
 }
 
 function WrapperFunction(props) {
+  const dispatch = useDispatch();
+  React.useEffect(() => {
+    dispatch(editSidebarVisibility(true));
+  })
   return (
     <React.Fragment>
       <CreatePosts />
@@ -122,4 +126,4 @@ function WrapperFunction(props) {
     </React.Fragment>
   )
 }
-export default WrapperFunction
+export default WrapperFunction;
