@@ -17,7 +17,7 @@ function Messages(props) {
       {messages.map((message, index) => (
         <MessageLink details={message} userId={user.id} key={index} />
       ))}
-      <Fab variant= 'extended' color = 'primary'><Add/></Fab>
+      <Fab variant= 'round' color = 'primary'><Add/></Fab>
     </div>
   );
 }

@@ -68,7 +68,7 @@ textarea#product_changeg {
   padding: 7px;
 }
 textarea#product_change:focus {
-  border: 2px solid #3f51b5;
+  border: 2px solid var(--primary-color-dark);
 }
 @media screen and (max-width: 768px) {
   .productAddForm {
@@ -99,7 +99,8 @@ textarea#product_change:focus {
 }
 .message_searchbar {
   margin: 10px 20px;
-  background: rgba(77, 112, 228, 0.473);
+  padding: 7px 15px;
+  background: rgb(144, 170, 144);
   position: relative;
   display: flex;
   align-items: center;
@@ -110,29 +111,19 @@ textarea#product_change:focus {
   border-radius: 10rem;
   color: white;
 }
-.message_searchbar .svg{
-  width: 15%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 .message_searchbar svg {
   width: 25px;
   height: 25px;
   color: white;
 }
 .message_searchbar input {
-  margin-left: auto;
-  width: 85%;
   background: transparent;
   border: none;
   outline: none;
   font-size: 16px;
   height: 100%;
-  top: 0;
-  left: 0;
+  width: 100%;
   padding: 6px;
-  padding-left: 0;
 }
 .message_searchbar input::placeholder{
   font-size: 16px;

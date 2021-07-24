@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import {motion} from 'framer-motion';
 import {Link } from 'react-router-dom';
 import { editPost } from '../fetch';
 import { ThumbUpAltOutlined, ThumbUpAlt } from '@material-ui/icons'
@@ -7,6 +8,7 @@ import './styles/Post.css'
 import { Redirect } from 'react-router-dom';
 import { likepost } from '../actions'
 import useTimeDifference from '../hooks/useTimeDifference';
+import HeroImage from './HeroImage';
 import useUrl from '../hooks/useProfileUrl';
 
 function Post(props) {
@@ -37,10 +39,12 @@ function Post(props) {
       <div className="post" initial = {{opacity: 0}} animate = {{opacity: 1}}>
         <div className="post__header">
           <div className="posterImage" style = {{backgroundImage: `url(${url(props.postDetails.posterPicture)})`}}>
-          <img 
+          <motion.img layoutId = {url(props.postDetails.posterPicture)}
+          initial = {{x: 0, scale: 0.5}} animate = {{x: 20, scale: 1.4}}
             src={url(props.postDetails.posterPicture)}
             alt="" className='img-responsive img-fluid img-rounded'
-          />
+          ></motion.img>
+          <HeroImage imageUrl = {url(props.postDetails.posterPicture)}/>
           </div>
           <div className="poster__details">
             <Link to = {`/view/user-profile/${props.postDetails.posterId}`}>{props.postDetails.poster}</Link>

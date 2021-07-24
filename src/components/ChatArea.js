@@ -1,7 +1,6 @@
 import React from "react";
 import { getChatMessages, sendMessage as messageSend } from "../fetch";
-import ArrowBackIos from "@material-ui/icons/ArrowBackIos";
-import ArrowForwardIos from '@material-ui/icons/ArrowForwardIos'
+import {ArrowBackIos, ArrowForwardIos, MoreVert} from "@material-ui/icons";
 import "./styles/ChatArea.css";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
@@ -57,7 +56,8 @@ const ChatArea = ({ routeProps, user_id }) => {
   return (
     <div className="chat_area container">
       <div className="top">
-        <div className="content">
+        <div className="content justify-content-between">
+          <div className = 'content'>
           <div className="chevron" onClick={() => history.goBack()}>
             <ArrowBackIos />
           </div>
@@ -71,6 +71,10 @@ const ChatArea = ({ routeProps, user_id }) => {
           <div className="userDetails">
             <div className="user_name">{`${userDetails.firstName} ${userDetails.lastName}`}</div>
             <small>Online</small>
+          </div>
+          </div>
+          <div className = 'p-4'>
+            <MoreVert/>
           </div>
         </div>
       </div>
@@ -103,11 +107,13 @@ function ChatForm(props) {
           name="message"
           id="message"
           placeholder="Type a message…"
-        />
-        <button type="submit">
-          <ArrowForwardIos />
-        </button>
-      </div>
+          />
+        </div>
+        <div>
+          <button type="submit">
+            <ArrowForwardIos />
+          </button>
+        </div>
     </form>
   );
 }

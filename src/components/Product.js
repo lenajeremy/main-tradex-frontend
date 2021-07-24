@@ -6,6 +6,7 @@ import Button from '@material-ui/core/Button';
 import {Link } from 'react-router-dom';
 import {useSelector} from 'react-redux';
 import useUrl from '../hooks/useProfileUrl';
+import {motion, AnimatePresence } from 'framer-motion';
 
 const Product = ({productDetails, view, manage, self}) =>{
   const products = useSelector(store => store.products);
@@ -16,7 +17,8 @@ const Product = ({productDetails, view, manage, self}) =>{
   const incart = () => products.findIndex(product => product.id === productDetails.id) !== -1;
 
   return(
-    <div key ={productDetails.id} initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1}} exit={{ opacity: 0.5, scale: 0.5 }} className = 'product'>
+    <AnimatePresence>
+    <motion.div initial = {{scale: 0.5, y: -50, opacity: 0.5}} animate = {{scale: 1, y: 0, opacity: 1}} exit = {{scale: 0, opacity: 0, x: -50}}key ={productDetails.id} className = 'product'>
       <div className="overlay"></div>
       {self ? <Close onClick = {()=>manage(productDetails, 'remove_from_cart')}/> : ''}
       <div className="background" style = {{backgroundImage: `url(${ url(productDetails.image)})`}}></div>
@@ -27,7 +29,8 @@ const Product = ({productDetails, view, manage, self}) =>{
         <Link to = {`/product/${productDetails.id}`}><Button variant = 'contained' color = 'primary' size = 'small'>Details</Button></Link>
         <Button variant = 'contained'  color = 'secondary' size = 'small' disabled = {incart() && !self} onClick = {() => manage(productDetails, incart() ? 'remove_from_cart' : 'add_to_cart')}>{view === 'store' ? 'Remove' : self  ? "Remove" : incart() ? "In Cart" : "Add to Cart"}</Button>
       </div>
-    </div>
+    </motion.div>
+    </AnimatePresence>
   )
 }
 

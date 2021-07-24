@@ -6,7 +6,7 @@ import productReducer from './products.reducer';
 import postReducer from './posts.reducer';
 import messageReducer from './messages.reducer'
 
-const isdevmode = (state = true, action) => state;
+const isdevmode = (state = false, action) => state;
 const rootReducer = combineReducers({
   isdevmode,
   posts: postReducer,

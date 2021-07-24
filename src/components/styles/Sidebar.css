@@ -1,6 +1,5 @@
 .sideBar{
   width: 15%;
-  background: var(--primary-color-light);
   position: fixed;
   left: 0;
   top: 80px;

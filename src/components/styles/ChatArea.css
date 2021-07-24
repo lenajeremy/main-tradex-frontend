@@ -2,22 +2,19 @@
   position: relative;
 }
 .chat_area .top {
-  position: fixed;
   padding-left: 15px;
-  background: #0f1644;
-  width: 49%;
+  background: var(--primary-color);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  height: 55px;
+  height: 65px;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
   color: white;
 }
 .chat_area .top{
-  padding-left: 10px;
+  padding-left: 20px;
   width: 100%;
-  top: 49px;
 }
 .chat_area .top .content {
   display: -webkit-box;
@@ -55,43 +52,17 @@
   padding: 5px 20px;
   padding-top: 55px;
 }
-/* .chat_area .main #messageForm {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  width: 92%;
-  left: 50%;
-  position: absolute;
-  transform: translateX(-50%);
-  bottom: 10px;
-  border-radius: 10rem;
-  height: 50px;
-  background: rgb(202, 204, 204);
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  padding-left: 10px;
-} */
 .chat_area .main #messageForm {
   display: flex;
   align-items: center;
-  width: 49%;
-  position: fixed;
-  height: 45px;
-  bottom: 3px;
-  left: 50%;
-  transform: translateX(-50%);
+  height: 70px;
 }
 #messageForm div {
   display: flex;
-  width: 96%;
-  padding-left: 20px;
   height: 100%;
   margin: auto;
-  background: rgb(238, 238, 238);
+  /* background: rgb(238, 238, 238); */
   border-radius: 10rem;
-  padding-right: 5px;
-  align-items: center;
 }
 
 .chat_area .main #messageForm textarea,
@@ -102,11 +73,7 @@
 }
 
 .chat_area .main #messageForm textarea {
-  width: calc(100% - 40px);
   resize: none;
-  color: rgb(70, 76, 134);
-  border-radius: inherit;
-  height: 50%;
 }
 
 .chat_area .main #messageForm textarea::placeholder {
