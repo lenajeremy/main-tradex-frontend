@@ -45,26 +45,29 @@
 @media screen and (max-width: 768px){
  .sideBar{
    width: 100%;
-   background: var(--dark);
+   background: var(--primary-color);
    top: unset;
    bottom: 0;
    min-height: 40px;
    z-index: 20;
+   height: auto;
+   padding: 0.7em 1.4em;
  }
  .sideBar svg, .text{
    color: white;
-   transition: all 1s;
+   margin: 0;
+ }
+ .sideBar__links svg,
+ .sideBar__links.active svg{
+   font-size: 1.0em
  }
  .links{
-   margin-top: 10px;
-   margin-bottom: 10px;
-   flex-direction: row;
+   display: flex;
    height: 45px;
    width: 100%;
    justify-content: space-around;
  }
  .sideBar__links{
-  padding: 0 10px;
   position: relative;
   height: 100%;
   width: 50px;
@@ -76,21 +79,18 @@
  .sideBar__links.active .top,
  .sideBar__links.active .bottom,
  .sideBar__links.active::before,
- .sideBar__links.active::after,
- .text{
+ .sideBar__links.active::after{
   display: none
  }
- .sideBar__links.active svg{
-   margin-top: -15px;
-   color: var(--primary);
-  }
-  .sideBar__links.active .text{
+ .sideBar__links a{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+ }
+  .sideBar__links .text{
     display: block;
     font-size: 14px;
-    position: absolute;
-    bottom: 0;
-    color: var(--primary);
-    left: 0%;
     text-align: center;
     width: 100%;
     font-weight: lighter;

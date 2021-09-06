@@ -50,7 +50,6 @@
 }
 .chat_area .main {
   padding: 5px 20px;
-  padding-top: 55px;
 }
 .chat_area .main #messageForm {
   display: flex;
@@ -100,19 +99,18 @@
 
 .chat_area .main .self,
 .chat_area .main .not_self {
-  padding: 7px 8px;
-  color: #ffffff;
-  font-size: 13.5px;
-  margin-top: 12px;
-  max-width: 69%;
+  padding: 13px;
+  color: #333;
+  font-size: 15px;
+  margin-top: 15px;
+  max-width: 50%;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   border-radius: 10px;
   border-top-left-radius: 0px;
-  background: rgb(15, 22, 68);
-  -webkit-box-shadow: 0px 5px 5px rgb(97, 97, 97);
-  box-shadow: 0px 5px 5px rgb(97, 97, 97);
+  background: white;
+  box-shadow: -1px 2px 5px #e7e7e7, -2px 3px 5px #d7e6da;
 }
 @media screen and (max-width: 768px) {
   .chat_area .main .self,
@@ -122,10 +120,11 @@
 }
 .chat_area .main .self {
   margin-left: auto;
-  color: #352c3d;
+  background: var(--primary-color);
   border-top-left-radius: 10px;
+  color: white;
   border-top-right-radius: 0px;
-  background: white;
+  box-shadow: -2px 6px 6px #BFD8C2;
 }
 .message_text p {
   margin: 0;

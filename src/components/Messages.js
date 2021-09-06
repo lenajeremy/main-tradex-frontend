@@ -25,6 +25,10 @@ function Messages(props) {
 const MessageLink = ({ details, userId }) => {
   const url = useUrl();
 
+  const getTimeAndHour = (date) => {
+    date = new Date(date);
+    return `${date.getHours()}:${date.getMinutes()} ${date.toLocaleTimeString().split(' ')[1]}`;
+  }
   return (
     <div className="message_link my-2">
       <div className = 'profile_image' style = {{backgroundImage: `url(${url(details.recipient.id === userId ? details.sender.picture : details.recipient.picture)})`}}>
@@ -45,10 +49,13 @@ const MessageLink = ({ details, userId }) => {
         <p>
           {details.content.length <= 35
             ? details.content
-            : details.content.split("").slice(0, 35).join("") + "..."}
+            : details.content.split("").slice(0, 70).join("") + "..."}
         </p>
       </div>
-      {/* <div>{timeDifference(details.date_sent)}</div> */}
+      <div>
+        <p>{getTimeAndHour(details.date_sent)}</p>
+        {details.unread_message_count ? <p>{details.unread_message_count}</p> : ''}
+      </div>
     </div>
   );
 };

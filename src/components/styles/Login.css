@@ -35,3 +35,8 @@
   color: white;
   transform: translateY(-50%);
 }
+@media screen and (max-width: 600px){
+  .login-left{
+    display: none;
+  }
+}

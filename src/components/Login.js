@@ -26,6 +26,7 @@ function Login(props) {
     loginUser(userName, password, data => {
       if (data.status === 200) {
         getUser(data.id, true, userDetails => {
+          console.log(data);
           dispatch(login(userDetails.user));
           dispatch(profileChange(userDetails.user.profile));
           dispatch(initialMessages(userDetails.user.latestMessages));
