@@ -57,10 +57,6 @@
    color: white;
    margin: 0;
  }
- .sideBar__links svg,
- .sideBar__links.active svg{
-   font-size: 1.0em
- }
  .links{
    display: flex;
    height: 45px;
@@ -97,6 +93,14 @@
   }
   .sideBar__links a{
     display: flex;
+  }
+  .sideBar__links svg{
+   height: 1.2em;
+   width: 1.2em;
+  }
+  .sideBar__links.active svg{
+    height: 1.3em;
+   width: 1.3em;
   }
 }
 a{

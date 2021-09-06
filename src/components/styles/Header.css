@@ -24,9 +24,8 @@ header a:hover{
 }
 
 @media screen and (max-width: 768px){
-  header{
-    height: 50px;
-    overflow: hidden;
+  header .container:not(.header){
+    padding-bottom: 0;
   }
 }
 .profile_avatar{

@@ -65,6 +65,9 @@ button#createFormButton{
   color: white;
 }
 @media screen and (max-width: 768px){
+  textarea#create_textarea{
+    border-width: 1px;
+  }
   button#createFormButton,
   .postCreatorImage{
     width: 50px;
@@ -88,16 +91,13 @@ button#createFormButton{
 
 @media screen and (max-width: 768px){
   #createForm{
-    padding: 30px 15px;
+    padding: 35px 20px 10px 20px;
     margin-top: 0;
   }
   textarea#create_textarea{
     min-height: 50px;
     border-radius: 10rem;
     margin-bottom: 10px;
-    border-width: 2px;
-  }
-  textarea#create_textarea:focus{
     border-width: 2px;
   }
 }
@@ -116,9 +116,5 @@ button#createFormButton{
   .post_error{
     font-size: 14px;
     margin: 0;
-  }
-  #createForm{
-    border-radius: 0;
-    box-shadow: -2px -1px 3px grey;
   }
 }

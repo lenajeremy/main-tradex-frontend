@@ -13,7 +13,7 @@ function Header(props) {
       <div className = 'container'>
         <nav className='navbar navbar-expand-sm d-flex justify-content-between'>
           <Link to='/' className='navbar-brand'>TradeX</Link>
-          <Link to = {userDetails.id? `/user/${userDetails.id}/profile`: '/login'} className = 'd-flex align-items-center nav-link'>
+          <Link to = {userDetails.id? `/user/${userDetails.id}/profile`: '/login'} className = 'd-flex align-items-center'>
             {userDetails.id ?
             <div className = 'd-flex align-items-center'>
               <div className = 'profile_avatar' style = {{marginRight: 10, backgroundImage: `url(${appropriateUrl(userDetails.profilePicture)})`}}>

@@ -41,7 +41,7 @@ function Store(props) {
         <React.Fragment>
             <img className = 'no-product-image' src = {emptyStoreImage} alt = {emptyStoreImage} />
             <h5>You have not added any product to your store</h5>
-            {props.self ? <Button type = 'contained'></Button> : ''}
+            {props.self ? <Button type = 'contained'>Add products now</Button> : ''}
         </React.Fragment> : products.map((product, index) => <Product index = {index} self = {props.self} manage = {productDetails => removeProduct(productDetails)} key = {index} productDetails ={product} view = 'store'/>)}
         </div>
       </div>

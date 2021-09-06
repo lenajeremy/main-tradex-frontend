@@ -51,21 +51,16 @@ function Sidebar({visible}) {
             <div className='bottom'></div>
             <Link onClick={() => dispatch(editSidebar({ value: 'explore' }))} to='/'>{active === 'explore' ? <Home /> : <HomeOutlined />}<span className='text'>Explore</span></Link>
           </div>
-          <div className={`sideBar__links right ${active === 'profile' ? 'active' : ''}`}>
-            <div className='top'></div>
-            <div className='bottom'></div>
-            <Link onClick={() => dispatch(editSidebar({ value: 'profile' }))} to={userDetails.id ? `/user/${userDetails.id}/profile` : '/login'}>{active === 'profile' ? <Person /> : <PersonOutlined />}<span className='text'>Profile</span></Link>
-          </div>
           <div className={`sideBar__links left ${active === 'message' ? 'active' : ''}`}>
             <div className='top'></div>
             <div className='bottom'></div>
             <Link onClick={() => dispatch(editSidebar({ value: 'message' }))} to={userDetails.id ? `/messages` : '/login'}>{active === 'message' ? <Mail /> : <MailOutline />}<span className='text'>Chats</span></Link>
           </div>
           {userTypeDeterminant()}
-          <div className={`sideBar__links right ${active === 'notifications' ? 'active' : ''}`}>
+          <div className={`sideBar__links right ${active === 'profile' ? 'active' : ''}`}>
             <div className='top'></div>
             <div className='bottom'></div>
-            <Link onClick={() => dispatch(editSidebar({ value: 'notifications' }))} to='/notifications'>{active === 'notifications' ? <Notifications /> : <NotificationsOutlined />}<span className='text'>Notfcatns</span></Link>
+            <Link onClick={() => dispatch(editSidebar({ value: 'profile' }))} to={userDetails.id ? `/user/${userDetails.id}/profile` : '/login'}>{active === 'profile' ? <Person /> : <PersonOutlined />}<span className='text'>Profile</span></Link>
           </div>
         </div>
       </div>
