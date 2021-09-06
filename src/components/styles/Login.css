@@ -39,4 +39,10 @@
   .login-left{
     display: none;
   }
+  .login > div{
+    width: 88%;
+  }
+  .MuiGrid-item{
+    width: 100%;
+  }
 }

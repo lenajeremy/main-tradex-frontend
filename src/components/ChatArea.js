@@ -22,6 +22,8 @@ const ChatArea = ({ routeProps, user_id }) => {
   React.useEffect(() => {
     document.querySelector(".sideBar").style.display =
       window.innerWidth < 700 ? "none" : "block";
+    document.querySelector("header").style.display =
+    window.innerWidth < 700 ? "none" : "block";
     window.addEventListener("scroll", scrollEvent);
     getChatMessages(user_id, routeProps.match.params.chatId, step, (data) => {
       setMessages(data.messages);
@@ -30,6 +32,7 @@ const ChatArea = ({ routeProps, user_id }) => {
     });
     return () => {
       document.querySelector(".sideBar").style.display = "block";
+      document.querySelector("header").style.display = "block";
       window.removeEventListener("scroll", scrollEvent);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -48,7 +51,6 @@ const ChatArea = ({ routeProps, user_id }) => {
     });
   }
   React.useEffect(() => {
-    console.log(step);
     if (step > 0) getChatMessages(user_id, routeProps.match.params.chatId, step, data => setMessages([...data.messages, ...messages]))
     //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [step])

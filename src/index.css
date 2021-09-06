@@ -29,6 +29,9 @@ font-family: 'Montserrat', sans-serif!important;
   padding: 12px!important;
   font-size: 18px!important;
 }
+.MuiButton-containedPrimary:not(.MuiButton-containedSizeSmall){
+  padding: 8px!important;
+}
 .MuiButton-containedSizeSmall{
   box-shadow: none!important;
   padding: 9px 18px!important;
